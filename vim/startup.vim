@@ -11,6 +11,10 @@ set ttimeoutlen=50
 " Make tab behave
 set wildmode=longest:list
 
+" Make mouse behave
+behave xterm
+set clipboard=unnamed,autoselect
+
 " File format
 set encoding=utf-8
 set modelines=5

@@ -3,3 +3,4 @@
 syn region csAtString start=+@"+ skip=+""+ end=+"+
 hi def link csAtString String
 syn keyword csKeyword out ref default
+syn keyword csConditional in
