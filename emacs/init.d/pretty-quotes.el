@@ -15,9 +15,17 @@
 
 (defun insert-pretty-single-quote ()
   (interactive)
-  (insert-pretty-quote "`" "'" ?\'))
+  (insert-pretty-quote "&lsquo;" "&rsquo;" ?\'))
 
 (defun insert-pretty-double-quote ()
+  (interactive)
+  (insert-pretty-quote "&ldquo;" "&rdquo;" ?\"))
+
+(defun insert-tex-single-quote ()
+  (interactive)
+  (insert-pretty-quote "`" "'" ?\'))
+
+(defun insert-tex-double-quote ()
   (interactive)
   (insert-pretty-quote "``" "''" ?\"))
 
@@ -38,8 +46,13 @@
 
 (defun bind-pretty-html-quotes ()
   (define-key html-mode-map "'" 'insert-pretty-single-quote)
-  (define-key html-mode-map "\"" 'insert-pretty-double-quote))
-;  (define-key html-mode-map "-" 'maybe-replace-em-dash)
-;  (define-key html-mode-map "." 'maybe-replace-ellipsis))
+  (define-key html-mode-map "\"" 'insert-pretty-double-quote)
+  (define-key html-mode-map "-" 'maybe-replace-em-dash)
+  (define-key html-mode-map "." 'maybe-replace-ellipsis))
 
-(add-hook 'html-mode-hook 'bind-pretty-html-quotes)
+;(add-hook 'html-mode-hook 'bind-pretty-html-quotes)
+
+(defun bind-texlike-quotes ()
+  (define-key html-mode-map "'" 'insert-tex-single-quote)
+  (define-key html-mode-map "\"" 'insert-tex-double-quote))
+  

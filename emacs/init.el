@@ -366,7 +366,9 @@ command again."
 
 (global-font-lock-mode)
 
-(mapcar (lambda (filename)
-          (load filename))
-        (directory-files (concat (getenv "CONFIGDIR") "/emacs/init.d")
-                         t ".*\\.el"))
+(let ((init-dir (concat (getenv "CONFIGDIR") "/emacs/init.d/")))
+  (mapcar (lambda (filename)
+            (unless (string= (substring filename 0 1) ".")
+              (load (concat init-dir filename))))
+          (directory-files (concat (getenv "CONFIGDIR") "/emacs/init.d")
+                           (not 'full) ".*\\.el")))
