@@ -1,3 +1,4 @@
+set input-meta off
 "\e\e[C": forward-word
 "\e\e[D": backward-word
 "\e[2~": overwrite-mode
