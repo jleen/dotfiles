@@ -48,9 +48,7 @@
 ;; First, the hook.
 (add-hook 'shell-mode-hook 'jleen-shell-mode-hook)
 (defun jleen-shell-mode-hook ()
-  (setq comint-completion-suffix (cons "\\" " ")
-        shell-dirstack-query "cd"
-        comint-input-filter-functions (cons 'handle-c-bat
+  (setq comint-input-filter-functions (cons 'handle-c-bat
                                             comint-input-filter-functions)
         comint-preoutput-filter-functions
         (cons 'handle-c-bat-output
@@ -89,16 +87,7 @@
 ;; of sdv.cmd and windiff.cmd in my Utils directory.
 
 
-;;;; Coping With Widows
-
-;; new furniture
-(setq grep-command "findstr /sn ")
-(setq explicit-cmdproxy.exe-args '("/q"))
-
-;; I know this is "deprecated", but how else am I going to make things
-;; work?  I suppose I'm hurting RMS's feelings, but I work at
-;; Microsoft, for crying out loud.  Sorry, RMS.
-(setq directory-sep-char ?\\)
+;;;; Coping With Widows, part ii
 
 ;; for C#
 (load-library "compile")
@@ -118,56 +107,6 @@ and \"set\".)"
 (setq auto-mode-alist
       (append auto-mode-alist
               '(("\\.cs" . csharp-mode))))
-
-;; fix for emacs's innate aversion to spaces
-(defun shell-resync-dirs ()
-  "**hacked by jleen to support spaces in filenames**
-Resync the buffer's idea of the current directory stack.
-This command queries the shell with the command bound to
-`shell-dirstack-query' (default \"dirs\"), reads the next
-line output and parses it to form the new directory stack.
-DON'T issue this command unless the buffer is at a shell prompt.
-Also, note that if some other subprocess decides to do output
-immediately after the query, its output will be taken as the
-new directory stack -- you lose. If this happens, just do the
-command again."
-  (interactive)
-  (let* ((proc (get-buffer-process (current-buffer)))
-         (pmark (process-mark proc)))
-    (goto-char pmark)
-    (insert shell-dirstack-query) (insert "\n")
-    (sit-for 0) ; force redisplay
-    (comint-send-string proc shell-dirstack-query)
-    (comint-send-string proc "\n")
-    (set-marker pmark (point))
-    (let ((pt (point))) ; wait for 1 line
-      ;; This extra newline prevents the user's pending input from spoofing us.
-      (insert "\n") (backward-char 1)
-      (while (not (looking-at ".+\n"))
-        (accept-process-output proc)
-        (goto-char pt)))
-    (goto-char pmark) (delete-char 1) ; remove the extra newline
-    ;; That's the dirlist. grab it & parse it.
-    (let* ((dl (buffer-substring (match-beginning 0) (1- (match-end 0))))
-           (dl-len (length dl))
-           (ds '())                     ; new dir stack
-           (i 0))
-      (while (< i dl-len)
-        ;; regexp = optional whitespace, (non-whitespace), optional whitespace
-        ;; jleen hacked next line
-        (string-match "\\(.*\\)" dl i) ; pick off next dir
-        (setq ds (cons (concat comint-file-name-prefix
-                               (substring dl (match-beginning 1)
-                                          (match-end 1)))
-                       ds))
-        (setq i (match-end 0)))
-      (let ((ds (nreverse ds)))
-        (condition-case nil
-            (progn (shell-cd (car ds))
-                   (setq shell-dirstack (cdr ds)
-                         shell-last-dir (car shell-dirstack))
-                   (shell-dirstack-message))
-          (error (message "Couldn't cd")))))))
 
 
 ;;;; Flavor of the Month

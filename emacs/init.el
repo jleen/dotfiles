@@ -135,7 +135,8 @@
 (global-set-key [f5] 'shell)
 (global-set-key [f6] 'compile)
 (global-set-key [M-f5] (lambda () (interactive)
-                         (switch-to-buffer-other-window "*shell*")))
+                         (switch-to-buffer-other-window "*shell*")
+                         (shell)))
 
 ;; we're out of first grade; give us the dangerous stuff
 (put 'eval-expression 'disabled nil)
@@ -220,6 +221,33 @@
 (add-hook 'c-mode-hook
           (lambda ()
             (c-set-offset 'case-label '+)))
+
+
+;;;; Coping With Windows
+
+(when (eq window-system 'w32)
+  
+  ;; new furniture
+  (setq grep-command "findstr /sn ")
+  (setq explicit-cmdproxy.exe-args '("/q"))
+
+  ;; I know this is "deprecated", but how else am I going to make things
+  ;; work?  I suppose I'm hurting RMS's feelings, but I work at
+  ;; Microsoft, for crying out loud.  Sorry, RMS.
+  (setq directory-sep-char ?\\)
+
+  ;; directory sync for M-x shell
+  (add-hook 'shell-mode-hook 'jleen-win-shell-settings)
+  (defun jleen-win-shell-settings ()
+    (setq comint-completion-addsuffix (cons "\\" " ")
+          shell-dirstack-query "cd"))
+
+  (setq latex-run-command "pdftex.exe -progname=pdflatex")
+
+  (add-hook 'latex-mode-hook
+            (lambda ()
+              (define-key latex-mode-map "\C-c\C-v" 'jleen-pdftex-view)))
+  )
 
 
 ;;;; Some of My Own Evil Creations
@@ -307,6 +335,95 @@ This sounds weird, but it feels right to me."
           (funcall c-backspace-function 1)
         (delete-region (point) here)
         (c-indent-command)))))
+
+;; PDFTeX support (mainly intended for Windows).
+(defun jleen-pdftex-view ()
+  "Preview the last `.pdf' file made by running PDFTeX under Emacs.
+This means, made using \\[tex-region], \\[tex-buffer] or \\[tex-file].
+The variable `tex-dvi-view-command' specifies the shell command for preview.
+You must set that variable yourself before using this command,
+because there is no standard value that would generally work."
+  (interactive)
+  (or tex-dvi-view-command
+      (error "You must set `tex-dvi-view-command'"))
+  (let ((tex-dvi-print-command tex-dvi-view-command))
+    (jleen-pdftex-print)))
+
+(defun jleen-pdftex-print (&optional alt)
+  "Print the .pdf file made by \\[tex-region], \\[tex-buffer] or \\[tex-file].
+Runs the shell command defined by `tex-dvi-print-command'.  If prefix argument
+is provided, use the alternative command, `tex-alt-dvi-print-command'."
+  (interactive "P")
+  (let ((print-file-name-dvi (tex-append tex-print-file ".pdf"))
+	test-name)
+    (if (and (not (equal (current-buffer) tex-last-buffer-texed))
+	     (buffer-file-name)
+	     ;; Check that this buffer's printed file is up to date.
+	     (file-newer-than-file-p
+	      (setq test-name (tex-append (buffer-file-name) ".pdf"))
+	      (buffer-file-name)))
+	(setq print-file-name-dvi test-name))
+    (if (not (file-exists-p print-file-name-dvi))
+        (error "No appropriate `.pdf' file could be found")
+      (if (tex-shell-running)
+          (tex-kill-job)
+        (tex-start-shell))
+      (tex-send-command
+       (if alt tex-alt-dvi-print-command tex-dvi-print-command)
+       print-file-name-dvi t))))
+
+;; fix for emacs's innate aversion to spaces
+(defun jleen-fix-dirs-spaces ()
+  (defun shell-resync-dirs ()
+    "**hacked by jleen to support spaces in filenames**
+Resync the buffer's idea of the current directory stack.
+This command queries the shell with the command bound to
+`shell-dirstack-query' (default \"dirs\"), reads the next
+line output and parses it to form the new directory stack.
+DON'T issue this command unless the buffer is at a shell prompt.
+Also, note that if some other subprocess decides to do output
+immediately after the query, its output will be taken as the
+new directory stack -- you lose. If this happens, just do the
+command again."
+    (interactive)
+    (let* ((proc (get-buffer-process (current-buffer)))
+           (pmark (process-mark proc)))
+      (goto-char pmark)
+      (insert shell-dirstack-query) (insert "\n")
+      (sit-for 0) ; force redisplay
+      (comint-send-string proc shell-dirstack-query)
+      (comint-send-string proc "\n")
+      (set-marker pmark (point))
+      (let ((pt (point))) ; wait for 1 line
+        ;; This extra newline prevents the user's pending input from spoofing us.
+        (insert "\n") (backward-char 1)
+        (while (not (looking-at ".+\n"))
+          (accept-process-output proc)
+          (goto-char pt)))
+      (goto-char pmark) (delete-char 1) ; remove the extra newline
+      ;; That's the dirlist. grab it & parse it.
+      (let* ((dl (buffer-substring (match-beginning 0) (1- (match-end 0))))
+             (dl-len (length dl))
+             (ds '())                     ; new dir stack
+             (i 0))
+        (while (< i dl-len)
+          ;; regexp = optional whitespace, (non-whitespace), optional whitespace
+          ;; jleen hacked next line
+          (string-match "\\(.*\\)" dl i) ; pick off next dir
+          (setq ds (cons (concat comint-file-name-prefix
+                                 (substring dl (match-beginning 1)
+                                            (match-end 1)))
+                         ds))
+          (setq i (match-end 0)))
+        (let ((ds (nreverse ds)))
+          (condition-case nil
+              (progn (shell-cd (car ds))
+                     (setq shell-dirstack (cdr ds)
+                           shell-last-dir (car shell-dirstack))
+                     (shell-dirstack-message))
+            (error (message "Couldn't cd")))))))
+  )
+(add-hook 'shell-mode-hook 'jleen-fix-dirs-spaces)
 
 
 ;;;; Get Local Settings
