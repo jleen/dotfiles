@@ -17,9 +17,11 @@ if has("gui_running")
     set lines=50
     hi normal guifg=gray90 guibg=black
     hi Hungarian guifg=gray70
-    set background=dark
-    syntax on
 endif
+
+" Generic display options
+set background=dark
+syntax on
 
 " Editing behavior
 set nocompatible
@@ -48,11 +50,3 @@ set cinoptions+=n0	" in 1 sw if no { after if
 set cinoptions+=f0	" open brace of func in column 0
 set cinoptions+={0	" open brace 1 sw in
 set cinoptions+=:-s	" case labels out a shiftwidth
-
-" Mail and news
-au! BufNewFile,BufReadPost .followup
-au  BufNewFile,BufReadPost .followup so ~/.vim/mail.vim
-au! BufNewFile,BufReadPost .article
-au  BufNewFile,BufReadPost .article so ~/.vim/mail.vim
-au! BufNewFile,BufReadPost /tmp/mutt*
-au  BufNewFile,BufReadPost /tmp/mutt* so ~/.vim/mail.vim
