@@ -1,3 +1,4 @@
+set timeoutlen=50
 set encoding=utf-8
 set guioptions-=T
 set guifont=Lucida_Console:h9:cANSI
@@ -15,11 +16,14 @@ set expandtab
 cnoremap <tab> <C-D><C-L>
 "colors koehler
 hi normal guifg=gray90 guibg=black
-set bg=dark
+set background=dark
 syntax on
 hi Hungarian guifg=gray70
 set lines=50
 set hidden
+
+" Macros
+map <esc>q gqap
 
 " Coding conventions
 set shiftwidth=4	" > and < operators move 4 spaces
@@ -31,3 +35,11 @@ set cinoptions+=f0	" open brace of func in column 0
 set cinoptions+={0	" open brace 1 sw in
 set cinoptions+=:-s	" case labels out a shiftwidth
 set expandtab		" use spaces rather than tabs
+
+" Mail and news
+au! BufNewFile,BufReadPost .followup
+au  BufNewFile,BufReadPost .followup so ~/.vim/mail.vim
+au! BufNewFile,BufReadPost .article
+au  BufNewFile,BufReadPost .article so ~/.vim/mail.vim
+au! BufNewFile,BufReadPost /tmp/mutt*
+au  BufNewFile,BufReadPost /tmp/mutt* so ~/.vim/mail.vim
