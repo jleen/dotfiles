@@ -38,9 +38,9 @@ go ()
     cd `locate $1|sed -e 's/\/[^/]*$//'`
 }
     
-v ()
-{
-    if [ "$OSTYPE" == cygwin ]; then
+if [ "$OSTYPE" == cygwin ]; then
+    v ()
+    {
         if [ -z "$*" ]; then
             cygstart --hide gvim
         else
@@ -48,7 +48,10 @@ v ()
                 cygstart --hide gvim "\"`cygpath -wa "$fn"`\""
             done
         fi
-    elif [ -n "$DISPLAY" ]; then
+    }
+elif [ -n "$DISPLAY" ]; then
+    v ()
+    {
         if [ -z "$*" ]; then
             gvim
         else
@@ -56,7 +59,10 @@ v ()
                 gvim "$fn"
             done
         fi
-    elif [ -n "$WINDOW" ]; then
+    }
+elif [ -n "$WINDOW" ]; then
+    v ()
+    {
         if [ -z "$*" ]; then
             screen vi
         else
@@ -64,10 +70,10 @@ v ()
                 screen -t "vi $fn" vi "$fn"
             done
         fi
-    else
-        vi "$@"
-    fi
-}
+    }
+else
+    v () { vi "$@"; }
+fi
 
 gman ()
 {
