@@ -1,5 +1,5 @@
 " Now it's a whole tree!
-exec "set runtimepath=$CONFIGDIR/vimfiles," . escape(&runtimepath, ' ') . ",$CONFIGDIR/vimfiles/after"
+exec "set runtimepath=$CONFIGDIR/vim," . escape(&runtimepath, ' ') . ",$CONFIGDIR/vim/after"
 
 " Make buffers behave
 set autoread
