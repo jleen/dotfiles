@@ -59,7 +59,7 @@ endfunction
 function! s:InstantAbbrev(key, replacement)
     if s:LookingAt(strpart(a:key, 0, strlen(a:key) - 1))
         return substitute(strpart(a:key, 0, strlen(a:key) - 1),
-                    \ ".", "", "g") . a:replacement
+                    \ ".", "\<BS>", "g") . a:replacement
     else
         return strpart(a:key, 0, 1)
     endif
