@@ -295,7 +295,7 @@ This sounds weird, but it feels right to me."
         (c-indent-command)))))
 
 
-;;;; Get Local Settings
+;;;; Get Local Settings ;; jd
 
 ;; Load a site-specific .emacs if it exists.
 ;; We do this last so we can override the stuff above.
