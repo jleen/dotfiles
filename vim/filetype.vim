@@ -8,6 +8,7 @@ augroup filetypedetect
   au! BufRead,BufNewFile *.jss  setfiletype javascript
   au! BufRead,BufNewFile *.bat,*.cmd call <SID>SetBatchFT()
   au! BufRead,BufNewFile *.asmx,*.asms setfiletype cs
+  au! BufRead,BufNewFile *.psp setfiletype psp
   au! BufRead */Content.IE5/* setfiletype html
 augroup END
 
