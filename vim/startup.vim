@@ -1,3 +1,6 @@
+" Now it's a whole tree!
+exec "set runtimepath=~/config/vimfiles," . &runtimepath . ",~/config/vimfiles/after"
+
 " Make buffers behave
 set autoread
 
@@ -31,6 +34,7 @@ filetype indent on
 set nocompatible
 set backspace=2
 set autoindent
+set scrolloff=3
 
 " Tabs
 set shiftwidth=4
