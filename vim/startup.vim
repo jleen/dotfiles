@@ -1,5 +1,5 @@
 " Now it's a whole tree!
-exec "set runtimepath=~/config/vimfiles," . escape(&runtimepath, ' ') . ",~/config/vimfiles/after"
+exec "set runtimepath=$CONFIGDIR/vimfiles," . escape(&runtimepath, ' ') . ",$CONFIGDIR/vimfiles/after"
 
 " Make buffers behave
 set autoread
@@ -41,6 +41,7 @@ set nocompatible
 set backspace=2
 set autoindent
 set scrolloff=3
+set foldlevelstart=1
 
 " Tabs
 set shiftwidth=4

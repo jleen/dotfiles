@@ -1,5 +1,6 @@
 HISTFILE=$HOME/.history
-export INPUTRC=$HOME/config/inputrc
+export CONFIGDIR=${CONFIGDIR:-$HOME/config}
+export INPUTRC=$CONFIGDIR/inputrc
 shopt -s extglob
 set -o emacs
 
@@ -28,4 +29,4 @@ if [ "$PS1" ]; then
 
 fi
 
-uname | grep -i cygwin > /dev/null && source $HOME/config/cygwin.bash
+uname | grep -i cygwin > /dev/null && source $CONFIGDIR/cygwin.bash
