@@ -300,3 +300,4 @@ This sounds weird, but it feels right to me."
 ;; Load a site-specific .emacs if it exists.
 ;; We do this last so we can override the stuff above.
 (load "~/.site-emacs" t)
+;blah
