@@ -1,4 +1,5 @@
 HISTFILE=$HOME/.history
+export INPUTRC=$HOME/config/inputrc
 shopt -s extglob
 
 if [ "$PS1" ]; then

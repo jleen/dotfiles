@@ -1,0 +1,3 @@
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+set show-all-if-ambiguous on
