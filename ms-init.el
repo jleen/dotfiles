@@ -79,11 +79,14 @@
 ;;      cmd /q /k e:\office\dev\otools\bin\oenvtest.bat && exit
 ;;                ^^^^^^^^^^^^^ (or whatever)
 ;; which seems to be the best way to get your Office environment when
-;; you bring up an emacs shell.  You'll encounter weird problems with
-;; certain utilities, most notably sdv and windiff.  They'll seem not
-;; to run until you hit Enter a lot.  I don't get it.  I have a
-;; workaround in the form of sdv.cmd and windiff.cmd in my Utils
-;; directory.
+;; you bring up an emacs shell.
+;;
+;; Alternately, you can just start emacs from an Office.NET dev shell.
+;;
+;; Either way, you'll encounter weird problems with certain utilities,
+;; most notably sdv and windiff.  They'll seem not to run until you
+;; hit Enter a lot.  I don't get it.  I have a workaround in the form
+;; of sdv.cmd and windiff.cmd in my Utils directory.
 
 
 ;;;; Coping With Widows
@@ -178,13 +181,9 @@ command again."
               '((height . 60) (top . 25) (left . (- 20)))))
 
 ;; feel
-(global-set-key [f5] 'shell)
-(global-set-key [f6] 'compile)
 (global-set-key [f7] (lambda ()
                        (interactive)
                        (find-file "e:\\office\\Logs")))
-(global-set-key [M-f5] (lambda () (interactive)
-                         (switch-to-buffer-other-window "*shell*")))
 (global-set-key [M-f7] (lambda ()
                          (interactive)
                          (find-file-other-window "e:\\office\\Logs")))

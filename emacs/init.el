@@ -131,6 +131,12 @@
     (progn (global-set-key [find] [home])
            (global-set-key [select] [end])))
   
+;; some shortcuts for dev stuff
+(global-set-key [f5] 'shell)
+(global-set-key [f6] 'compile)
+(global-set-key [M-f5] (lambda () (interactive)
+                         (switch-to-buffer-other-window "*shell*")))
+
 ;; we're out of first grade; give us the dangerous stuff
 (put 'eval-expression 'disabled nil)
 
