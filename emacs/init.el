@@ -304,6 +304,7 @@ temp file."
                                buffer-file-name)
                  (advance-past-mail-headers))))
 
+;; Scroll madness
 (defun scroll-up-one-line ()
   "Scrolls text of current window up one line."
   (interactive)
@@ -314,6 +315,27 @@ temp file."
   (interactive)
   (scroll-down 1))
   
+(defvar scroll-lock-mode-map
+  (make-keymap)
+  "Keymap for Scroll Lock mode.  Overrides the arrow keys to scroll
+the window instead of moving the cursor.")
+
+(define-key scroll-lock-mode-map [up] 'scroll-down-one-line)
+(define-key scroll-lock-mode-map [down] 'scroll-up-one-line)
+
+(define-minor-mode scroll-lock-mode
+  "Minor mode in which up and down arrows scroll the window instead of
+moving the cursor."
+  nil
+  " Scroll"
+  scroll-lock-mode-map)
+
+(easy-mmode-define-global-mode
+ global-scroll-lock-mode scroll-lock-mode scroll-lock-mode)
+
+(setq w32-scroll-lock-modifier nil)
+(global-set-key [scroll] 'global-scroll-lock-mode)
+
 (defun jleen-electric-delete (arg)
   "Deletes preceding character or whitespace, excluding newlines.
 If `c-hungry-delete-key' is non-nil, as evidenced by the \"/h\" or

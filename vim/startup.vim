@@ -27,7 +27,6 @@ syntax on
 set nocompatible
 set backspace=2
 set autoindent
-set ignorecase
 
 " Tabs
 set shiftwidth=4
