@@ -12,7 +12,8 @@ set modelines=0
 
 " GUI display options
 if has("gui_running")
-    set guioptions-=T
+    set guioptions+=a  " autoselect: xterm-style clipboard cut
+    set guioptions-=T  " no toolbar
     set guifont=Lucida_Console:h9:cANSI
     set lines=50
     hi normal guifg=gray90 guibg=black
@@ -27,6 +28,7 @@ syntax on
 set nocompatible
 set backspace=2
 set autoindent
+set selection=exclusive
 
 " Tabs
 set shiftwidth=4
