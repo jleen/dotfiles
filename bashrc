@@ -59,3 +59,8 @@ v ()
         vi "$@"
     fi
 }
+
+gman ()
+{
+    man $* | col -b | gview -
+}
