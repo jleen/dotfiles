@@ -21,6 +21,7 @@ if [ "$PS1" ]; then
         PS1='\h [$PWD]\$ '
         alias ls='ls -F'
     else
+        alias ls='ls -F --color=auto'
         [ -n "$WINDOW" ] && PS1_SCREEN=":$WINDOW"
         SHORTHOSTNAME=`echo $HOSTNAME|cut -d. -f1`
         [ $TERM = xterm -o $TERM = screen ] && PS1_XTERM="]0;$SHORTHOSTNAME$PS1_SCREEN"
