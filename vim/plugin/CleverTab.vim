@@ -5,4 +5,4 @@ function! CleverTab()
    else
       return "\<C-P>"
 endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
+"inoremap <Tab> <C-R>=CleverTab()<CR>
