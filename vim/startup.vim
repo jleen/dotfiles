@@ -48,7 +48,7 @@ set tabstop=4
 set expandtab
 
 " Search
-set hlsearch
+"set hlsearch
 map <Leader>/ :noh<return>
 
 " Terminal display options
