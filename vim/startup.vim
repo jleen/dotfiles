@@ -2,6 +2,10 @@
 set autoread
 set hidden
 
+" Make keystrokes behave
+set timeoutlen=1000
+set ttimeoutlen=50
+
 " File format
 set encoding=utf-8
 set modelines=0
@@ -10,7 +14,6 @@ set modelines=0
 if has("gui_running")
     set guioptions-=T
     set guifont=Lucida_Console:h9:cANSI
-    set timeoutlen=50
     set lines=50
     hi normal guifg=gray90 guibg=black
     hi Hungarian guifg=gray70
