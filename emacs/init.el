@@ -110,10 +110,6 @@
 ;; define meta-arrow keys
 (global-set-key [?\033 right] "\M-f")
 (global-set-key [?\033 left] "\M-b")
-(global-set-key [?\033 up] 'scroll-down-one-line)
-(global-set-key [?\033 down] 'scroll-up-one-line)
-(global-set-key [M-up] 'scroll-down-one-line)
-(global-set-key [M-down] 'scroll-up-one-line)
 
 ;; and fix the X bindings too
 (if (equal window-system 'x)
@@ -185,8 +181,6 @@
 (setq font-lock-use-colors t)
 (add-hook 'mail-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'html-mode-hook 'turn-off-auto-fill)
-(add-hook 'sgml-mode-hook 'turn-off-auto-fill)
 (setq-default indent-tabs-mode nil)
 
 ;; make tabs stand out like a sore cursor
@@ -291,59 +285,6 @@ annoying problems with simultaneous Emacs sessions."
     (replace-buffer-in-windows obuf)
     (kill-buffer obuf)))
 
-(defun advance-past-mail-headers ()
-  "Position the cursor at the beginning of the body of an email message,
-underneath the headers.  Meant to be used when entering a mutt/elm/pine
-temp file."
-  (beginning-of-buffer)
-  (let ((beg (point)))
-    (search-forward-regexp "^$")
-    (facemenu-set-face 'brightblue beg (point))
-    (forward-line)
-    (not-modified)
-    (message nil)))
-
-;; The whole point of advance-past-mail-headers is to run it
-;; automatically.
-(add-hook 'text-mode-hook
-          (lambda ()
-            (and buffer-file-name
-                 (string-match "\\(/tmp/mutt-\\|\\.article\\|\\.followup\\)"
-                               buffer-file-name)
-                 (advance-past-mail-headers))))
-
-;; Scroll madness
-(defun scroll-up-one-line ()
-  "Scrolls text of current window up one line."
-  (interactive)
-  (scroll-up 1))
-
-(defun scroll-down-one-line ()
-  "Scrolls text of current window down one line."
-  (interactive)
-  (scroll-down 1))
-  
-(defvar scroll-lock-mode-map
-  (make-keymap)
-  "Keymap for Scroll Lock mode.  Overrides the arrow keys to scroll
-the window instead of moving the cursor.")
-
-(define-key scroll-lock-mode-map [up] 'scroll-down-one-line)
-(define-key scroll-lock-mode-map [down] 'scroll-up-one-line)
-
-(define-minor-mode scroll-lock-mode
-  "Minor mode in which up and down arrows scroll the window instead of
-moving the cursor."
-  nil
-  " Scroll"
-  scroll-lock-mode-map)
-
-(easy-mmode-define-global-mode
- global-scroll-lock-mode scroll-lock-mode scroll-lock-mode)
-
-(setq w32-scroll-lock-modifier nil)
-(global-set-key [scroll] 'global-scroll-lock-mode)
-
 (defun jleen-electric-delete (arg)
   "Deletes preceding character or whitespace, excluding newlines.
 If `c-hungry-delete-key' is non-nil, as evidenced by the \"/h\" or
@@ -369,55 +310,6 @@ This sounds weird, but it feels right to me."
           (funcall c-backspace-function 1)
         (delete-region (point) here)
         (c-indent-command)))))
-
-(defun jleen-electric-brace ()
-  "Inserts matching close brace with an open brace.
-
-Work in progres."
-  (interactive "*")
-  (insert "{")
-  (c-indent-command)
-  (insert "\n}")
-  (c-indent-command)
-  (beginning-of-line)
-  (open-line 1)
-  (c-indent-command))
-
-;; PDFTeX support (mainly intended for Windows).
-(defun jleen-pdftex-view ()
-  "Preview the last `.pdf' file made by running PDFTeX under Emacs.
-This means, made using \\[tex-region], \\[tex-buffer] or \\[tex-file].
-The variable `tex-dvi-view-command' specifies the shell command for preview.
-You must set that variable yourself before using this command,
-because there is no standard value that would generally work."
-  (interactive)
-  (or tex-dvi-view-command
-      (error "You must set `tex-dvi-view-command'"))
-  (let ((tex-dvi-print-command tex-dvi-view-command))
-    (jleen-pdftex-print)))
-
-(defun jleen-pdftex-print (&optional alt)
-  "Print the .pdf file made by \\[tex-region], \\[tex-buffer] or \\[tex-file].
-Runs the shell command defined by `tex-dvi-print-command'.  If prefix argument
-is provided, use the alternative command, `tex-alt-dvi-print-command'."
-  (interactive "P")
-  (let ((print-file-name-dvi (tex-append tex-print-file ".pdf"))
-	test-name)
-    (if (and (not (equal (current-buffer) tex-last-buffer-texed))
-	     (buffer-file-name)
-	     ;; Check that this buffer's printed file is up to date.
-	     (file-newer-than-file-p
-	      (setq test-name (tex-append (buffer-file-name) ".pdf"))
-	      (buffer-file-name)))
-	(setq print-file-name-dvi test-name))
-    (if (not (file-exists-p print-file-name-dvi))
-        (error "No appropriate `.pdf' file could be found")
-      (if (tex-shell-running)
-          (tex-kill-job)
-        (tex-start-shell))
-      (tex-send-command
-       (if alt tex-alt-dvi-print-command tex-dvi-print-command)
-       print-file-name-dvi t))))
 
 ;; fix for emacs's innate aversion to spaces
 (defun jleen-fix-dirs-spaces ()
@@ -472,9 +364,9 @@ command again."
   )
 (add-hook 'shell-mode-hook 'jleen-fix-dirs-spaces)
 
+(global-font-lock-mode)
 
-;;;; Get Local Settings
-
-;; Load a site-specific .emacs if it exists.
-;; We do this last so we can override the stuff above.
-(load "~/.site-emacs" t)
+(mapcar (lambda (filename)
+          (load filename))
+        (directory-files (concat (getenv "CONFIGDIR") "/emacs/init.d")
+                         t ".*\\.el"))
