@@ -41,7 +41,6 @@ filetype plugin on
 filetype indent on
 
 " Editing behavior
-set nocompatible
 set backspace=2
 set autoindent
 set scrolloff=3

@@ -2,6 +2,4 @@
 " Escaped quotes are VB-style.
 syn region csAtString start=+@"+ skip=+""+ end=+"+
 hi def link csAtString String
-syn keyword csKeyword out ref default
-syn keyword csConditional in
 syn keyword csTodo contained REVIEW FUTURE
