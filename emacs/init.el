@@ -60,7 +60,9 @@
 
 
 ;; inoffensive title bar
-(setq frame-title-format '("%b - GNU Emacs " emacs-version " on " system-name))
+(setq frame-title-format '("%b - GNU Emacs " emacs-version " on "
+                           (:eval (or (getenv "BOXNAME")
+                                      system-name))))
 
 ;; useful faces
 (when (or (>= emacs-major-version 21) window-system)
