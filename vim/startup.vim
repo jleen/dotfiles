@@ -1,6 +1,5 @@
 " Make buffers behave
 set autoread
-set hidden
 
 " Make keystrokes behave
 set timeoutlen=1000
@@ -22,13 +21,16 @@ endif
 
 " Generic display options
 set background=dark
+
+" Wacky fun
 syntax on
+filetype plugin on
+filetype indent on
 
 " Editing behavior
 set nocompatible
 set backspace=2
 set autoindent
-set selection=exclusive
 
 " Tabs
 set shiftwidth=4
@@ -51,3 +53,4 @@ set cinoptions+=n0	" in 1 sw if no { after if
 set cinoptions+=f0	" open brace of func in column 0
 set cinoptions+={0	" open brace 1 sw in
 set cinoptions+=:-s	" case labels out a shiftwidth
+set cinoptions+=(0  " line up inside parens
