@@ -35,3 +35,18 @@ go ()
 {
     cd `locate $1|sed -e 's/\/[^/]*$//'`
 }
+    
+v ()
+{
+    if [ -n "$DISPLAY" ]; then
+        for fn in $*; do
+            gvim $fn
+        done
+    elif [ -n "$WINDOW" ]; then
+        for fn in $*; do
+            screen vi $fn
+        done
+    else
+        vi $*
+    fi
+}
