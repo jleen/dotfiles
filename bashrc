@@ -1,4 +1,5 @@
 HISTFILE=$HOME/.history
+shopt -s extglob
 
 if [ "$PS1" ]; then
 
@@ -19,6 +20,7 @@ if [ "$PS1" ]; then
     else
         [ -n "$WINDOW" ] && PS1_SCREEN=":$WINDOW"
         [ $TERM = xterm -o $TERM = screen ] && PS1_XTERM="]0;$HOSTNAME$PS1_SCREEN"
+        [ $TERM = cygwin ] && PS1_XTERM="]0;Cygwin - bash"
 	PS1='\[$PS1_XTERM`tput setaf ${SHELLCOLOR:-4}``tput bold`\]$HOSTNAME$PS1_SCREEN\[`tput sgr0`\] [$PWD]\$ '
     fi
 
