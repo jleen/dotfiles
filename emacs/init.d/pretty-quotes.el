@@ -4,7 +4,10 @@
                 (t right-quote))))
 
 (defun inside-tag ()
-  nil)
+  (save-excursion
+    (search-backward-regexp "<\\|>\\|^")
+    (eq (char-after (point)) ?<)))
+    
 
 (defun at-word-start ()
   (or (= (current-column) 0)
@@ -12,11 +15,11 @@
 
 (defun insert-pretty-single-quote ()
   (interactive)
-  (insert-pretty-quote "&lsquo;" "&rsquo;" ?\'))
+  (insert-pretty-quote "`" "'" ?\'))
 
 (defun insert-pretty-double-quote ()
   (interactive)
-  (insert-pretty-quote "&ldquo;" "&rdquo;" ?\"))
+  (insert-pretty-quote "``" "''" ?\"))
 
 (defun maybe-replace-em-dash ()
   (interactive)
@@ -35,8 +38,8 @@
 
 (defun bind-pretty-html-quotes ()
   (define-key html-mode-map "'" 'insert-pretty-single-quote)
-  (define-key html-mode-map "\"" 'insert-pretty-double-quote)
-  (define-key html-mode-map "-" 'maybe-replace-em-dash)
-  (define-key html-mode-map "." 'maybe-replace-ellipsis))
+  (define-key html-mode-map "\"" 'insert-pretty-double-quote))
+;  (define-key html-mode-map "-" 'maybe-replace-em-dash)
+;  (define-key html-mode-map "." 'maybe-replace-ellipsis))
 
 (add-hook 'html-mode-hook 'bind-pretty-html-quotes)
