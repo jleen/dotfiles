@@ -40,13 +40,21 @@ go ()
 v ()
 {
     if [[ -n "$DISPLAY" || "$OSTYPE" == "cygwin" ]]; then
-        for fn in $*; do
-            gvim $fn
-        done
+        if [ -z "$*" ]; then
+            gvim
+        else
+            for fn in $*; do
+                gvim $fn
+            done
+        fi
     elif [ -n "$WINDOW" ]; then
-        for fn in $*; do
-            screen -t "vi $fn" vi $fn
-        done
+        if [ -z "$*" ]; then
+            screen vi
+        else
+            for fn in $*; do
+                screen -t "vi $fn" vi $fn
+            done
+        fi
     else
         vi $*
     fi
