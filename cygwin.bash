@@ -1,3 +1,6 @@
+alias ls='ls --color=auto -pUG'
+eval `dircolors -b $CONFIGDIR/dircolors.cygwin`
+
 cygtrans () {
     local -a CMD=("$1")
     shift
