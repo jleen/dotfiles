@@ -1,3 +1,7 @@
 "\e\e[C": forward-word
 "\e\e[D": backward-word
+"\e[2~": overwrite-mode
+"\e[3~": delete-char
+"\e[5~": beginning-of-history
+"\e[6~": end-of-history
 set show-all-if-ambiguous on
