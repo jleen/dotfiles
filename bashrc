@@ -44,7 +44,7 @@ v ()
             gvim
         else
             for fn in "$@"; do
-                gvim "$fn" &
+                gvim "$fn"
             done
         fi
     elif [ -n "$WINDOW" ]; then
