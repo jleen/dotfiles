@@ -8,6 +8,9 @@ set autoread
 set timeoutlen=1000
 set ttimeoutlen=50
 
+" Make tab behave
+set wildmode=longest:list
+
 " File format
 set encoding=utf-8
 set modelines=0
@@ -20,6 +23,9 @@ if has("gui_running")
     set lines=50
     hi normal guifg=gray90 guibg=black
     hi Hungarian guifg=gray70
+    if has("gui_win32")
+        set winaltkeys=no
+    endif
 endif
 
 " Generic display options
@@ -48,7 +54,6 @@ set showmatch
 
 " Macros
 map <esc>q gqap
-cnoremap <tab> <C-L>
 
 " Coding conventions
 set cinoptions+=>s	" text inside braces is one sw in
