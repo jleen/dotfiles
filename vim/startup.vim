@@ -71,5 +71,5 @@ set cinoptions+={0	" open brace 1 sw in
 set cinoptions+=(0  " line up inside parens
 
 "Me
-let trillianUserNames = '\(Sonbal Boantjies\|jleen\)'
+let trillianUserNames = '\(Sonbal *Boantjies\|jleen\)'
 let html_no_rendering=1
