@@ -30,7 +30,7 @@ if [ "$PS1" ]; then
 
 fi
 
-uname | grep -i cygwin > /dev/null && source $CONFIGDIR/cygwin.bash
+[ "$OSTYPE" == cygwin ] && source $CONFIGDIR/cygwin.bash
 
 go ()
 {
@@ -39,7 +39,7 @@ go ()
     
 v ()
 {
-    if [[ -n "$DISPLAY" || "$OSTYPE" == "cygwin" ]]; then
+    if [[ -n "$DISPLAY" || "$OSTYPE" == cygwin ]]; then
         if [ -z "$*" ]; then
             gvim
         else
