@@ -18,8 +18,8 @@ if [ "$PS1" ]; then
         alias ls='ls -F'
     else
         [ -n "$WINDOW" ] && PS1_SCREEN=":$WINDOW"
-        [ $TERM = xterm -o $TERM = screen ] && PS1_XTERM="]0;`uname -n`$PS1_SCREEN"
-	PS1='\[$PS1_XTERM`tput setaf 4``tput bold`\]\h$PS1_SCREEN\[`tput sgr0`\] [$PWD]\$ '
+        [ $TERM = xterm -o $TERM = screen ] && PS1_XTERM="]0;$HOSTNAME$PS1_SCREEN"
+	PS1='\[$PS1_XTERM`tput setaf ${SHELLCOLOR:-4}``tput bold`\]$HOSTNAME$PS1_SCREEN\[`tput sgr0`\] [$PWD]\$ '
     fi
 
 fi
