@@ -1,6 +1,6 @@
-HISTFILE=$HOME/.history
-export CONFIGDIR=${CONFIGDIR:-$HOME/config}
-export INPUTRC=$CONFIGDIR/inputrc
+HISTFILE="$HOME/.history"
+export CONFIGDIR="${CONFIGDIR:-$HOME/config}"
+export INPUTRC="$CONFIGDIR/inputrc"
 shopt -s extglob
 set -o emacs
 
@@ -30,7 +30,7 @@ if [ "$PS1" ]; then
 
 fi
 
-[ "$OSTYPE" == cygwin ] && source $CONFIGDIR/cygwin.bash
+[ "$OSTYPE" == cygwin ] && source "$CONFIGDIR/cygwin.bash"
 
 go ()
 {

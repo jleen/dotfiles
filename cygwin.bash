@@ -43,6 +43,6 @@ dir () {
 
 cygimport-builtin start
 
-for x in `cat ${CYGIMPORTPREFIX:-~/.}exe.imports`; do cygimport       $x; done
-for x in `cat ${CYGIMPORTPREFIX:-~/.}bat.imports`; do cygimport-batch $x; done
-for x in `cat ${CYGIMPORTPREFIX:-~/.}cmd.imports`; do cygimport-cmd   $x; done
+for x in `cat "${CYGIMPORTPREFIX:-~/.}exe.imports"`; do cygimport       $x; done
+for x in `cat "${CYGIMPORTPREFIX:-~/.}bat.imports"`; do cygimport-batch $x; done
+for x in `cat "${CYGIMPORTPREFIX:-~/.}cmd.imports"`; do cygimport-cmd   $x; done
