@@ -65,10 +65,10 @@ function! s:InstantAbbrev(key, replacement)
     endif
 endfunction
 
-inoremap <buffer> ' <C-R>=<SID>PrettyQuote("&lsquo;", "&rsquo;", "'")<CR>
-inoremap <buffer> " <C-R>=<SID>PrettyQuote("&ldquo;", "&rdquo;", '"')<CR>
-inoremap <buffer> . <C-R>=<SID>InstantAbbrev("...", "&hellip;")<CR>
-inoremap <buffer> - <C-R>=<SID>InstantAbbrev("--", "&mdash;")<CR>
+"inoremap <buffer> ' <C-R>=<SID>PrettyQuote("&lsquo;", "&rsquo;", "'")<CR>
+"inoremap <buffer> " <C-R>=<SID>PrettyQuote("&ldquo;", "&rdquo;", '"')<CR>
+"inoremap <buffer> . <C-R>=<SID>InstantAbbrev("...", "&hellip;")<CR>
+"inoremap <buffer> - <C-R>=<SID>InstantAbbrev("--", "&mdash;")<CR>
 
 nnoremap <buffer> <C-Q> ?^\(<p>\\|\\\)<CR>/\(\(\%#<p>\n\)\@<=<span \)\\|\(\%#<p>\n\(<span =\)\@!\)<CR><CR><CR>gq/\(^<\/p>\\|^\\\\|\%$\)<CR>
 

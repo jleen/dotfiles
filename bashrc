@@ -2,6 +2,7 @@ HISTFILE="$HOME/.history"
 export CONFIGDIR="${CONFIGDIR:-$HOME/config}"
 export INPUTRC="$CONFIGDIR/inputrc"
 shopt -s extglob
+shopt -s no_empty_cmd_completion
 set -o emacs
 
 if [ "$PS1" ]; then
@@ -24,7 +25,7 @@ if [ "$PS1" ]; then
         alias ls='ls -F --color=auto'
         [ -n "$WINDOW" ] && PS1_SCREEN=":$WINDOW"
         SHORTHOSTNAME=`echo $HOSTNAME|cut -d. -f1`
-        [ $TERM = xterm -o $TERM = screen ] && PS1_XTERM="]0;$SHORTHOSTNAME$PS1_SCREEN"
+        [ $TERM = xterm -o $TERM = screen -o $TERM = cygwin ] && PS1_XTERM="]0;$SHORTHOSTNAME$PS1_SCREEN:\w"
 	PS1="\[$PS1_XTERM`tput setaf ${SHELLCOLOR:-4}``tput bold`\]$SHORTHOSTNAME$PS1_SCREEN\[`tput sgr0`\] [\$PWD]\$ "
     fi
 
@@ -39,7 +40,15 @@ go ()
     
 v ()
 {
-    if [[ -n "$DISPLAY" || "$OSTYPE" == cygwin ]]; then
+    if [ "$OSTYPE" == cygwin ]; then
+        if [ -z "$*" ]; then
+            cygstart --hide gvim
+        else
+            for fn in "$@"; do
+                cygstart --hide gvim "\"`cygpath -wa "$fn"`\""
+            done
+        fi
+    elif [ -n "$DISPLAY" ]; then
         if [ -z "$*" ]; then
             gvim
         else
