@@ -1,14 +1,15 @@
 cygtrans () {
-    CMD=$1
+    local -a CMD=("$1")
     shift
-    for ARG in $*; do
-        if [ -e $ARG ]; then
-            CMD="$CMD `cygpath -w $ARG`"
+    local ARG
+    for ARG in "$@"; do
+        if [ -e "$ARG" ]; then
+            CMD=("${CMD[@]}" "`cygpath -w "$ARG"`")
         else
-            CMD="$CMD $ARG"
+            CMD=("${CMD[@]}" "$ARG")
         fi
     done
-    $CMD
+    "${CMD[@]}"
 };
 
 cygimport () {
@@ -29,7 +30,7 @@ cygimport-builtin () {
 
 unalias dir
 dir () {
-    THE_DIR=`cygpath -wa ${1:-.}`
+    local THE_DIR=`cygpath -wa ${1:-.}`
     pushd ~ > /dev/null
     cd    # Avoid annoying CMD.EXE UNC path warning
     cmd /c dir "$THE_DIR"
