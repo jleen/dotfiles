@@ -39,7 +39,7 @@ go ()
     
 v ()
 {
-    if [ -n "$DISPLAY" ]; then
+    if [[ -n "$DISPLAY" || "$OSTYPE" == "cygwin" ]]; then
         for fn in $*; do
             gvim $fn
         done
