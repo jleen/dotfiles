@@ -45,7 +45,7 @@ v ()
         done
     elif [ -n "$WINDOW" ]; then
         for fn in $*; do
-            screen vi $fn
+            screen -t "vi $fn" vi $fn
         done
     else
         vi $*
