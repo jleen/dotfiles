@@ -82,6 +82,9 @@
 ; (display-time) ; not today, thanks
 (line-number-mode t)
 
+;; can't say I'm a fan of horizontal scrolling
+(setq truncate-partial-width-windows nil)
+
 ;; If we visit a symlink, use that name; but give us the same
 ;; buffer if we later visit the file by a different name
 ;; (would *anyone* want different behavior than this?)
