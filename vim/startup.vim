@@ -66,5 +66,5 @@ set cinoptions+=es	" indent 1 sw if { is not first char in prev line
 set cinoptions+=n0	" in 1 sw if no { after if
 set cinoptions+=f0	" open brace of func in column 0
 set cinoptions+={0	" open brace 1 sw in
-set cinoptions+=:-s	" case labels out a shiftwidth
+set cinoptions+=:0	" case labels flush with switch statement
 set cinoptions+=(0  " line up inside parens
