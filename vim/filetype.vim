@@ -1,6 +1,9 @@
-if exists("did_load_filetypes")
+if exists("did_load_jleen_filetypes")
   finish
 endif
+
+let did_load_jleen_filetypes = 1
+
 augroup filetypedetect
   au! BufRead,BufNewFile *.aspx setfiletype aspcs
   au! BufRead,BufNewFile *.asps setfiletype aspcs
