@@ -43,19 +43,19 @@ v ()
         if [ -z "$*" ]; then
             gvim
         else
-            for fn in $*; do
-                gvim $fn
+            for fn in "$@"; do
+                gvim "$fn"
             done
         fi
     elif [ -n "$WINDOW" ]; then
         if [ -z "$*" ]; then
             screen vi
         else
-            for fn in $*; do
-                screen -t "vi $fn" vi $fn
+            for fn in "$@"; do
+                screen -t "vi $fn" vi "$fn"
             done
         fi
     else
-        vi $*
+        vi "$@"
     fi
 }
