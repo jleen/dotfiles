@@ -42,6 +42,7 @@ set backspace=2
 set autoindent
 set scrolloff=3
 set foldlevelstart=1
+set showbreak=+
 
 " Tabs
 set shiftwidth=4
