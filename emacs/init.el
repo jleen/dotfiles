@@ -3,7 +3,6 @@
 ;;;; John M. Leen   jleen@world.std.com
 
 
-;; dummy comment
 ;;;; Window System Settings
 
 (cond ((not window-system)
@@ -224,6 +223,14 @@
 
 
 ;;;; Some of My Own Evil Creations
+
+(defun webster ()
+  "Look up the word at point in webster."
+  (interactive)
+  (compile-internal
+   (concat "webster " (current-word))
+   "No errors."
+   "webster"))
 
 (defun rmail-really-quit ()
   "Quit out of RMAIL.
