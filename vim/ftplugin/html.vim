@@ -70,5 +70,9 @@ inoremap <buffer> " <C-R>=<SID>PrettyQuote("&ldquo;", "&rdquo;", '"')<CR>
 inoremap <buffer> . <C-R>=<SID>InstantAbbrev("...", "&hellip;")<CR>
 inoremap <buffer> - <C-R>=<SID>InstantAbbrev("--", "&mdash;")<CR>
 
+nnoremap <buffer> <C-Q> ?^\(<p>\\|\\\)<CR><CR>gq/^\(<\/p>\\|\\\)<CR>
+
 set linebreak
+set textwidth=75
+
 call VisualArrowsOn()
