@@ -44,7 +44,7 @@
 (add-hook 'sql-mode-hook 'jleen-ms-house-style-sql-mode-hook)
 
 ;; tags
-(setq tags-file-name "e:\\office\\dev\\sts\\TAGS")
+(setq tags-file-name "e:\\office\\dev\\sts\\ETAGS")
 
 ;; build process
 (setq compile-command "stsmake ")
