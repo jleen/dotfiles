@@ -7,6 +7,7 @@ augroup filetypedetect
   au! BufRead,BufNewFile *.xms  setfiletype xml
   au! BufRead,BufNewFile *.jss  setfiletype javascript
   au! BufRead,BufNewFile *.bat,*.cmd call <SID>SetBatchFT()
+  au! BufRead,BufNewFile *.asmx,*.asms setfiletype cs
 augroup END
 
 fun! <SID>SetBatchFT()
