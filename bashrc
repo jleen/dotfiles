@@ -2,7 +2,7 @@ HISTFILE=$HOME/.history
 export CONFIGDIR=${CONFIGDIR:-$HOME/config}
 export INPUTRC=$CONFIGDIR/inputrc
 shopt -s extglob
-set -o emacs
+set -o vi
 
 if [ "$PS1" ]; then
 
@@ -30,3 +30,8 @@ if [ "$PS1" ]; then
 fi
 
 uname | grep -i cygwin > /dev/null && source $CONFIGDIR/cygwin.bash
+
+go ()
+{
+    cd `locate $1|sed -e 's/\/[^/]*$//'`
+}
