@@ -72,3 +72,4 @@ set cinoptions+=(0  " line up inside parens
 
 "Me
 let trillianUserNames = '\(Sonbal Boantjies\|jleen\)'
+let html_no_rendering=1
