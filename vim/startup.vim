@@ -47,6 +47,7 @@ set autoindent
 set scrolloff=3
 set foldlevelstart=1
 set showbreak=+
+set display=lastline
 
 " Tabs
 set shiftwidth=4
@@ -75,3 +76,6 @@ set cinoptions+=f0	" open brace of func in column 0
 set cinoptions+={0	" open brace 1 sw in
 set cinoptions+=:0	" case labels flush with switch statement
 set cinoptions+=(0  " line up inside parens
+
+"Me
+let trillianUserNames = '\(Sonbal Boantjies\|jleen\)'

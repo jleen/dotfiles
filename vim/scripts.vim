@@ -7,5 +7,7 @@ elseif getline(1) =~ '\c^<%@\s*webservice.\+Language="vb".*%>'
     setfiletype vb
 elseif getline(1) =~ '.*- Perl -.*'
     setfiletype perl
-    echo "foo\nbar"
+endif
+if getline(1) =~ 'Session Start.*'
+    setfiletype trillian
 endif
