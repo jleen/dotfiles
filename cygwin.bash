@@ -3,7 +3,7 @@ cygtrans () {
     shift
     for ARG in $*; do
         if [ -e $ARG ]; then
-            CMD="$CMD `cygpath -w $ARG`"
+            CMD="$CMD `cygpath -d $ARG`"
         else
             CMD="$CMD $ARG"
         fi
