@@ -3,7 +3,6 @@
 ;;;; John M. Leen   jleen@world.std.com
 
 
-;; a change
 ;;;; Window System Settings
 
 (cond ((not window-system)
