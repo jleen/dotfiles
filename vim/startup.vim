@@ -54,12 +54,6 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 
-" Search
-"set hlsearch
-map <Leader>/ :noh<return>
-set ignorecase
-set smartcase
-
 " Terminal display options
 set ruler
 set showmode
