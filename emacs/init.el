@@ -136,11 +136,14 @@
 (global-set-key [?\C-,] (lambda () (interactive) (find-tag nil '-)))
 
 ;; some shortcuts for dev stuff
+(global-set-key [f4] 'compile)
 (global-set-key [f5] 'shell)
-(global-set-key [f6] 'compile)
 (global-set-key [M-f5] (lambda () (interactive)
                          (switch-to-buffer-other-window "*shell*")
                          (shell)))
+(global-set-key [f6] 'grep)
+(global-set-key [M-f6] (lambda () (interactive)
+                         (switch-to-buffer-other-window "*grep*")))
 
 ;; we're out of first grade; give us the dangerous stuff
 (put 'eval-expression 'disabled nil)
@@ -361,6 +364,19 @@ This sounds weird, but it feels right to me."
           (funcall c-backspace-function 1)
         (delete-region (point) here)
         (c-indent-command)))))
+
+(defun jleen-electric-brace ()
+  "Inserts matching close brace with an open brace.
+
+Work in progres."
+  (interactive "*")
+  (insert "{")
+  (c-indent-command)
+  (insert "\n}")
+  (c-indent-command)
+  (beginning-of-line)
+  (open-line 1)
+  (c-indent-command))
 
 ;; PDFTeX support (mainly intended for Windows).
 (defun jleen-pdftex-view ()
