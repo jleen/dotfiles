@@ -13,7 +13,7 @@ set wildmode=longest:list
 
 " File format
 set encoding=utf-8
-set modelines=0
+set modelines=5
 
 " GUI display options
 if has("gui_running")
