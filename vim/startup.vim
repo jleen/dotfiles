@@ -7,14 +7,16 @@ set encoding=utf-8
 set modelines=0
 
 " GUI display options
-set guioptions-=T
-set guifont=Lucida_Console:h9:cANSI
-set timeoutlen=50
-set lines=50
-hi normal guifg=gray90 guibg=black
-hi Hungarian guifg=gray70
-set background=dark
-syntax on
+if has("gui_running")
+    set guioptions-=T
+    set guifont=Lucida_Console:h9:cANSI
+    set timeoutlen=50
+    set lines=50
+    hi normal guifg=gray90 guibg=black
+    hi Hungarian guifg=gray70
+    set background=dark
+    syntax on
+endif
 
 " Editing behavior
 set nocompatible
