@@ -2,7 +2,7 @@ HISTFILE=$HOME/.history
 export CONFIGDIR=${CONFIGDIR:-$HOME/config}
 export INPUTRC=$CONFIGDIR/inputrc
 shopt -s extglob
-set -o vi
+set -o emacs
 
 if [ "$PS1" ]; then
 
