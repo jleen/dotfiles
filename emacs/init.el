@@ -131,6 +131,10 @@
     (progn (global-set-key [find] [home])
            (global-set-key [select] [end])))
   
+;; useful tag shortcuts
+(global-set-key [?\C-.] (lambda () (interactive) (find-tag nil t)))
+(global-set-key [?\C-,] (lambda () (interactive) (find-tag nil '-)))
+
 ;; some shortcuts for dev stuff
 (global-set-key [f5] 'shell)
 (global-set-key [f6] 'compile)

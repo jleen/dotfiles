@@ -20,6 +20,14 @@
 (setq sd-use-sdconfig-exclusively t)
 (global-auto-revert-mode 1)   ;; make syncing less traumatic
 
+;; handy way to call sdv
+(defun sdv (filename)
+  (interactive "FRun sdv on file: ")
+  (save-window-excursion
+    (shell-command (concat "start sdv " filename " &" nil)))
+  (message nil))
+(define-key sd-prefix-map "\M-v" 'sdv)
+
 ;; coding style
 (defun jleen-ms-house-style-c-mode-hook ()
   (setq c-basic-offset 4
@@ -83,8 +91,8 @@
 ;;
 ;; Either way, you'll encounter weird problems with certain utilities,
 ;; most notably sdv and windiff.  They'll seem not to run until you
-;; hit Enter a lot.  I don't get it.  I have a workaround in the form
-;; of sdv.cmd and windiff.cmd in my Utils directory.
+;; hit Enter a lot.  I don't get it.  The simplest workaround is to do
+;; "start sdv" and "start windiff" instead of running them directly.
 
 
 ;;;; Coping With Widows, part ii
@@ -95,18 +103,7 @@
       (cons '("\\(.:\\\\.*\\)(\\(.*\\),\\(.*\\)): \\(error\\|warning\\)"
               1 2 3)
             compilation-error-regexp-alist))
-(defun csharp-mode ()
-  "Major mode for editing C# source files.  (Okay, I confess.  It just
-kicks you into Java mode, and hacks the keyword list to handle \"get\"
-and \"set\".)"
-  (interactive)
-  (java-mode)
-  (setq c-conditional-key "\\<\\(for\\|if\\|do\\|else\\|while\\|switch\\|try\\|catch\\|finally\\|synchronized\\|get\\|set\\)\\>[^_]"
-        mode-name "CSharp")
-  (font-lock-add-keywords nil '(("\\<\\(get\\|set\\)\\>" . font-lock-keyword-face))))
-(setq auto-mode-alist
-      (append auto-mode-alist
-              '(("\\.cs" . csharp-mode))))
+(load "csharp")
 
 
 ;;;; Flavor of the Month
@@ -126,3 +123,6 @@ and \"set\".)"
 (global-set-key [M-f7] (lambda ()
                          (interactive)
                          (find-file-other-window "e:\\office\\Logs")))
+
+(setq c++-font-lock-extra-types
+      (cons "V[a-z]\\w*" c++-font-lock-extra-types))
