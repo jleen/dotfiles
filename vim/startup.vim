@@ -19,6 +19,7 @@ set modelines=5
 if has("gui_running")
     set guioptions+=a  " autoselect: xterm-style clipboard cut
     set guioptions-=T  " no toolbar
+    set guicursor=a:blinkon0  " no blink
     set guifont=Lucida_Console:h9:cANSI
     set lines=50
     hi normal guifg=gray90 guibg=black
@@ -52,6 +53,8 @@ set expandtab
 " Search
 "set hlsearch
 map <Leader>/ :noh<return>
+set ignorecase
+set smartcase
 
 " Terminal display options
 set ruler
