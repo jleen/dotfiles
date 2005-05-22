@@ -179,6 +179,7 @@
 
 ;; make things friendlier, more colorful, and less tabular
 (setq font-lock-use-colors t)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'mail-mode-hook 'turn-on-auto-fill)
 (setq-default indent-tabs-mode nil)
 
