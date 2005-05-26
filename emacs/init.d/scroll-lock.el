@@ -30,7 +30,11 @@ moving the cursor."
 (setq w32-scroll-lock-modifier nil)
 (global-set-key [scroll] 'global-scroll-lock-mode)
 
-(global-set-key [?\033 up] 'scroll-down-one-line)
-(global-set-key [?\033 down] 'scroll-up-one-line)
-(global-set-key [M-up] 'scroll-down-one-line)
-(global-set-key [M-down] 'scroll-up-one-line)
+(if running-xemacs
+    (progn
+      (global-set-key [(meta up)] 'scroll-down-one-line)
+      (global-set-key [(meta down)] 'scroll-up-one-line))
+  (global-set-key [?\033 up] 'scroll-down-one-line)
+  (global-set-key [?\033 down] 'scroll-up-one-line)
+  (global-set-key [M-up] 'scroll-down-one-line)
+  (global-set-key [M-down] 'scroll-up-one-line))

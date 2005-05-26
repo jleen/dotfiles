@@ -5,6 +5,9 @@
 
 ;;;; Window System Settings
 
+(or (boundp 'running-xemacs)
+    (defvar running-xemacs (string-match "XEmacs\\|Lucid" emacs-version)))
+
 (cond ((not window-system)
 
        (when (>= emacs-major-version 21)
@@ -24,12 +27,12 @@
        ;; no stupid non-functional menu bar in text mode!
        (menu-bar-mode 0))
       
-      (t
+      ((not running-xemacs)
       
        ;; pretty colors
        (set-face-background 'default "snow1")
-       (set-face-foreground 'region "black")
-       (set-face-background 'region "light steel blue")
+       ;gnu(set-face-foreground 'region "black")
+       ;gnu(set-face-background 'region "light steel blue")
        (set-face-foreground 'modeline "white")
        (set-face-background 'modeline "navy")
        (set-face-background 'highlight "cornflower blue")
@@ -40,7 +43,7 @@
        (when (>= emacs-major-version 21)
 
          ;; prettier colors
-         (set-face-background 'menu "snow2")
+         ;gnu(set-face-background 'menu "snow2")
          (set-face-background 'tool-bar "snow2")
          (set-face-background 'scroll-bar "snow2")
          (set-face-foreground 'mode-line "black")
@@ -60,9 +63,8 @@
 
 
 ;; inoffensive title bar
-(setq frame-title-format '("%b - GNU Emacs " emacs-version " on "
-                           (:eval (or (getenv "BOXNAME")
-                                      system-name))))
+(setq frame-title-format (concat (if running-xemacs "XEmacs: " "Emacs: ")
+                                 "%b"))
 
 ;; useful faces
 (when (or (>= emacs-major-version 21) window-system)
@@ -73,7 +75,8 @@
 ;;;; Global Settings
 
 ;; fix the help character, needed on some stqqpid systems
-(global-set-key "\^H" 'help-command)
+(unless running-xemacs
+  (global-set-key "\^H" 'help-command))
 
 ;; every now and then I have to admit XEmacs has it right
 (global-set-key "\M-g" 'goto-line)
@@ -139,21 +142,26 @@
 ;; some shortcuts for dev stuff
 (global-set-key [f4] 'compile)
 (global-set-key [f5] 'shell)
-(global-set-key [M-f5] (lambda () (interactive)
-                         (switch-to-buffer-other-window "*shell*")
-                         (shell)))
+(global-set-key (if running-xemacs [(meta f5)] [M-f5])
+  (lambda () (interactive)
+    (switch-to-buffer-other-window "*shell*")
+    (shell)))
 (global-set-key [f6] 'grep)
-(global-set-key [M-f6] (lambda () (interactive)
-                         (switch-to-buffer-other-window "*grep*")))
+(global-set-key (if running-xemacs [(meta f6)] [M-f6])
+  (lambda () (interactive)
+    (switch-to-buffer-other-window "*grep*")))
 
 ;; we're out of first grade; give us the dangerous stuff
 (put 'eval-expression 'disabled nil)
 
 ;; only works in version 21, but harmless elsewhere
-(setq backup-directory-alist '((".*" . "~/.emacs.d/backups")))
+(unless running-xemacs
+  (setq backup-directory-alist '((".*" . "~/.emacs.d/backups"))))
 
 ;; can't see any reason not to have this
-(setq tags-revert-without-query t)
+(if running-xemacs
+    (setq tags-auto-read-changed-tag-files t)
+  (setq tags-revert-without-query t))
 
 
 ;;;; Mode-Specific Settings
@@ -178,13 +186,14 @@
 (setq comint-scroll-show-maximum-output t)
 
 ;; make things friendlier, more colorful, and less tabular
-(setq font-lock-use-colors t)
+(setq font-lock-use-colors '(color))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'mail-mode-hook 'turn-on-auto-fill)
 (setq-default indent-tabs-mode nil)
 
 ;; make tabs stand out like a sore cursor
-(setq-default x-stretch-cursor t)
+(unless running-xemacs
+  (setq-default x-stretch-cursor t))
 
 ;; file-type indicators for dired mode
 (setq dired-listing-switches "-laF")
@@ -209,14 +218,14 @@
       mail-from-style 'angles)
 
 ;; let's play with vm
-(autoload 'vm "vm" "Start VM on your primary inbox." t)
-(autoload 'vm-other-frame "vm" "Like `vm' but starts in another frame." t)
-(autoload 'vm-visit-folder "vm" "Start VM on an arbitrary folder." t)
-(autoload 'vm-visit-virtual-folder "vm" "Visit a VM virtual folder." t)
-(autoload 'vm-mode "vm" "Run VM major mode on a buffer" t)
-(autoload 'vm-mail "vm" "Send a mail message using VM." t)
-(autoload 'vm-submit-bug-report "vm" "Send a bug report about VM." t)
-(substitute-key-definition 'compose-mail 'vm-mail global-map)
+;(autoload 'vm "vm" "Start VM on your primary inbox." t)
+;(autoload 'vm-other-frame "vm" "Like `vm' but starts in another frame." t)
+;(autoload 'vm-visit-folder "vm" "Start VM on an arbitrary folder." t)
+;(autoload 'vm-visit-virtual-folder "vm" "Visit a VM virtual folder." t)
+;(autoload 'vm-mode "vm" "Run VM major mode on a buffer" t)
+;(autoload 'vm-mail "vm" "Send a mail message using VM." t)
+;(autoload 'vm-submit-bug-report "vm" "Send a bug report about VM." t)
+;(substitute-key-definition 'compose-mail 'vm-mail global-map)
 
 ;; options for CC mode and its variants
 (add-hook 'c-mode-common-hook
@@ -248,7 +257,7 @@
     (setq comint-completion-addsuffix (cons "\\" " ")
           shell-dirstack-query "cd"))
 
-  (setq latex-run-command "pdftex.exe -progname=pdflatex")
+  (setq latex-run-command "pdflatex.exe")
 
   (add-hook 'latex-mode-hook
             (lambda ()
@@ -362,13 +371,15 @@ command again."
                      (shell-dirstack-message))
             (error (message "Couldn't cd")))))))
   )
-(add-hook 'shell-mode-hook 'jleen-fix-dirs-spaces)
+(unless running-xemacs
+  (add-hook 'shell-mode-hook 'jleen-fix-dirs-spaces))
 
-(global-font-lock-mode)
+(unless running-xemacs
+  (global-font-lock-mode))
 
 (let ((init-dir (concat (getenv "CONFIGDIR") "/emacs/init.d/")))
   (mapcar (lambda (filename)
             (unless (string= (substring filename 0 1) ".")
               (load (concat init-dir filename))))
           (directory-files (concat (getenv "CONFIGDIR") "/emacs/init.d")
-                           (not 'full) ".*\\.el")))
+                           (not 'full) ".*\\.el$")))
