@@ -37,16 +37,14 @@ go ()
 {
     cd `locate $1|sed -e 's/\/[^/]*$//'`
 }
-    
+
 if [ "$OSTYPE" == cygwin ]; then
     v ()
     {
         if [ -z "$*" ]; then
             cygstart --hide gvim
         else
-            for fn in "$@"; do
-                cygstart --hide gvim "\"`cygpath -wa "$fn"`\""
-            done
+            cygtrans cygstart gvim --remote-tab-silent "$@";
         fi
     }
 elif [ -n "$DISPLAY" ]; then
