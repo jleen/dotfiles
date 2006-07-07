@@ -1,5 +1,6 @@
 alias ls='ls --color=auto -pUG'
 eval `dircolors -b "$CONFIGDIR/dircolors.cygwin"`
+export SVN_EDITOR='gvim.bat -f'
 
 cygtrans () {
     local -a CMD=("$1")
