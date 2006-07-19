@@ -73,6 +73,5 @@ endfunction
 nnoremap <buffer> <C-Q> ?^\(<p>\\|\\\)<CR>/\(\(\%#<p>\n\)\@<=<span \)\\|\(\%#<p>\n\(<span =\)\@!\)<CR><CR><CR>gq/\(^<\/p>\\|^\\\\|\%$\)<CR>
 
 set linebreak
-set textwidth=75
 
 call VisualArrowsOn()
