@@ -9,12 +9,18 @@ if [ "$PS1" ]; then
 
     # set a fancy prompt
     
+    if [ `uname` == Darwin ]; then
+        LS_COLOR_OPT=-G
+    else
+        LS_COLOR_OPT=$LS_COLOR_OPT
+    fi
+
     alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
     alias ll='ls -l'
     alias la='ls -A'
     alias l='ls -CF'
-    alias dir='ls --color=auto --format=vertical'
-    alias vdir='ls --color=auto --format=long'
+    alias dir='ls $LS_COLOR_OPT --format=vertical'
+    alias vdir='ls $LS_COLOR_OPT --format=long'
     alias r='fc -s'
 
     if [ "$TERM" = "dumb" ]; then
@@ -22,7 +28,7 @@ if [ "$PS1" ]; then
         PS1='\h [$PWD]\$ '
         alias ls='ls -F'
     else
-        alias ls='ls -F --color=auto'
+        alias ls='ls -F $LS_COLOR_OPT'
         [ -n "$WINDOW" ] && PS1_SCREEN=":$WINDOW"
         SHORTHOSTNAME=`echo $HOSTNAME|cut -d. -f1`
         [ $TERM = xterm -o $TERM = screen -o $TERM = cygwin ] && PS1_XTERM="]0;$SHORTHOSTNAME$PS1_SCREEN:\w"
