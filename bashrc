@@ -9,10 +9,10 @@ if [ "$PS1" ]; then
 
     # set a fancy prompt
     
-    if [ `uname` == Darwin ]; then
+    if [ `uname` = Darwin ]; then
         LS_COLOR_OPT=-G
     else
-        LS_COLOR_OPT=$LS_COLOR_OPT
+        LS_COLOR_OPT=--color=auto
     fi
 
     alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
