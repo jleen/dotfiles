@@ -52,7 +52,10 @@ if [ "$OSTYPE" == cygwin ]; then
         if [ -z "$*" ]; then
             cygstart --hide gvim
         else
-            cygtrans cygstart gvim --remote-tab-silent "$@";
+            for fn in "$@"; do
+                local winfn=`cygpath -wa "$fn"`
+                cygstart --hide gvim "$winfn"
+            done
         fi
     }
 elif [ -n "$DISPLAY" ]; then
