@@ -4,7 +4,7 @@ export SVN_EDITOR='gvim.bat -f'
 INPUTRC="$CONFIGDIR/inputrc.cygwin"
 
 # Let's see how completely this confuses me on the Mac.
-alias open cygstart
+alias open=cygstart
 
 cygtrans () {
     local -a CMD=("$1")
