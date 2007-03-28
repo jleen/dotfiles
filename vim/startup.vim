@@ -47,6 +47,7 @@ set scrolloff=3
 set foldlevelstart=1
 set showbreak=+
 set display=lastline
+set completeopt=
 
 " Tabs
 set shiftwidth=4
@@ -70,6 +71,10 @@ set cinoptions+==0  " no indent underneath a case
 set cinoptions+={0	" open brace 1 sw in
 set cinoptions+=(0  " line up inside parens
 
-"Me
+" Error logs from msbuild.exe
+
+let &errorformat = &errorformat . ',%DProject\\ "%f\\[A-Za-z]%#.csproj"\\ (default\\ targets):'
+
+" Me
 let trillianUserNames = '\(Sonbal *Boantjies\|jleen\)'
 let html_no_rendering=1
