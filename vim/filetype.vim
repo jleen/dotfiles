@@ -12,6 +12,7 @@ augroup filetypedetect
   au! BufRead,BufNewFile *.bat,*.cmd call <SID>SetBatchFT()
   au! BufRead,BufNewFile *.asmx,*.asms setfiletype cs
   au! BufRead,BufNewFile *.psp setfiletype psp
+  au! BufRead,BufNewFile *.config setfiletype xml
   au! BufRead */Content.IE5/* setfiletype html
 augroup END
 
