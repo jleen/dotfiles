@@ -47,7 +47,9 @@ set scrolloff=3
 set foldlevelstart=1
 set showbreak=+
 set display=lastline
-set completeopt=
+if version >= 700
+    set completeopt=
+endif
 
 " Tabs
 set shiftwidth=4
