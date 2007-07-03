@@ -7,8 +7,6 @@ set -o emacs
 
 if [ "$PS1" ]; then
 
-    # set a fancy prompt
-    
     LS_COLOR_OPT=--color=auto
 
     alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
