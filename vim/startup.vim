@@ -21,15 +21,25 @@ set modelines=5
 
 " GUI display options
 if has("gui_running")
+
     set guioptions+=a  " autoselect: xterm-style clipboard cut
     set guioptions-=T  " no toolbar
     set guifont=Lucida_Console:h9:cANSI
     set lines=50
+
     hi normal guifg=gray90 guibg=black
     hi Hungarian guifg=gray70
+    hi CursorLine guibg=gray20
+
+    au WinEnter * set cursorline
+    au WinLeave * set nocursorline
+    au FocusGained * set cursorline
+    au FocusLost * set nocursorline
+
     if has("gui_win32")
         set winaltkeys=no
     endif
+
 endif
 
 " Generic display options
