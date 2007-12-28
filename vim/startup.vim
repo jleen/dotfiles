@@ -24,7 +24,6 @@ if has("gui_running")
 
     set guioptions+=a  " autoselect: xterm-style clipboard cut
     set guioptions-=T  " no toolbar
-    set guifont=Lucida_Console:h9:cANSI
     set lines=50
 
     hi normal guifg=gray90 guibg=black
@@ -38,6 +37,7 @@ if has("gui_running")
 
     if has("gui_win32")
         set winaltkeys=no
+        set guifont=Lucida_Console:h9:cANSI
     endif
 
 endif

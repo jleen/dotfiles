@@ -53,6 +53,17 @@ if [ "$OSTYPE" == cygwin ]; then
             done
         fi
     }
+elif [ "$TERM_PROGRAM" == Apple_Terminal ]; then
+    v ()
+    {
+        if [ -z "$*" ]; then
+            mvim
+        else
+            for fn in "$@"; do
+                mvim "$fn"
+            done
+        fi
+    }
 elif [ -n "$DISPLAY" ]; then
     v ()
     {
