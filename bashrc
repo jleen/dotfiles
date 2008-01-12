@@ -53,6 +53,7 @@ if [ "$OSTYPE" == cygwin ]; then
             done
         fi
     }
+    alias vv='gvim -R -'
 elif [ "$TERM_PROGRAM" == Apple_Terminal ]; then
     v ()
     {
@@ -64,6 +65,7 @@ elif [ "$TERM_PROGRAM" == Apple_Terminal ]; then
             done
         fi
     }
+    alias vv='mvim -R - > /dev/null'
 elif [ -n "$DISPLAY" ]; then
     v ()
     {
@@ -75,6 +77,7 @@ elif [ -n "$DISPLAY" ]; then
             done
         fi
     }
+    alias vv='gvim -R -'
 elif [ -n "$WINDOW" ]; then
     v ()
     {
@@ -86,8 +89,10 @@ elif [ -n "$WINDOW" ]; then
             done
         fi
     }
+    alias vv='vi -R -'
 else
     v () { vi "$@"; }
+    alias vv='vi -R -'
 fi
 
 gman ()

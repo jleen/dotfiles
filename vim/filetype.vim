@@ -10,6 +10,7 @@ augroup filetypedetect
   au! BufRead,BufNewFile *.aspx   setfiletype aspcs
   au! BufRead,BufNewFile *.asps   setfiletype aspcs
   au! BufRead,BufNewFile *.config setfiletype xml
+  au! BufRead,BufNewFile *.eridu  setfiletype scheme
   au! BufRead,BufNewFile *.jss    setfiletype javascript
   au! BufRead,BufNewFile *.psp    setfiletype psp
   au! BufRead,BufNewFile *.xms    setfiletype xml
