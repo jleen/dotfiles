@@ -1,0 +1,2 @@
+set linebreak
+call VisualArrowsOn()
