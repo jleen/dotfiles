@@ -27,9 +27,10 @@ if [ "$PS1" ]; then
         alias ls='ls -F $LS_COLOR_OPT'
         [ -n "$WINDOW" ] && PS1_SCREEN=":$WINDOW"
         if [ $TERM = xterm -o $TERM = xterm-color -o $TERM = screen -o $TERM = cygwin ]; then
-            PS1_XTERM="\e]0;$SHORTHOSTNAME$PS1_SCREEN:\w\007"
+            PS1_XTERM="\e]0;$SHELLPREFIX$SHORTHOSTNAME$PS1_SCREEN:\w\007"
         fi
-	PS1="\[$PS1_XTERM`tput setaf ${SHELLCOLOR:-4}``tput bold`\]$SHORTHOSTNAME$PS1_SCREEN\[`tput sgr0`\] [\$PWD]\\$ "
+    [ -n "$SHELLPREFIX" ] && COLOR_SHELLPREFIX="`tput setaf 0``tput bold`\]$SHELLPREFIX\[`tput sgr0`"
+	PS1="\[$PS1_XTERM$COLOR_SHELLPREFIX`tput setaf ${SHELLCOLOR:-4}``tput bold`\]$SHORTHOSTNAME$PS1_SCREEN\[`tput sgr0`\] [\$PWD]\\$ "
     fi
 
 fi
@@ -53,7 +54,7 @@ if [ "$OSTYPE" == cygwin ]; then
             done
         fi
     }
-    alias vv='gvim -R -'
+    alias vv='gvim.bat -R -'
 elif [ "$TERM_PROGRAM" == Apple_Terminal ]; then
     v ()
     {
