@@ -47,6 +47,15 @@ dir () {
 
 cygimport-builtin start
 
-for x in `/bin/cat "${CYGIMPORTPREFIX:-$HOME/.}exe.imports"`; do cygimport       $x; done
-for x in `/bin/cat "${CYGIMPORTPREFIX:-$HOME/.}bat.imports"`; do cygimport-batch $x; done
-for x in `/bin/cat "${CYGIMPORTPREFIX:-$HOME/.}cmd.imports"`; do cygimport-cmd   $x; done
+# Need absolute path to cat because I've seen dev environments on Windows
+# which contain their own version of cat.
+
+for x in `/bin/cat "${CYGIMPORTPREFIX:-$HOME/.}exe.imports"`; do
+    cygimport $x
+done
+for x in `/bin/cat "${CYGIMPORTPREFIX:-$HOME/.}bat.imports"`; do
+    cygimport-batch $x
+done
+for x in `/bin/cat "${CYGIMPORTPREFIX:-$HOME/.}cmd.imports"`; do
+    cygimport-cmd $x
+done
