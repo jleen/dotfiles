@@ -11,6 +11,9 @@ set ttimeoutlen=50
 " Make tab behave
 set wildmode=longest:list
 
+" Look harder
+set tags=tags;
+
 " Make mouse behave
 behave xterm
 set clipboard=unnamed,autoselect
@@ -38,6 +41,10 @@ if has("gui_running")
     if has("gui_win32")
         set winaltkeys=no
         set guifont=Lucida_Console:h9:cANSI
+    endif
+
+    if has ("gui_macvim")
+        set transparency=10
     endif
 
 endif
@@ -84,7 +91,6 @@ set cinoptions+={0	" open brace 1 sw in
 set cinoptions+=(0  " line up inside parens
 
 " Error logs from msbuild.exe
-
 let &errorformat = &errorformat . ',%DProject\\ "%f\\[A-Za-z]%#.csproj"\\ (default\\ targets):'
 "let &errorformat = &errorformat . ',%f:%l:%m'
 
