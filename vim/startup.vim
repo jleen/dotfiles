@@ -62,7 +62,7 @@ set backspace=2
 set autoindent
 set scrolloff=3
 set foldlevelstart=1
-set showbreak=+
+set showbreak=+ 
 set display=lastline
 if version >= 700
     set completeopt=
