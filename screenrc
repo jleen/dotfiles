@@ -1,4 +1,6 @@
 vbell on
+shelltitle '$ |bash'
+defhstatus 'H:n:t'
 
 # don't display the copyright page
 startup_message off

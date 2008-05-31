@@ -26,11 +26,12 @@ if [ "$PS1" ]; then
     else
         alias ls='ls -F $LS_COLOR_OPT'
         [ -n "$WINDOW" ] && PS1_SCREEN=":$WINDOW"
+        [ -n "$WINDOW" ] && PS1_SCREENCLEAR="\\033k\033\134"
         if [ $TERM = xterm -o $TERM = xterm-color -o $TERM = screen -o $TERM = cygwin ]; then
             PS1_XTERM="\e]0;$SHELLPREFIX$SHORTHOSTNAME$PS1_SCREEN:\w\007"
         fi
     [ -n "$SHELLPREFIX" ] && COLOR_SHELLPREFIX="`tput setaf 0``tput bold`\]$SHELLPREFIX\[`tput sgr0`"
-	PS1="\[$PS1_XTERM$COLOR_SHELLPREFIX`tput setaf ${SHELLCOLOR:-4}``tput bold`\]$SHORTHOSTNAME$PS1_SCREEN\[`tput sgr0`\] [\$PWD]\\$ "
+	PS1="\[$PS1_SCREENCLEAR$PS1_XTERM$COLOR_SHELLPREFIX`tput setaf ${SHELLCOLOR:-4}``tput bold`\]$SHORTHOSTNAME$PS1_SCREEN\[`tput sgr0`\] [\$PWD]\\$ "
     fi
 
 fi
@@ -83,7 +84,7 @@ elif [ -n "$WINDOW" ]; then
     v ()
     {
         if [ -z "$*" ]; then
-            screen vi
+            screen -t vi vi
         else
             for fn in "$@"; do
                 screen -t "vi $fn" vi "$fn"
