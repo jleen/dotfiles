@@ -44,7 +44,7 @@ if has("gui_running")
     endif
 
     if has ("gui_macvim")
-        set transparency=10
+        set transparency=0
     endif
 
 endif
