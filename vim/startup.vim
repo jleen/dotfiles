@@ -24,29 +24,28 @@ set modelines=5
 
 " GUI display options
 if has("gui_running")
-
-    set guioptions+=a  " autoselect: xterm-style clipboard cut
-    set guioptions-=T  " no toolbar
     set lines=50
+endif
 
-    hi normal guifg=gray90 guibg=black
-    hi Hungarian guifg=gray70
-    hi CursorLine guibg=gray20
+set guioptions+=a  " autoselect: xterm-style clipboard cut
+set guioptions-=T  " no toolbar
 
-    au WinEnter * set cursorline
-    au WinLeave * set nocursorline
-    au FocusGained * set cursorline
-    au FocusLost * set nocursorline
+hi normal guifg=gray90 guibg=black
+hi Hungarian guifg=gray70
+hi CursorLine guibg=gray20
 
-    if has("gui_win32")
-        set winaltkeys=no
-        set guifont=Lucida_Console:h9:cANSI
-    endif
+au WinEnter * set cursorline
+au WinLeave * set nocursorline
+au FocusGained * set cursorline
+au FocusLost * set nocursorline
 
-    if has ("gui_macvim")
-        set transparency=0
-    endif
+if has("gui_win32")
+    set winaltkeys=no
+    set guifont=Lucida_Console:h9:cANSI
+endif
 
+if has ("gui_macvim")
+    set transparency=0
 endif
 
 " Generic display options
