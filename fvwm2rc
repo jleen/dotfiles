@@ -1,0 +1,198 @@
+# This is a very pared down version of a Debian default configuration that
+# found its way into Catherine's profile, probably when she was at Brown.
+# I'm sure I've seen versions of it before that.  Yay oral tradition.
+
+Style * SloppyFocus
+DeskTopSize 2x2
+EdgeScroll 100 100
+EdgeResistance 0 100
+OpaqueMoveSize unlimited
+
+Style "default-style" Font -adobe-helvetica-bold-r-*-*-12-*
+Style "default-style" HilightFore lightsteelblue
+Style "default-style" HilightBack steelblue
+
+# VECTOR ART!!!
+
+DestroyDecor default-decor
+AddToDecor default-decor
++ ButtonStyle Reset
++ ButtonStyle 2 Vector 17 20x20@1 30x20@1 50x40@1 70x20@1 80x20@1 80x30@0 \
+                           60x50@0 80x70@0 80x80@0 70x80@0 50x60@0 30x80@0 \
+                           20x80@0 20x70@1 40x50@1 20x30@0 20x20@1
+
++ ButtonStyle 4 Vector 5 25x75@0 75x75@0 75x25@0 25x25@1 25x75@1
++ ButtonStyle 6 Vector 4 50x75@1 25x25@1 75x25@1 50x75@0
+
+# The following comment is preserved because it is beautiful.
+# make the default decor the default:
+Style "default-style" UseDecor default-decor, Color Black/LightSteelBlue
+
+Style "*" UseStyle default-style
+Style "*" BorderWidth 6
+Style "*" HandleWidth 6
+Style "*" MWMFunctions
+Style "*" MWMBorder
+Style "*" MWMDecor
+Style "*" DecorateTransient
+# Style "*" SmartPlacement
+# Style "*" RandomPlacement
+Style "*" ActivePlacement
+Style "*" NoPPosition
+Style "*" IconBox 0 0 50 -1
+
+DestroyFunc StartFunction
+AddToFunc StartFunction
+
+DestroyFunc InitFunction
+AddToFunc InitFunction
+
+DestroyFunc RestartFunction
+AddToFunc RestartFunction
+
+MenuStyle "*" Foreground black, Background grey, Greyed white, \
+    Font -adobe-helvetica-medium-r-*-*-12-*
+
+DestroyMenu /Main
+AddToMenu /Main
++  "Xterm"       Exec exec xterm
++  "Firefox"     Exec exec firefox2
++  "VMware"      Exec exec vmware
++  ""            Nop
++  "Bye"   Popup Quit-Verify
+
+DestroyMenu Window-Ops
+AddToMenu Window-Ops "Alt-F1: Window Ops" Title
++ "Alt-F2:  Main Menu"                   Popup /Main
++ "Alt-F3:  Lower"                       Lower
++ "Alt-F4:  Window List"                 WindowList
++ "Alt-F5:  Previous"                    Prev
++ "Alt-F6:  Next"                        Next
++ "Alt-F7:  Move"                        Move
++ "Alt-F8:  Resize"                      Resize
++ "Alt-F9:  (De)Iconify"                 Iconify
++ "Alt-F10: (Un)Maximize to screen"      Maximize 100 100
++ "Alt-F11: Raise"                       Raise
++ "Alt-F12: (Un)Stick"                   Stick
++ "         (Un)Maximize vertical"       Maximize 0 100
++ "         (Un)Maximize horizontal"     Maximize 100 0
++ "         (Un)Shade"                   WindowShade
++ ""                                     Nop
++ "         ScrollBar"                   Module FvwmScroll 2 2
++ ""                                     Nop
++ "         Destroy"                     Destroy
++ "         Close"                       Close
+
+DestroyMenu Quit-Verify
+AddToMenu Quit-Verify "Really?" Title
++ "No, restart Fvwm"   Restart
++ ""                   Nop
++ "Yes, really quit"   Quit
+
+# Root
+# Title bar
+# Sides (edges)
+# Frame (corner)
+# Window (contents)
+# Icon
+
+Mouse 1   R  A  Menu /Main
+Mouse 2   R  A  Menu Window-Ops
+Mouse 3   R  A  WindowList
+
+Mouse 1 T A move-or-raise
+Mouse 1 W M just-move
+Mouse 1 FS A resize
+Mouse 2 T A RaiseLower
+Mouse 2 W M RaiseLower
+
+Mouse 0 I A move-or-winmenu-or-deiconify
+
+Mouse 0 1 A Popup Window-Ops
+Mouse 0 2 A Close
+Mouse 1 4 A Maximize 0 100
+Mouse 2 4 A Maximize 100 100
+Mouse 3 4 A Maximize 100 0
+Mouse 0 6 A Iconify
+
+# Go ahead and try to memorize these!
+
+Key Tab   A    M    Next [CurrentPage !iconic] focus-and-raise
+Key Tab   A    MS   Prev [CurrentPage !iconic] focus-and-raise
+Key Tab   A    CM   Next [CurrentPage] deiconify-and-focus
+Key Tab   A    CMS  Prev [CurrentPage] deiconify-and-focus
+Key Left  A    M    Scroll -100 +0
+Key Up    A    M    Scroll +0 -100
+Key Right A    M    Scroll +100 +0
+Key Down  A    M    Scroll +0 +100
+Key F1    A    M    Popup Window-Ops
+Key F2    A    M    Popup /Main
+Key F3    A    M    Lower
+Key F4    A    M    WindowList
+Key F5    A    M    Prev
+Key F6    A    M    Next
+Key F7    A    M    Move
+Key F8    A    M    Resize
+Key F9    A    M    Iconify
+Key F10   A    M    Maximize 100 100
+Key F11   A    M    Raise
+Key F12   A    M    Stick
+
+# Immediate Move Click Hold Doubleclick
+
+DestroyFunc move-or-winmenu-or-deiconify
+AddToFunc   move-or-winmenu-or-deiconify
++ "M" Move
++ "C" Popup Window-Ops
++ "D" Iconify
+
+DestroyFunc deiconify-and-focus
+AddToFunc   deiconify-and-focus
++ "I" Iconify -1
++ "I" Focus
+
+DestroyFunc deiconify-and-raise
+AddToFunc   deiconify-and-raise
++ "I" Iconify -1
++ "I" Raise
+
+DestroyFunc focus-and-raise
+AddToFunc   focus-and-raise
++ "I" Focus
++ "I" Raise
+
+DestroyFunc move-or-raiselower
+AddToFunc   move-or-raiselower
++ "M" Move
++ "C" RaiseLower
+
+DestroyFunc just-move
+AddToFunc   just-move
++ "M" Move
+
+DestroyFunc move-or-raise
+AddToFunc   move-or-raise
++ "M" Move
++ "C" Raise
+
+DestroyFunc move-and-raise
+AddToFunc   move-and-raise
++ "M" Move
++ "M" Raise
+
+DestroyFunc move-and-raise-or-raiselower
+AddToFunc   move-and-raise-or-raiselower
++ "M" Move
++ "M" Raise
++ "C" RaiseLower
+
+DestroyFunc move-or-raiselower-or-maximize-vertical
+AddToFunc   move-or-raiselower-or-maximize-vertical
++ "M" Move
++ "C" RaiseLower
++ "D" Maximize 0 100
+
+DestroyFunc resize-or-raiselower
+AddToFunc   resize-or-raiselower
++ "M" Resize
++ "C" RaiseLower
