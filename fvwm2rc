@@ -6,6 +6,7 @@ Style * SloppyFocus
 DeskTopSize 2x2
 EdgeScroll 100 100
 EdgeResistance 0 100
+SnapAttraction 25 all screen
 OpaqueMoveSize unlimited
 
 Style "default-style" Font -adobe-helvetica-bold-r-*-*-12-*
@@ -32,23 +33,20 @@ Style "*" UseStyle default-style
 Style "*" BorderWidth 6
 Style "*" HandleWidth 6
 Style "*" MWMFunctions
-Style "*" MWMBorder
+Style "*" FvwmBorder
 Style "*" MWMDecor
 Style "*" DecorateTransient
 # Style "*" SmartPlacement
 # Style "*" RandomPlacement
-Style "*" ActivePlacement
+Style "*" ManualPlacement
 Style "*" NoPPosition
-Style "*" IconBox 0 0 50 -1
 
+# Start means initial or restart
 DestroyFunc StartFunction
-AddToFunc StartFunction
-
 DestroyFunc InitFunction
-AddToFunc InitFunction
-
+AddToFunc   InitFunction
++ I exec xscreensaver -nosplash
 DestroyFunc RestartFunction
-AddToFunc RestartFunction
 
 MenuStyle "*" Foreground black, Background grey, Greyed white, \
     Font -adobe-helvetica-medium-r-*-*-12-*
@@ -56,8 +54,6 @@ MenuStyle "*" Foreground black, Background grey, Greyed white, \
 DestroyMenu /Main
 AddToMenu /Main
 +  "Xterm"       Exec exec xterm
-+  "Firefox"     Exec exec firefox2
-+  "VMware"      Exec exec vmware
 +  ""            Nop
 +  "Bye"   Popup Quit-Verify
 
@@ -100,9 +96,9 @@ Mouse 1   R  A  Menu /Main
 Mouse 2   R  A  Menu Window-Ops
 Mouse 3   R  A  WindowList
 
-Mouse 1 T A move-or-raise
+Mouse 1 T A just-move
 Mouse 1 W M just-move
-Mouse 1 FS A resize
+Mouse 1 FS A just-resize
 Mouse 2 T A RaiseLower
 Mouse 2 W M RaiseLower
 
@@ -121,10 +117,10 @@ Key Tab   A    M    Next [CurrentPage !iconic] focus-and-raise
 Key Tab   A    MS   Prev [CurrentPage !iconic] focus-and-raise
 Key Tab   A    CM   Next [CurrentPage] deiconify-and-focus
 Key Tab   A    CMS  Prev [CurrentPage] deiconify-and-focus
-Key Left  A    M    Scroll -100 +0
-Key Up    A    M    Scroll +0 -100
-Key Right A    M    Scroll +100 +0
-Key Down  A    M    Scroll +0 +100
+Key Left  A    SM   Scroll -100 +0
+Key Up    A    SM   Scroll +0 -100
+Key Right A    SM   Scroll +100 +0
+Key Down  A    SM   Scroll +0 +100
 Key F1    A    M    Popup Window-Ops
 Key F2    A    M    Popup /Main
 Key F3    A    M    Lower
@@ -137,6 +133,7 @@ Key F9    A    M    Iconify
 Key F10   A    M    Maximize 100 100
 Key F11   A    M    Raise
 Key F12   A    M    Stick
+Key L     A    CM   Exec exec xscreensaver-command -lock
 
 # Immediate Move Click Hold Doubleclick
 
@@ -169,6 +166,12 @@ AddToFunc   move-or-raiselower
 DestroyFunc just-move
 AddToFunc   just-move
 + "M" Move
++ "C" Move
+
+DestroyFunc just-resize
+AddToFunc   just-resize
++ "M" Resize
++ "C" Resize
 
 DestroyFunc move-or-raise
 AddToFunc   move-or-raise
