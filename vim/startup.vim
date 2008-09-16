@@ -91,7 +91,10 @@ set cinoptions+=(0  " line up inside parens
 
 " Error logs from msbuild.exe
 let &errorformat = &errorformat . ',%DProject\\ "%f\\[A-Za-z]%#.csproj"\\ (default\\ targets):'
-"let &errorformat = &errorformat . ',%f:%l:%m'
+
+" C# errors
+set errorformat +=%f(%l\\,%c):\ warning\ CS%n:%m
+set errorformat +=%f(%l\\,%c):\ error\ CS%n:%m
 
 " Me
 let trillianUserNames = '\(Sonbal *Boantjies\|jleen\)'
