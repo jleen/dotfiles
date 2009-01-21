@@ -17,6 +17,7 @@ if [ "$PS1" ]; then
     alias vdir='ls $LS_COLOR_OPT --format=long'
     alias r='fc -s'
     alias beep='echo -e \\007'
+    alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
 
     SHORTHOSTNAME=`echo $HOSTNAME|cut -d. -f1`
     if [ "$TERM" = "dumb" ]; then
