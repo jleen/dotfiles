@@ -27,7 +27,7 @@ else
 fi
 unset short_host screen screen_clear xterm prefix cruft color_on color_off
 
-[ "$OSTYPE" = cygwin ] && source "$CONFIGDIR/cygwin.zsh"
+[ "$OSTYPE" = cygwin ] && source "$CONFIGDIR/cygwin.bash"
 
 gman () { man $* | col -b | gview - }
 

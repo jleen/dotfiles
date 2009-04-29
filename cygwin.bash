@@ -35,7 +35,7 @@ cygimport-builtin () {
     alias $1="cygtrans cmd /c $1"
 }
 
-unalias dir
+if [ -n "$ZSH_VERSION" ]; then unalias -m dir; else unalias dir; fi
 dir () {
     local THE_DIR=`cygpath -wa ${1:-.}`
     pushd ~ > /dev/null
