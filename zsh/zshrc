@@ -1,0 +1,83 @@
+[ "$TERM" != "dumb" ] && eval "`dircolors -b`"
+alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
+alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
+
+short_host=`echo $HOSTNAME|cut -d. -f1`
+if [ "$TERM" = "dumb" ]; then
+  # We're probably in Emacs M-x shell
+  PROMPT='${short_host} [%~]%# '
+  alias ls='ls -F'
+else
+  alias ls='ls -F --color=auto'
+  if [ -n "$WINDOW" ]; then
+    screen=":$WINDOW"
+    screen_clear="%{`print \\\\ek\\\\e\\\\134`%}"
+  fi
+  if [ $TERM = xterm -o $TERM = xterm-color -o $TERM -o SCREEN \
+           -o $TERM = cygwin ]; then
+    xterm="`print \\\\e`]0;$SHELLPREFIX${short_host}${screen}:%~`print \\\\007`"
+  fi
+  if [ -n "$SHELLPREFIX" ]; then
+    prefix="`tput setaf 0``tput bold`%}$SHELLPREFIX%{`tput sgr0`"
+  fi
+  cruft="%{${screen_clear}${xterm}${shellprefix}%}"
+  color_on="%{`tput setaf ${SHELLCOLOR:-4}``tput bold`%}"
+  color_off="%{`tput sgr0`%}"
+  PROMPT="${cruft}${color_on}${short_host}${screen}${color_off} [%~]%# "
+fi
+unset short_host screen screen_clear xterm prefix cruft color_on color_off
+
+[ "$OSTYPE" = cygwin ] && source "$CONFIGDIR/cygwin.zsh"
+
+gman () { man $* | col -b | gview - }
+
+if [ "$OSTYPE" = cygwin ]; then
+  v () {
+    if [ -z "$*" ]; then
+      cygstart --hide gvim
+    else
+      for fn in "$@"; do
+        local winfn=`cygpath -wa "$fn"`
+        cygstart --hide gvim "\"$winfn\""
+      done
+    fi
+  }
+  alias vv='gvim.bat -R -'
+elif [ "$TERM_PROGRAM" = Apple_Terminal ]; then
+  v () {
+    if [ -z "$*" ]; then
+      mvim
+    else
+      for fn in "$@"; do
+        mvim "$fn"
+      done
+    fi
+  }
+  alias vv='mvim -R - > /dev/null'
+elif [ -n "$DISPLAY" ]; then
+  v () {
+    if [ -z "$*" ]; then
+      gvim
+    else
+      for fn in "$@"; do
+        gvim "$fn"
+      done
+    fi
+  }
+  alias vv='gvim -R -'
+elif [ -n "$WINDOW" ]; then
+  v () {
+    if [ -z "$*" ]; then
+      screen -t vi vi
+    else
+      for fn in "$@"; do
+        screen -t "vi $fn" vi "$fn"
+      done
+    fi
+  }
+  alias vv='vi -R -'
+else
+  v () { vi "$@"; }
+  alias vv='vi -R -'
+fi
+
