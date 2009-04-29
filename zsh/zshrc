@@ -1,14 +1,11 @@
-[ "$TERM" != "dumb" ] && eval "`dircolors -b`"
-alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
-alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
-
+##
+## Saturn Valley Intergalactic Standard Command Prompt
+##
 short_host=`echo $HOSTNAME|cut -d. -f1`
 if [ "$TERM" = "dumb" ]; then
-  # We're probably in Emacs M-x shell
+  # We're probably in Emacs M-x shell.
   PROMPT='${short_host} [%~]%# '
-  alias ls='ls -F'
 else
-  alias ls='ls -F --color=auto'
   if [ -n "$WINDOW" ]; then
     screen=":$WINDOW"
     screen_clear="%{`print \\\\ek\\\\e\\\\134`%}"
@@ -27,10 +24,9 @@ else
 fi
 unset short_host screen screen_clear xterm prefix cruft color_on color_off
 
-[ "$OSTYPE" = cygwin ] && source "$CONFIGDIR/cygwin.bash"
-
-gman () { man $* | col -b | gview - }
-
+##
+## Saturn Valley Pandimensional Uniform Editor Launcher
+##
 if [ "$OSTYPE" = cygwin ]; then
   v () {
     if [ -z "$*" ]; then
@@ -81,3 +77,26 @@ else
   alias vv='vi -R -'
 fi
 
+##
+## Color ls
+##
+if [ "$TERM" != "dumb" ] && /usr/bin/which -s dircolors; then
+  eval "`dircolors -b`"
+  alias ls='ls -F --color=auto'
+elif [ "$TERM_PROGRAM" = Apple_Terminal ]; then
+  alias ls='ls -FG'
+else
+  alias ls='ls -F'
+fi
+
+##
+## Quick and dirty
+##
+alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
+alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
+gman () { man $* | col -b | gview - }
+
+##
+## But wait--there's more (maybe)!
+##
+[ "$OSTYPE" = cygwin ] && source "$CONFIGDIR/cygwin.bash"
