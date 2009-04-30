@@ -48,11 +48,11 @@ if [ "$OSTYPE" == cygwin ]; then
     v ()
     {
         if [ -z "$*" ]; then
-            cygstart --hide gvim
+            cygstart --hide gvim.bat
         else
             for fn in "$@"; do
                 local winfn=`cygpath -wa "$fn"`
-                cygstart --hide gvim "\"$winfn\""
+                cygstart --hide gvim.bat "\"$winfn\""
             done
         fi
     }

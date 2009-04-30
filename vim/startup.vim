@@ -16,7 +16,9 @@ set tags=tags;
 
 " Make mouse behave
 behave xterm
-set clipboard=unnamed,autoselect
+set clipboard=unnamed
+"TODO: 'autoselect' is incompatible with yankring. Why?
+"set clipboard=unnamed,autoselect
 
 " File format
 set encoding=utf-8
