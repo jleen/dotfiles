@@ -1,7 +1,8 @@
 ##
 ## Saturn Valley Intergalactic Standard Command Prompt
 ##
-short_host=`echo $HOSTNAME|cut -d. -f1`
+[ -n "$HOSTNAME" ] && host="$HOSTNAME" || host=`uname -n`
+short_host=`echo ${host}|cut -d. -f1`
 if [ "$TERM" = "dumb" ]; then
   # We're probably in Emacs M-x shell.
   PROMPT='${short_host} [%~]%# '
@@ -22,7 +23,7 @@ else
   color_off="%{`tput sgr0`%}"
   PROMPT="${cruft}${color_on}${short_host}${screen}${color_off} [%~]%# "
 fi
-unset short_host screen screen_clear xterm prefix cruft color_on color_off
+unset host short_host screen screen_clear xterm prefix cruft color_on color_off
 
 ##
 ## Saturn Valley Pandimensional Uniform Editor Launcher
@@ -80,7 +81,7 @@ fi
 ##
 ## Color ls
 ##
-if [ "$TERM" != "dumb" ] && /usr/bin/which -s dircolors; then
+if [ "$TERM" != "dumb" ] && which dircolors > /dev/null; then
   eval "`dircolors -b`"
   alias ls='ls -F --color=auto'
 elif [ "$TERM_PROGRAM" = Apple_Terminal ]; then
