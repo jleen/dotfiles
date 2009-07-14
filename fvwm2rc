@@ -5,13 +5,13 @@
 Style * SloppyFocus
 DeskTopSize 2x2
 EdgeScroll 100 100
-EdgeResistance 0 100
+EdgeResistance 200 100
 SnapAttraction 25 all screen
 OpaqueMoveSize unlimited
 
 Style "default-style" Font -adobe-helvetica-bold-r-*-*-12-*
-Style "default-style" HilightFore lightsteelblue
-Style "default-style" HilightBack steelblue
+Style "default-style" HilightFore black
+Style "default-style" HilightBack lightsteelblue
 
 # VECTOR ART!!!
 
@@ -27,7 +27,7 @@ AddToDecor default-decor
 
 # The following comment is preserved because it is beautiful.
 # make the default decor the default:
-Style "default-style" UseDecor default-decor, Color Black/LightSteelBlue
+Style "default-style" UseDecor default-decor, Color lightsteelblue/steelblue
 
 Style "*" UseStyle default-style
 Style "*" BorderWidth 6

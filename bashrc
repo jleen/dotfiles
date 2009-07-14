@@ -1,8 +1,16 @@
 HISTFILE="$HOME/.history"
+HISTCONTROL=ignoreboth
+
 export CONFIGDIR="${CONFIGDIR:-$HOME/.config}"
 export INPUTRC="$CONFIGDIR/inputrc"
 shopt -s extglob
 shopt -s no_empty_cmd_completion
+shopt -s checkwinsize
+
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+# TODO: Is this useful?
+# PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
 set -o emacs
 
 if [ "$PS1" ]; then
@@ -32,7 +40,7 @@ if [ "$PS1" ]; then
             PS1_XTERM="\e]0;$SHELLPREFIX$SHORTHOSTNAME$PS1_SCREEN:\w\007"
         fi
     [ -n "$SHELLPREFIX" ] && COLOR_SHELLPREFIX="`tput setaf 0``tput bold`\]$SHELLPREFIX\[`tput sgr0`"
-	PS1="\[$PS1_SCREENCLEAR$PS1_XTERM$COLOR_SHELLPREFIX`tput setaf ${SHELLCOLOR:-4}``tput bold`\]$SHORTHOSTNAME$PS1_SCREEN\[`tput sgr0`\] [\w]\\$ "
+    PS1="\[$PS1_SCREENCLEAR$PS1_XTERM$COLOR_SHELLPREFIX`tput setaf ${SHELLCOLOR:-4}``tput bold`\]$SHORTHOSTNAME$PS1_SCREEN\[`tput sgr0`\] [\w]\\$ "
     fi
 
 fi
