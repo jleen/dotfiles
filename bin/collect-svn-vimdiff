@@ -1,0 +1,26 @@
+#!/bin/sh
+
+oldfile=$6
+newfile=$7
+
+mkdir -p $TMPDIR/{new,old}
+
+if [ "$oldfile" = /dev/null ]
+then
+  oldfilecp=/dev/null
+else
+  oldfilecp=$TMPDIR/old/`basename $oldfile`
+  cp -a $oldfile $oldfilecp
+fi
+
+if [ "${newfile:0:1}" = "/" ]
+then
+  newfilecp=$TMPDIR/new/`basename $newfile`
+  # TODO(jleen): Why does this happen sometimes?
+  echo "DO NOT EDIT. TEMPORARY FILE." > $newfilecp
+  cat $newfile >> $newfilecp
+else
+  newfilecp=$newfile
+fi
+
+echo -n ": $oldfilecp $newfilecp " >> $TMPFILE
