@@ -1,7 +1,8 @@
+export CONFIGDIR="${0:h:h}"
+
 HISTFILE="$HOME/.history"
 HISTCONTROL=ignoreboth
 
-export CONFIGDIR="${CONFIGDIR:-$HOME/.config}"
 export INPUTRC="$CONFIGDIR/inputrc"
 shopt -s extglob
 shopt -s no_empty_cmd_completion

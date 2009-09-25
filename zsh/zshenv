@@ -1,3 +1,5 @@
+export CONFIGDIR="${0:h:h}"
+
 CONFIGPATH=$CONFIGDIR/bin
 CONFIGFPATH=$CONFIGDIR/zsh/functions
 
