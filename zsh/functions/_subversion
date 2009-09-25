@@ -1,6 +1,7 @@
 #compdef svn svnadmin svnadmin-static=svnadmin
 
 # Work around an annoying bug between zsh 4.3.4 and svn 1.5.
+# From http://gvn.googlecode.com/svn/trunk/contrib/zsh/_subversion .
 _svn () {
   local curcontext="$curcontext" state line expl ret=1
 

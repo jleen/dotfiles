@@ -190,7 +190,7 @@ zle -N _backward-delete-to-space
 zle -N _forward-delete-to-space
 zle -N _backward-to-/
 zle -N _forward-to-/
-#bindkey '^w'      _backward-delete-to-/
+bindkey '^w'       _backward-delete-to-/
 bindkey "^[b"      _backward-to-/
 bindkey "^[f"      _forward-to-/
 bindkey "^[^?"     _backward-delete-to-/
