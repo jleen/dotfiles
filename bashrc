@@ -1,4 +1,4 @@
-export CONFIGDIR="${0:h:h}"
+export CONFIGDIR=`dirname ${BASH_ARGV[0]}`
 
 HISTFILE="$HOME/.history"
 HISTCONTROL=ignoreboth
