@@ -203,8 +203,11 @@ bindkey "^[[1;3D" _backward-to-/
 # Terminal.app
 bindkey "^[[5C" _forward-to-/
 bindkey "^[[5D" _backward-to-/
-bindkey "^[^[[D"  _backward-to-/
 bindkey "^[^[[C"  _forward-to-/
+bindkey "^[^[[D"  _backward-to-/
+bindkey "^[O5C" _forward-to-/
+bindkey "^[O5D" _backward-to-/
+# Why does Skai need these other Terminal.app codes?  10.5 versus 10.6 maybe?
 # Does someone want these?
 #bindkey "^[^[[3~" _forward-delete-to-/
 #bindkey '^[^w'    _backward-delete-to-space
