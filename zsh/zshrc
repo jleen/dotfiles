@@ -96,8 +96,9 @@ fi
 alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
 alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
 gman () { man $* | col -b | gview - }
+bindkey -e
 
-set -o emacs
+setopt emacs no_beep
 
 ##
 ## Don't delete so much.
@@ -195,9 +196,13 @@ bindkey "^[b"      _backward-to-/
 bindkey "^[f"      _forward-to-/
 bindkey "^[^?"     _backward-delete-to-/
 bindkey "^[d"      _foward-delete-to-/
+# xterm
 bindkey "^[[3;3~"  _forward-delete-to-/
 bindkey "^[[1;3C" _forward-to-/
 bindkey "^[[1;3D" _backward-to-/
+# Terminal.app
+bindkey "^[[5C" _forward-to-/
+bindkey "^[[5D" _backward-to-/
 # Does someone want these?
 #bindkey "^[^[[3~" _forward-delete-to-/
 #bindkey '^[^w'    _backward-delete-to-space

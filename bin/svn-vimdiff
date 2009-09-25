@@ -5,6 +5,8 @@ export TMPFILE=`mktemp $TEMPLATE`
 export TMPDIR=`mktemp -d $TEMPLATE`
 mkdir -p $TMPDIR/old $TMPDIR/new
 
+[ "$TERM_PROGRAM" = Apple_Terminal ] && VIM_BINARY=mvim || VIM_BINARY=gvim
+
 cleanup() {
   rm -rf $TMPFILE $TMPDIR
 }
@@ -16,5 +18,5 @@ echo >> $TMPFILE
 # TODO(jleen): Comment preserved from ancestor.  What does it mean?
 # save STDIN to restore for vimdiff
 exec 7<&0
-gvim -f '+so $CONFIGDIR/vim/multidiff.vim' `cat $TMPFILE`
+$VIM_BINARY -f '+so $CONFIGDIR/vim/multidiff.vim' `cat $TMPFILE`
 cleanup
