@@ -104,7 +104,7 @@ setopt emacs no_beep
 ## Don't delete so much.
 ## Adapted from http://www.zsh.org/mla/users/2009/msg00589.html .
 ##
-_my_extended_wordchars='*?_-.[]~=&;!#$%^(){}<>:@,\\';
+_my_extended_wordchars='*?_-[]~=&;!#$%^(){}<>:@,\\';
 _my_extended_wordchars_space="${my_extended_wordchars} "
 _my_extended_wordchars_slash="${my_extended_wordchars}/"
 
