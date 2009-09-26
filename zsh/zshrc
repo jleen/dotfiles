@@ -205,9 +205,17 @@ bindkey "^[[5C" _forward-to-/
 bindkey "^[[5D" _backward-to-/
 bindkey "^[^[[C"  _forward-to-/
 bindkey "^[^[[D"  _backward-to-/
+# Why does Skai need these other Terminal.app codes?  10.5 versus 10.6 maybe?
 bindkey "^[O5C" _forward-to-/
 bindkey "^[O5D" _backward-to-/
-# Why does Skai need these other Terminal.app codes?  10.5 versus 10.6 maybe?
+# PuTTY
+bindkey "^[OC" _forward-to-/
+bindkey "^[OD" _backward-to-/
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+# screen in Putty
+bindkey "^[[C" _forward-to-/
+bindkey "^[[D" _backward-to-/
 # Does someone want these?
 #bindkey "^[^[[3~" _forward-delete-to-/
 #bindkey '^[^w'    _backward-delete-to-space
