@@ -7,7 +7,7 @@ mkdir -p $TMPDIR/{new,old}
 
 if [ "${newfile:0:1}" = "/" ]
 then
-  newfilecp=$TMPDIR/new/svn-vimdiff-tmp-$RANDOM
+  newfilecp=$TMPDIR/new/svn-vimdiff.$RANDOM
   # TODO(jleen): Why does this happen sometimes?
   echo "DO NOT EDIT. TEMPORARY FILE." > $newfilecp
   cat $newfile >> $newfilecp
