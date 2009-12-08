@@ -23,7 +23,6 @@ AddToDecor default-decor
                            20x80@0 20x70@1 40x50@1 20x30@0 20x20@1
 
 + ButtonStyle 4 Vector 5 25x75@0 75x75@0 75x25@0 25x25@1 25x75@1
-+ ButtonStyle 6 Vector 4 50x75@1 25x25@1 75x25@1 50x75@0
 
 # The following comment is preserved because it is beautiful.
 # make the default decor the default:
@@ -109,7 +108,6 @@ Mouse 0 2 A Close
 Mouse 1 4 A Maximize 0 100
 Mouse 2 4 A Maximize 100 100
 Mouse 3 4 A Maximize 100 0
-Mouse 0 6 A Iconify
 
 # Go ahead and try to memorize these!
 
@@ -129,7 +127,6 @@ Key F5    A    M    Prev
 Key F6    A    M    Next
 Key F7    A    M    Move
 Key F8    A    M    Resize
-Key F9    A    M    Iconify
 Key F10   A    M    Maximize 100 100
 Key F11   A    M    Raise
 Key F12   A    M    Stick
@@ -141,7 +138,6 @@ DestroyFunc move-or-winmenu-or-deiconify
 AddToFunc   move-or-winmenu-or-deiconify
 + "M" Move
 + "C" Popup Window-Ops
-+ "D" Iconify
 
 DestroyFunc deiconify-and-focus
 AddToFunc   deiconify-and-focus

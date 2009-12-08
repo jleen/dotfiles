@@ -1,3 +1,7 @@
+APPEND_HISTORY=yay
+HISTFILE=$HOME/.history
+SAVEHIST=10000
+
 ##
 ## Saturn Valley Intergalactic Standard Command Prompt
 ##
