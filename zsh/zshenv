@@ -5,5 +5,6 @@ CONFIGFPATH=$CONFIGDIR/zsh/functions
 
 echo $PATH | grep -q $CONFIGPATH || PATH=$CONFIGPATH:$PATH
 echo $FPATH | grep -q $CONFIGFPATH || FPATH=$CONFIGFPATH:$FPATH
+echo $PATH | grep -q $HOME/bin || PATH=$HOME/bin:$PATH
 
 export INPUTRC="$CONFIGDIR/inputrc"
