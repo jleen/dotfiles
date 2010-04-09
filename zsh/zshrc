@@ -36,7 +36,7 @@ else
     xterm="`print \\\\e`]0;$SHELLPREFIX${short_host}${screen}:%~`print \\\\007`"
   fi
   if [ -n "$SHELLPREFIX" ]; then
-    prefix="`tput setaf 0``tput bold`%}$SHELLPREFIX%{`tput sgr0`"
+    prefix="%{`tput setaf 0``tput bold`%}$SHELLPREFIX%{`tput sgr0`%}"
   fi
   cruft="%{${screen_clear}${xterm}${shellprefix}%}"
   color_on="%{`tput setaf ${SHELLCOLOR:-4}``tput bold`%}"
