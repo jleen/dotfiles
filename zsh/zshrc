@@ -1,26 +1,48 @@
-INC_APPEND_HISTORY=yay
 HISTFILE=$HOME/.history
 SAVEHIST=10000
+setopt SHARE_HISTORY INC_APPEND_HISTORY
 
 ##
 ## Saturn Valley Intergalactic Standard Command Prompt
 ##
-setopt prompt_subst
-findup () {
-  target="$1"
-  [ -z "$target" ] && return 1
-  while [ "$PWD" != "/" ]; do
-    [ -e "$target" ] && return 0
-  done
-  return 1
+typeset -ga precmd_functions
+typeset -ga chpwd_functions
+typeset -ga preexec_functions
+
+function set_git_prompt {
+  gitref=$(git symbolic-ref HEAD 2> /dev/null)
+  if [[ -n $gitref ]] ; then
+    gitbranch="[${gitref#refs/heads/}]"
+  else
+    gitbranch=""
+  fi
+  RPROMPT="${gitbranch}"
 }
-git_branch_spec () {
-  return
-  # From http://nullcreations.net/entries/general/zsh-prompt-to-show-git-branch
-  findup .git || return
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo ":${ref#refs/heads/}"
+
+function zsh_git_prompt_precmd {
+  if [[ -n "$PR_GIT_UPDATE" ]] ; then
+    set_git_prompt
+    PR_GIT_UPDATE=
+  fi
 }
+precmd_functions+='zsh_git_prompt_precmd'
+
+function zsh_git_prompt_chpwd {
+  PR_GIT_UPDATE=1
+}
+chpwd_functions+='zsh_git_prompt_chpwd'
+
+function zsh_git_prompt_preexec {
+  case "$(history $HISTCMD)" in 
+  *git*)
+    PR_GIT_UPDATE=1
+    ;;
+  esac
+}
+preexec_functions+='zsh_git_prompt_preexec'
+
+PR_GIT_UPDATE=1
+
 [ -n "$HOSTNAME" ] && host="$HOSTNAME" || host=`uname -n`
 short_host=`echo ${host}|cut -d. -f1`
 if [ "$TERM" = "dumb" ]; then
@@ -41,7 +63,7 @@ else
   cruft="%{${screen_clear}${xterm}${shellprefix}%}"
   color_on="%{`tput setaf ${SHELLCOLOR:-4}``tput bold`%}"
   color_off="%{`tput sgr0`%}"
-  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} [%~\$(git_branch_spec)]%# "
+  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} [%~]%# "
 fi
 unset host short_host screen screen_clear xterm prefix cruft color_on color_off
 
