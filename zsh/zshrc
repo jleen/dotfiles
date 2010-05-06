@@ -1,6 +1,17 @@
+##
+## Quick and dirty
+##
+alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
+alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
+gman () { man $* | col -b | gview - }
+
+bindkey -e
+setopt no_beep
+
 HISTFILE=$HOME/.history
 SAVEHIST=10000
-setopt SHARE_HISTORY INC_APPEND_HISTORY
+setopt inc_append_history  # fc -RI to import from other shells.
+
 
 ##
 ## Saturn Valley Intergalactic Standard Command Prompt
@@ -43,29 +54,36 @@ preexec_functions+='zsh_git_prompt_preexec'
 
 PR_GIT_UPDATE=1
 
-[ -n "$HOSTNAME" ] && host="$HOSTNAME" || host=`uname -n`
-short_host=`echo ${host}|cut -d. -f1`
-if [ "$TERM" = "dumb" ]; then
-  # We're probably in Emacs M-x shell.
-  PROMPT='${short_host} [%~]%# '
-else
-  if [ -n "$WINDOW" ]; then
-    screen=":$WINDOW"
-    screen_clear="`print \\\\ek\\\\e\\\\134`"
+# TODO(jleen): I should be able to do "function {" and get an anonymous scope
+# that's executed immediately.  Maybe it only works on versions > 4.3.4, which
+# is what Leopard gives me?
+setprompt () {
+  [ -n "$HOSTNAME" ] && host="$HOSTNAME" || host=`uname -n`
+  local short_host=`echo ${host}|cut -d. -f1`
+  if [ "$TERM" = "dumb" ]; then
+    # We're probably in Emacs M-x shell.
+    PROMPT='${short_host} [%~]%# '
+  else
+    if [ -n "$WINDOW" ]; then
+      local screen=":$WINDOW"
+      local screen_clear="`print \\\\ek\\\\e\\\\134`"
+    fi
+    if [ $TERM = xterm -o $TERM = xterm-color -o $TERM -o SCREEN \
+             -o $TERM = cygwin ]; then
+      local xterm="`print \\\\e`]0;$SHELLPREFIX${short_host}${screen}:%~`print \\\\007`"
+    fi
+    if [ -n "$SHELLPREFIX" ]; then
+      local prefix="%{`tput setaf 0``tput bold`%}$SHELLPREFIX%{`tput sgr0`%}"
+    fi
+    local cruft="%{${screen_clear}${xterm}${shellprefix}%}"
+    local color_on="%{`tput setaf ${SHELLCOLOR:-4}``tput bold`%}"
+    local color_off="%{`tput sgr0`%}"
+    PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} [%~]%# "
   fi
-  if [ $TERM = xterm -o $TERM = xterm-color -o $TERM -o SCREEN \
-           -o $TERM = cygwin ]; then
-    xterm="`print \\\\e`]0;$SHELLPREFIX${short_host}${screen}:%~`print \\\\007`"
-  fi
-  if [ -n "$SHELLPREFIX" ]; then
-    prefix="%{`tput setaf 0``tput bold`%}$SHELLPREFIX%{`tput sgr0`%}"
-  fi
-  cruft="%{${screen_clear}${xterm}${shellprefix}%}"
-  color_on="%{`tput setaf ${SHELLCOLOR:-4}``tput bold`%}"
-  color_off="%{`tput sgr0`%}"
-  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} [%~]%# "
-fi
-unset host short_host screen screen_clear xterm prefix cruft color_on color_off
+}
+setprompt
+unfunction setprompt
+
 
 ##
 ## Saturn Valley Pandimensional Uniform Editor Launcher
@@ -131,16 +149,6 @@ elif [ "$TERM_PROGRAM" = Apple_Terminal ]; then
 else
   alias ls='ls -F'
 fi
-
-##
-## Quick and dirty
-##
-alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
-alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
-gman () { man $* | col -b | gview - }
-bindkey -e
-
-setopt emacs no_beep
 
 ##
 ## Don't delete so much.
