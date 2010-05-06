@@ -16,7 +16,8 @@ then
   oldfilecp=/dev/null
 else
   oldfilecp=$TMPDIR/old/$filepath
-  cp -a $oldfile $oldfilecp
+  # TODO(jleen): Is there an equivalent of GNU's cp -d that works in OS X?
+  cp -p $oldfile $oldfilecp
 fi
 
 if [ "${newfile:0:1}" = "/" ]
