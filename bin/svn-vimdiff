@@ -1,22 +1,2 @@
 #!/bin/sh
-
-TEMPLATE=/tmp/svn-vimdiff.XXXXXX
-export TMPFILE=`mktemp $TEMPLATE`
-export TMPDIR=`mktemp -d $TEMPLATE`
-mkdir -p $TMPDIR/old $TMPDIR/new
-
-[ "$TERM_PROGRAM" = Apple_Terminal ] && VIM_BINARY=mvim || VIM_BINARY=gvim
-
-cleanup() {
-  rm -rf $TMPFILE $TMPDIR
-}
-trap "cleanup" SIGTERM SIGINT
-
-svn diff "$@" --diff-cmd collect-svn-vimdiff
-echo >> $TMPFILE
-
-# TODO(jleen): Comment preserved from ancestor.  What does it mean?
-# save STDIN to restore for vimdiff
-exec 7<&0
-$VIM_BINARY -f '+so $CONFIGDIR/vim/multidiff.vim' `cat $TMPFILE`
-cleanup
+vc-vimdiff-core "svn diff \"$@\" --diff-cmd collect-svn-vimdiff"
