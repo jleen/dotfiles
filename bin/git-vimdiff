@@ -1,0 +1,22 @@
+#!/bin/sh
+
+TEMPLATE=/tmp/git-vimdiff.XXXXXX
+export TMPFILE=`mktemp $TEMPLATE`
+export TMPDIR=`mktemp -d $TEMPLATE`
+mkdir -p $TMPDIR/old $TMPDIR/new
+
+cleanup() {
+  rm -rf $TMPFILE $TMPDIR
+}
+
+trap "cleanup" SIGTERM SIGINT
+
+GIT_EXTERNAL_DIFF="collect-git-vimdiff" git diff "$@"
+echo >> $TMPFILE
+
+# save STDIN to restore for vimdiff
+exec 7<&0
+
+gvim -geom 167x50 -f '+so $CONFIGDIR/vim/multidiff.vim' `cat $TMPFILE`
+
+cleanup
