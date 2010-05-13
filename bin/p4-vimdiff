@@ -1,0 +1,2 @@
+#!/bin/sh
+vc-vimdiff-core "P4DIFF=\"collect-p4-vimdiff\" p4 diff $@"
