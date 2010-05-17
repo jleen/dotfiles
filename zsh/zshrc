@@ -6,6 +6,8 @@ alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
 gman () { man $* | col -b | gview - }
 
 bindkey -e
+bindkey '^u' backward-kill-line
+
 setopt no_beep
 
 HISTFILE=$HOME/.history
