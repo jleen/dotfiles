@@ -1,11 +1,11 @@
 #!/bin/sh
 
 oldfile=$1
-newfile=$1
+newfile=$2
 
 mkdir -p $TMPDIR/{new,old}
 
-newfilecp=$TMPDIR/new/svn-vimdiff.$RANDOM
-cat $newfile >> $newfilecp
+oldfilecp=$TMPDIR/old/p4-vimdiff.$RANDOM
+cat $oldfile >> $oldfilecp
 
-echo -n ": $oldfile $newfilecp " >> $TMPFILE
+echo -n ": $oldfilecp $newfile " >> $TMPFILE
