@@ -3,6 +3,7 @@
 ##
 alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
 alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
+[ `uname` = Darwin ] && alias top='top -o cpu'
 gman () { man $* | col -b | gview - }
 
 bindkey -e
@@ -103,7 +104,7 @@ if [ "$OSTYPE" = cygwin ]; then
     fi
   }
   alias vv='gvim.bat -R -'
-elif [ "$TERM_PROGRAM" = Apple_Terminal ]; then
+elif [ "$TERM_PROGRAM" = Apple_Terminal ]; then  # Wrong condition!!
   v () {
     if [ -z "$*" ]; then
       mvim
