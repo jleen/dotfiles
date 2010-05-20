@@ -1,10 +1,12 @@
-export CONFIGDIR="${0:h:h}"
+if [ "$UID" != 0 ]; then
+  export CONFIGDIR="${0:h:h}"
 
-CONFIGPATH=$CONFIGDIR/bin
-CONFIGFPATH=$CONFIGDIR/zsh/functions
+  CONFIGPATH=$CONFIGDIR/bin
+  CONFIGFPATH=$CONFIGDIR/zsh/functions
 
-echo $PATH | grep -q $CONFIGPATH || PATH=$CONFIGPATH:$PATH
-echo $FPATH | grep -q $CONFIGFPATH || FPATH=$CONFIGFPATH:$FPATH
-echo $PATH | grep -q $HOME/bin || PATH=$HOME/bin:$PATH
+  echo $PATH | grep -q $CONFIGPATH || PATH=$CONFIGPATH:$PATH
+  echo $FPATH | grep -q $CONFIGFPATH || FPATH=$CONFIGFPATH:$FPATH
+  echo $PATH | grep -q $HOME/bin || PATH=$HOME/bin:$PATH
 
-export INPUTRC="$CONFIGDIR/inputrc"
+  export INPUTRC="$CONFIGDIR/inputrc"
+fi
