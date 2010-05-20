@@ -266,6 +266,9 @@ bindkey "^[OC" _forward-to-/
 bindkey "^[OD" _backward-to-/
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
+# xterm over NX on Leopard (bite me)
+bindkey "^[[1;9C" _forward-to-/
+bindkey "^[[1;9D" _backward-to-/
 # Does someone want these?
 #bindkey "^[^[[3~" _forward-delete-to-/
 #bindkey '^[^w'    _backward-delete-to-space
