@@ -9,4 +9,5 @@ if [ "$UID" != 0 ]; then
   echo $PATH | grep -q $HOME/bin || PATH=$HOME/bin:$PATH
 
   export INPUTRC="$SVCONFIGDIR/inputrc"
+  export SCREENRC="$SVCONFIGDIR/screenrc"
 fi
