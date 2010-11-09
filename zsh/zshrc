@@ -82,7 +82,8 @@ setprompt () {
     local cruft="%{${screen_clear}${xterm}${shellprefix}%}"
     local color_on="%{`tput setaf ${SHELLCOLOR:-4}``tput bold`%}"
     local color_off="%{`tput sgr0`%}"
-    PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} [%~]%# "
+    setopt prompt_subst
+    PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} [\${SV_PWD_PROMPT:-%~}]%# "
   fi
 }
 setprompt
@@ -275,4 +276,4 @@ bindkey "^[[1;9D" _backward-to-/
 ##
 ## But wait--there's more (maybe)!
 ##
-[ "$OSTYPE" = cygwin ] && source "$CONFIGDIR/cygwin.bash"
+[ "$OSTYPE" = cygwin ] && source "$SVCONFIGDIR/cygwin.bash"

@@ -1,1 +1,1 @@
-source $CONFIGDIR/zsh/zshenv
+source $SVCONFIGDIR/zsh/zshenv

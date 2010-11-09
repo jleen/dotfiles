@@ -1,4 +1,4 @@
-source "$CONFIGDIR/bashrc"
+source "$SVCONFIGDIR/bashrc"
 
 if [ "PS1" ]; then
   # TODO(jleen): Can completion go in the main file?
