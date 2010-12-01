@@ -8,6 +8,9 @@
 (or (boundp 'running-xemacs)
     (defvar running-xemacs (string-match "XEmacs\\|Lucid" emacs-version)))
 
+(setq ns-command-modifier 'meta)
+(setq ns-option-modifier 'super)
+
 (cond ((not window-system)
 
        (when (>= emacs-major-version 21)
