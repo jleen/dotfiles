@@ -82,7 +82,8 @@ setprompt () {
     local cruft="%{${screen_clear}${xterm}${shellprefix}%}"
     local color_on="%{`tput setaf ${SHELLCOLOR:-4}``tput bold`%}"
     local color_off="%{`tput sgr0`%}"
-    PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} [%~]%# "
+    setopt prompt_subst
+    PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} [\${SV_PWD_PROMPT:-%~}]%# "
   fi
 }
 setprompt
@@ -158,7 +159,7 @@ fi
 ## Don't delete so much.
 ## Adapted from http://www.zsh.org/mla/users/2009/msg00589.html .
 ##
-_my_extended_wordchars='*?[]~&;!#$%^(){}<>:@\\';
+_my_extended_wordchars='*?[]~&;!#$%^(){}<>@\\';
 _my_extended_wordchars_space="${my_extended_wordchars} "
 _my_extended_wordchars_slash="${my_extended_wordchars}/"
 
@@ -270,14 +271,9 @@ bindkey "^[[4~" end-of-line
 # xterm over NX on Leopard (bite me)
 bindkey "^[[1;9C" _forward-to-/
 bindkey "^[[1;9D" _backward-to-/
-# Does someone want these?
-#bindkey "^[^[[3~" _forward-delete-to-/
-#bindkey '^[^w'    _backward-delete-to-space
-#bindkey "^[^B"    _backward-to-/
-#bindkey "^[^F"    _forward-to-/
 
 
 ##
 ## But wait--there's more (maybe)!
 ##
-[ "$OSTYPE" = cygwin ] && source "$CONFIGDIR/cygwin.bash"
+[ "$OSTYPE" = cygwin ] && source "$SVCONFIGDIR/cygwin.bash"

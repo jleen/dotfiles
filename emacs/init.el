@@ -380,9 +380,9 @@ command again."
 (unless running-xemacs
   (global-font-lock-mode))
 
-(let ((init-dir (concat (getenv "CONFIGDIR") "/emacs/init.d/")))
+(let ((init-dir (concat (getenv "SVCONFIGDIR") "/emacs/init.d/")))
   (mapcar (lambda (filename)
             (unless (string= (substring filename 0 1) ".")
               (load (concat init-dir filename))))
-          (directory-files (concat (getenv "CONFIGDIR") "/emacs/init.d")
+          (directory-files (concat (getenv "SVCONFIGDIR") "/emacs/init.d")
                            (not 'full) ".*\\.el$")))

@@ -1,1 +1,1 @@
-source $CONFIGDIR/vim/startup.vim
+source $SVCONFIGDIR/vim/startup.vim

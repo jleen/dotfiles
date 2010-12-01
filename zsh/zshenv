@@ -1,12 +1,13 @@
 if [ "$UID" != 0 ]; then
-  export CONFIGDIR="${0:h:h}"
+  export SVCONFIGDIR="${0:h:h}"
 
-  CONFIGPATH=$CONFIGDIR/bin
-  CONFIGFPATH=$CONFIGDIR/zsh/functions
+  SVCONFIGPATH=$SVCONFIGDIR/bin
+  SVCONFIGFPATH=$SVCONFIGDIR/zsh/functions
 
-  echo $PATH | grep -q $CONFIGPATH || PATH=$CONFIGPATH:$PATH
-  echo $FPATH | grep -q $CONFIGFPATH || FPATH=$CONFIGFPATH:$FPATH
+  echo $PATH | grep -q $SVCONFIGPATH || PATH=$SVCONFIGPATH:$PATH
+  echo $FPATH | grep -q $SVCONFIGFPATH || FPATH=$SVCONFIGFPATH:$FPATH
   echo $PATH | grep -q $HOME/bin || PATH=$HOME/bin:$PATH
 
-  export INPUTRC="$CONFIGDIR/inputrc"
+  export INPUTRC="$SVCONFIGDIR/inputrc"
+  export SCREENRC="$SVCONFIGDIR/screenrc"
 fi
