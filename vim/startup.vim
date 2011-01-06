@@ -1,6 +1,11 @@
 " Now it's a whole tree!
 exec "set runtimepath=$SVCONFIGDIR/vim," . escape(&runtimepath, ' ') . ",$SVCONFIGDIR/vim/after"
 
+bkirheguyerhgu
+
+" Hygiene.
+:set directory=/var/tmp/jleen/vim//
+
 " Make buffers behave
 set autoread
 
