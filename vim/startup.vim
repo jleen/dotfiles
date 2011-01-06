@@ -1,10 +1,14 @@
 " Now it's a whole tree!
 exec "set runtimepath=$SVCONFIGDIR/vim," . escape(&runtimepath, ' ') . ",$SVCONFIGDIR/vim/after"
 
-bkirheguyerhgu
-
-" Hygiene.
-:set directory=/var/tmp/jleen/vim//
+" Swapfile hygiene.
+let s:swapdir = "/var/tmp/jleen/vim"
+if exists ("*mkdir") && !isdirectory(s:swapdir)
+    call mkdir("/var/tmp/jleen/vim", "p", 0700)
+endif
+if isdirectory(s:swapdir)
+    let &directory = s:swapdir . "//"
+endif
 
 " Make buffers behave
 set autoread
