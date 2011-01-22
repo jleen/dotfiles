@@ -62,7 +62,7 @@ PR_GIT_UPDATE=1
 # that's executed immediately.  Maybe it only works on versions > 4.3.4, which
 # is what Leopard gives me?
 setprompt () {
-  [ -n "$HOSTNAME" ] && host="$HOSTNAME" || host=`uname -n`
+  [ -n "$HOST" ] && host="$HOST" || host=`uname -n`
   local short_host=`echo ${host}|cut -d. -f1`
   if [ "$TERM" = "dumb" ]; then
     # We're probably in Emacs M-x shell.
