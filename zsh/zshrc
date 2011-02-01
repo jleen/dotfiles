@@ -72,7 +72,7 @@ setprompt () {
       local screen=":$WINDOW"
       local screen_clear="`print \\\\ek\\\\e\\\\134`"
     fi
-    if [ $TERM = xterm -o $TERM = xterm-color -o $TERM -o SCREEN \
+    if [ $TERM = xterm -o $TERM = xterm-color -o $TERM = screen \
              -o $TERM = cygwin ]; then
       local xterm="`print \\\\e`]0;$SHELLPREFIX${short_host}${screen}:%~`print \\\\007`"
     fi
