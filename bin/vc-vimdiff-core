@@ -18,5 +18,5 @@ echo >> $TMPFILE
 # TODO(jleen): Comment preserved from ancestor.  What does it mean?
 # save STDIN to restore for vimdiff
 exec 7<&0
-$VIM_BINARY -f '+so $CONFIGDIR/vim/multidiff.vim' `cat $TMPFILE`
+$VIM_BINARY -f '+so $SVCONFIGDIR/vim/multidiff.vim' `cat $TMPFILE`
 cleanup

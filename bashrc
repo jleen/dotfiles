@@ -1,9 +1,9 @@
-export CONFIGDIR=`dirname ${BASH_ARGV[0]}`
+export SVCONFIGDIR=`dirname ${BASH_ARGV[0]}`
 
 HISTFILE="$HOME/.history"
 HISTCONTROL=ignoreboth
 
-export INPUTRC="$CONFIGDIR/inputrc"
+export INPUTRC="$SVCONFIGDIR/inputrc"
 shopt -s extglob
 shopt -s no_empty_cmd_completion
 shopt -s checkwinsize
@@ -46,7 +46,7 @@ if [ "$PS1" ]; then
 
 fi
 
-[ "$OSTYPE" == cygwin ] && source "$CONFIGDIR/cygwin.bash"
+[ "$OSTYPE" == cygwin ] && source "$SVCONFIGDIR/cygwin.bash"
 
 go ()
 {
