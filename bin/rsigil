@@ -1,16 +1,20 @@
 #!/bin/bash
 
 SIGIL=$1
-SRCHOST=$2
-SRC=$3
-TARGET=$4
+SRC=$2
+TARGET=$3
 
 TEMPFILE=/var/tmp/rsigil-$RANDOM
-SRCLEN=$((${#SRC} + 2))
 
-# TODO: Use ssh-agent to avoid multiple passwords.
-# TODO: Skip ssh for local copies.
-ssh $SRCHOST "find $SRC -name .$SIGIL -printf %h\\\\n" > $TEMPFILE
-cut -c$SRCLEN- $TEMPFILE \
-    | rsync -vrt --files-from=- --delete --exclude=.* $SRCHOST:$SRC $TARGET/
+if [[ $SRC = *:* ]]; then
+  SRCHOST=`echo $SRC | cut -d: -f1`
+  SRCDIR=`echo $SRC | cut -d: -f2`
+  SRCLEN=$((${#SRCDIR} + 2))
+  ssh $SRCHOST "find $SRCDIR -name .$SIGIL -printf %h\\\\n" | cut -c$SRCLEN-
+else
+  cd $SRC
+  find . -name .$SIGIL -printf %h\\n
+fi > $TEMPFILE
+
+rsync -vrt --files-from=$TEMPFILE --delete --exclude=.* $SRC $TARGET/
 rm $TEMPFILE
