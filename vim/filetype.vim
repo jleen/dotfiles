@@ -5,6 +5,7 @@ endif
 let did_load_jleen_filetypes = 1
 
 augroup filetypedetect
+  au! BufRead,BufNewFile *.as     setfiletype actionscript
   au! BufRead,BufNewFile *.asms   setfiletype cs
   au! BufRead,BufNewFile *.asmx   setfiletype cs
   au! BufRead,BufNewFile *.aspx   setfiletype aspcs
