@@ -5,8 +5,10 @@
 Style * SloppyFocus
 DeskTopSize 2x2
 EdgeScroll 100 100
-EdgeResistance 200 100
-SnapAttraction 25 all screen
+EdgeResistance 200
+Style * EdgeMoveDelay 200
+Style * EdgeMoveResistance 100
+Style * SnapAttraction 25 all screen
 OpaqueMoveSize unlimited
 
 Style "default-style" Font -adobe-helvetica-bold-r-*-*-12-*
@@ -44,7 +46,7 @@ Style "*" NoPPosition
 DestroyFunc StartFunction
 DestroyFunc InitFunction
 AddToFunc   InitFunction
-+ I exec xscreensaver -nosplash
+#+ I exec xscreensaver -nosplash
 DestroyFunc RestartFunction
 
 MenuStyle "*" Foreground black, Background grey, Greyed white, \
