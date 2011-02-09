@@ -115,31 +115,35 @@ elif [ "$TERM_PROGRAM" = Apple_Terminal ]; then  # Wrong condition!!
     fi
   }
   alias vv='mvim -R - > /dev/null'
-elif [ -n "$DISPLAY" ]; then
-  v () {
-    if [ -z "$*" ]; then
-      gvim
-    else
-      for fn in "$@"; do
-        gvim "$fn"
-      done
-    fi
-  }
-  alias vv='gvim -R -'
-elif [ -n "$WINDOW" ]; then
-  v () {
-    if [ -z "$*" ]; then
-      screen -t vi vi
-    else
-      for fn in "$@"; do
-        screen -t "vi $fn" vi "$fn"
-      done
-    fi
-  }
-  alias vv='vi -R -'
 else
-  v () { vi "$@"; }
-  alias vv='vi -R -'
+  v () {
+    if [ -n "$DISPLAY" ]; then
+      if [ -z "$*" ]; then
+        gvim
+      else
+        for fn in "$@"; do
+          gvim "$fn"
+        done
+      fi
+    elif [ -n "$WINDOW" ]; then
+      if [ -z "$*" ]; then
+        screen -t vi vi
+      else
+        for fn in "$@"; do
+          screen -t "vi $fn" vi "$fn"
+        done
+      fi
+    else
+      vi "$@"
+    fi
+  }
+  vv () {
+    if [ -n "$DISPLAY" ]; then
+      gvim -R -
+    else
+      vi -R -
+    fi
+  }
 fi
 
 
@@ -156,7 +160,7 @@ ss () {
         local val=${(P)${:-${var}}}
         echo "$var is $val"
         screen -S prime -X setenv $var "$val"
-        [ -n "$val" ] && echo "$var=$val" >> $HOME/.screenenv
+        echo "$var=$val" >> $HOME/.screenenv
       done
       screen -x prime
     else
