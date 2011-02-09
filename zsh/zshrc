@@ -1,7 +1,6 @@
 ##
 ## Quick and dirty
 ##
-alias ss='screen -ls | grep prime > /dev/null && screen -S prime -X setenv DISPLAY "$DISPLAY" && screen -S prime -X setenv DBUS_SESSION_BUS_ADDRESS "$DBUS_SESSION_BUS_ADDRESS" && screen -x prime || screen -S prime'
 alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
 [ `uname` = Darwin ] && alias top='top -o cpu'
 gman () { man $* | col -b | gview - }
@@ -141,6 +140,46 @@ elif [ -n "$WINDOW" ]; then
 else
   v () { vi "$@"; }
   alias vv='vi -R -'
+fi
+
+
+##
+## Screen Meta-Management
+##
+ss () {
+  if [ -n "$WINDOW" ]; then
+    echo "You have your slaw, sir!"
+  else
+    if screen -ls | grep -q prime; then
+      screen -S prime -X setenv DISPLAY "$DISPLAY"
+      screen -S prime -X setenv XAUTHORITY "$XAUTHORITY"
+      screen -S prime -X setenv DBUS_SESSION_BUS_ADDRESS \
+          "$DBUS_SESSION_BUS_ADDRESS"
+      echo "" > $HOME/.screenenv
+      [ -n "$DISPLAY" ] && echo "DISPLAY=$DISPLAY" >> $HOME/.screenenv
+      [ -n "$XAUTHORITY" ] && echo "XAUTHORITY=$XAUTHORITY" >> $HOME/.screenenv
+      [ -n "$DBUS_SESSION_BUS_ADDRESS" ] && \
+          echo "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS" >> \
+          $HOME/.screenenv
+      screen -x prime
+    else
+      screen -S prime
+    fi
+  fi
+}
+
+if [ -n "$WINDOW" ]; then
+  function snarf_screen_env {
+    local record
+    for record in `cat $HOME/.screenenv`; do
+      case $record in
+        DISPLAY*|XAUTHORITY*|DBUS_SESSION_BUS_ADDRESS*) export $record;;
+      esac
+    done
+  }
+
+  precmd_functions+='snarf_screen_env'
+  preexec_functions+='snarf_screen_env'
 fi
 
 ##
