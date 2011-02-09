@@ -1,7 +1,7 @@
 ##
 ## Quick and dirty
 ##
-alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
+alias ss='screen -ls | grep prime > /dev/null && screen -S prime -X setenv DISPLAY "$DISPLAY" && screen -S prime -X setenv DBUS_SESSION_BUS_ADDRESS "$DBUS_SESSION_BUS_ADDRESS" && screen -x prime || screen -S prime'
 alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
 [ `uname` = Darwin ] && alias top='top -o cpu'
 gman () { man $* | col -b | gview - }
