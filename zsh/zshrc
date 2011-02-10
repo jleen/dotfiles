@@ -158,7 +158,6 @@ ss () {
       echo "" > $HOME/.screenenv
       for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS; do
         local val=${(P)var}
-        echo "$var is $val"
         screen -S prime -X setenv $var "$val"
         echo "$var=$val" >> $HOME/.screenenv
       done
