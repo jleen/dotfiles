@@ -16,4 +16,14 @@ if [ "$UID" != 0 ]; then
 
   export INPUTRC="$SVCONFIGDIR/inputrc"
   export SCREENRC="$SVCONFIGDIR/screenrc"
+
+  function set_editor {
+    if [ -n "$DISPLAY" ]; then
+      export EDITOR='gvim -f'
+    else
+      export EDITOR='vi'
+    fi
+    export VISUAL="$EDITOR"
+  }
+  set_editor
 fi

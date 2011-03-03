@@ -176,6 +176,7 @@ if [ -n "$WINDOW" ]; then
         DISPLAY*|XAUTHORITY*|DBUS_SESSION_BUS_ADDRESS*) export $record;;
       esac
     done
+    set_editor
   }
 
   precmd_functions+='snarf_screen_env'
