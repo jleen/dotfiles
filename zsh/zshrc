@@ -304,8 +304,9 @@ bindkey "^[^[[D"  _backward-to-/
 bindkey "^[O5C" _forward-to-/
 bindkey "^[O5D" _backward-to-/
 # PuTTY
-bindkey "^[OC" _forward-to-/
-bindkey "^[OD" _backward-to-/
+# TODO(jleen): Why did we want these next two?  They break ssh from Darwin.
+#bindkey "^[OC" _forward-to-/
+#bindkey "^[OD" _backward-to-/
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 # xterm over NX on Leopard (bite me)
