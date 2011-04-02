@@ -155,12 +155,12 @@ ss () {
     echo "You have your slaw, sir!"
   else
     echo "" > $HOME/.screenenv
-    for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS; do
-      local val=${(P)var}
-      screen -S prime -X setenv $var "$val"
-      echo "$var=$val" >> $HOME/.screenenv
-    done
     if screen -ls | grep -q prime; then
+      for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS; do
+        local val=${(P)var}
+        screen -S prime -X setenv $var "$val"
+        echo "$var=$val" >> $HOME/.screenenv
+      done
       screen -x prime
     else
       screen -S prime
