@@ -36,6 +36,7 @@ set modelines=5
 " GUI display options
 if has("gui_running")
     set lines=50
+    set cursorline
 endif
 
 set guioptions+=a  " autoselect: xterm-style clipboard cut
@@ -45,10 +46,11 @@ hi normal guifg=gray90 guibg=black
 hi Hungarian guifg=gray70
 hi CursorLine guibg=gray20
 
-au WinEnter * set cursorline
-au WinLeave * set nocursorline
-au FocusGained * set cursorline
-au FocusLost * set nocursorline
+" WTF?
+"au WinEnter * set cursorline
+"au WinLeave * set nocursorline
+"au FocusGained * set cursorline
+"au FocusLost * set nocursorline
 
 if has("gui_win32")
     set winaltkeys=no
