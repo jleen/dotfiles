@@ -153,8 +153,8 @@ ss () {
   if [ -n "$WINDOW" ]; then
     echo "You have your slaw, sir!"
   else
+    echo "" > $HOME/.screenenv
     if screen -ls | grep -q prime; then
-      echo "" > $HOME/.screenenv
       for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS; do
         local val=${(P)var}
         screen -S prime -X setenv $var "$val"
