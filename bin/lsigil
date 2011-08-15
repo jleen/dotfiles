@@ -1,0 +1,10 @@
+#!/bin/bash
+
+SIGIL=$1
+SRC=$2
+TARGET=$3
+
+cd $SRC
+find . -name .$SIGIL -printf %h\\n \
+    | rsync -vrt --modify-window=2 --files-from=- --delete \
+        --exclude=.$SIGIL . $TARGET/

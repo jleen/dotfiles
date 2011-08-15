@@ -1,0 +1,7 @@
+#!/bin/sh
+
+{ for fn in `echo $PATH | tr : \ `; do
+  ls -ld $fn/$1 2> /dev/null
+  done
+} | uniq
+
