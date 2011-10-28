@@ -10,6 +10,9 @@ if isdirectory(s:swapdir)
     let &directory = s:swapdir . "//"
 endif
 
+" Netrw hygiene.
+let g:netrw_home=$HOME
+
 " Make buffers behave
 set autoread
 
