@@ -149,17 +149,23 @@ fi
 ##
 ## Screen Meta-Management
 ##
+SCREENENV="$TMPPREFIX-$USERNAME-screenenv"
+[ -f "$SCREENENV" ] || touch "$SCREENENV"
+[ -O "$SCREENENV" ] || unset SCREENENV
+
 ss () {
   if [ -n "$WINDOW" ]; then
     echo "You have your slaw, sir!"
   else
-    echo "" > $HOME/.screenenv
+    [ -n "$SCREENENV" ] && echo "" > "$SCREENENV"
     if screen -ls | grep -q prime; then
-      for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS; do
-        local val=${(P)var}
-        screen -S prime -X setenv $var "$val"
-        echo "$var=$val" >> $HOME/.screenenv
-      done
+      if [ -n "$SCREENENV" ]; then
+        for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS; do
+          local val=${(P)var}
+          screen -S prime -X setenv $var "$val"
+          echo "$var=$val" >> "$SCREENENV"
+        done
+      fi
       screen -x prime
     else
       screen -S prime
@@ -167,10 +173,10 @@ ss () {
   fi
 }
 
-if [ -n "$WINDOW" ]; then
+if [[ -n "$WINDOW" && -n "$SCREENENV" ]]; then
   function snarf_screen_env {
     local record
-    for record in `cat $HOME/.screenenv`; do
+    for record in `cat "$SCREENENV"`; do
       case $record in
         DISPLAY*|XAUTHORITY*|DBUS_SESSION_BUS_ADDRESS*) export $record;;
       esac
