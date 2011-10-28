@@ -150,7 +150,8 @@ fi
 ## Screen Meta-Management
 ##
 SCREENENV="$TMPPREFIX-$USERNAME-screenenv"
-[ -f "$SCREENENV" ] || touch "$SCREENENV"
+# TODO(jleen): Figure out a secure way to create this automatically.
+#[ -f "$SCREENENV" ] || touch "$SCREENENV"
 [ -O "$SCREENENV" ] || unset SCREENENV
 
 ss () {
