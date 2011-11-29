@@ -2,12 +2,19 @@
 exec "set runtimepath=$SVCONFIGDIR/vim," . escape(&runtimepath, ' ') . ",$SVCONFIGDIR/vim/after"
 
 " Swapfile hygiene.
-let s:swapdir = "/var/tmp/jleen/vim"
-if exists ("*mkdir") && !isdirectory(s:swapdir)
-    call mkdir("/var/tmp/jleen/vim", "p", 0700)
+if has("unix")
+    let s:swapdir = "/var/tmp/jleen/vim"
+    if exists ("*mkdir") && !isdirectory(s:swapdir)
+        call mkdir("/var/tmp/jleen/vim", "p", 0700)
+    endif
+    if isdirectory(s:swapdir)
+        let &directory = s:swapdir . "//"
+    endif
 endif
-if isdirectory(s:swapdir)
-    let &directory = s:swapdir . "//"
+
+" Viminfo hygiene.
+if has("win32") || has("win64")
+    set viminfo+=n~/.viminfo
 endif
 
 " Netrw hygiene.
