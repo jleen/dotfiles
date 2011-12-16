@@ -10,9 +10,9 @@ if [ "$UID" != 0 ]; then
   SVCONFIGPATH=$SVCONFIGDIR/bin
   SVCONFIGFPATH=$SVCONFIGDIR/zsh/functions
 
-  echo $PATH | grep -q $SVCONFIGPATH || PATH=$SVCONFIGPATH:$PATH
-  echo $FPATH | grep -q $SVCONFIGFPATH || FPATH=$SVCONFIGFPATH:$FPATH
-  echo $PATH | grep -q $HOME/bin || PATH=$HOME/bin:$PATH
+  [[ $PATH = *$SVCONFIGPATH* ]] || PATH=$SVCONFIGPATH:$PATH
+  [[ $FPATH = *$SVCONFIGFPATH* ]] || FPATH=$SVCONFIGFPATH:$FPATH
+  [[ $PATH = *$HOME/bin* ]] || PATH=$HOME/bin:$PATH
 
   export INPUTRC="$SVCONFIGDIR/inputrc"
   export SCREENRC="$SVCONFIGDIR/screenrc"

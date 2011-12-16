@@ -2,13 +2,23 @@
 exec "set runtimepath=$SVCONFIGDIR/vim," . escape(&runtimepath, ' ') . ",$SVCONFIGDIR/vim/after"
 
 " Swapfile hygiene.
-let s:swapdir = "/var/tmp/jleen/vim"
-if exists ("*mkdir") && !isdirectory(s:swapdir)
-    call mkdir("/var/tmp/jleen/vim", "p", 0700)
+if has("unix")
+    let s:swapdir = "/var/tmp/jleen/vim"
+    if exists ("*mkdir") && !isdirectory(s:swapdir)
+        call mkdir("/var/tmp/jleen/vim", "p", 0700)
+    endif
+    if isdirectory(s:swapdir)
+        let &directory = s:swapdir . "//"
+    endif
 endif
-if isdirectory(s:swapdir)
-    let &directory = s:swapdir . "//"
+
+" Viminfo hygiene.
+if has("win32") || has("win64")
+    set viminfo+=n~/.viminfo
 endif
+
+" Netrw hygiene.
+let g:netrw_home=$HOME
 
 " Make buffers behave
 set autoread
@@ -36,6 +46,7 @@ set modelines=5
 " GUI display options
 if has("gui_running")
     set lines=50
+    set cursorline
 endif
 
 set guioptions+=a  " autoselect: xterm-style clipboard cut
@@ -45,10 +56,11 @@ hi normal guifg=gray90 guibg=black
 hi Hungarian guifg=gray70
 hi CursorLine guibg=gray20
 
-au WinEnter * set cursorline
-au WinLeave * set nocursorline
-au FocusGained * set cursorline
-au FocusLost * set nocursorline
+" WTF?
+"au WinEnter * set cursorline
+"au WinLeave * set nocursorline
+"au FocusGained * set cursorline
+"au FocusLost * set nocursorline
 
 if has("gui_win32")
     set winaltkeys=no

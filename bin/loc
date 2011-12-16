@@ -1,0 +1,23 @@
+#!/bin/sh
+
+PIPE=/tmp/locpipe.$$
+trap "rm $PIPE 2> /dev/null" INT
+
+if [ "$1" = "-g" ]; then
+	GREP="true"
+	shift
+fi
+
+if [ $# -gt 0 ]; then
+	for i in $*; do
+	if [ "$GREP" = "true" ]; then
+		who |egrep $i
+	else
+		who |grep "^$i "
+	fi
+	done
+else
+	mknod $PIPE p
+	who|cut -c1-9,32-50 > $PIPE|who|cut -c10-30|paste - $PIPE|expand|uniq -s 25 -w 9
+	rm $PIPE
+fi

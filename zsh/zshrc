@@ -71,8 +71,7 @@ setprompt () {
       local screen=":$WINDOW"
       local screen_clear="`print \\\\ek\\\\e\\\\134`"
     fi
-    if [ $TERM = xterm -o $TERM = xterm-color -o $TERM = screen \
-             -o $TERM = cygwin ]; then
+    if [[ $TERM = (xterm*|rxvt*|screen|cygwin) ]]; then
       local xterm="`print \\\\e`]0;$SHELLPREFIX${short_host}${screen}:%~`print \\\\007`"
     fi
     if [ -n "$SHELLPREFIX" ]; then
@@ -151,17 +150,24 @@ fi
 ##
 ## Screen Meta-Management
 ##
+SCREENENV="$TMPPREFIX-$USERNAME-screenenv"
+# TODO(jleen): Figure out a secure way to create this automatically.
+#[ -f "$SCREENENV" ] || touch "$SCREENENV"
+[ -O "$SCREENENV" ] || unset SCREENENV
+
 ss () {
   if [ -n "$WINDOW" ]; then
     echo "You have your slaw, sir!"
   else
-    echo "" > $HOME/.screenenv
+    [ -n "$SCREENENV" ] && echo "" > "$SCREENENV"
     if screen -ls | grep -q prime; then
-      for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS; do
-        local val=${(P)var}
-        screen -S prime -X setenv $var "$val"
-        echo "$var=$val" >> $HOME/.screenenv
-      done
+      if [ -n "$SCREENENV" ]; then
+        for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS; do
+          local val=${(P)var}
+          screen -S prime -X setenv $var "$val"
+          echo "$var=$val" >> "$SCREENENV"
+        done
+      fi
       screen -x prime
     else
       screen -S prime
@@ -169,10 +175,10 @@ ss () {
   fi
 }
 
-if [ -n "$WINDOW" ]; then
+if [[ -n "$WINDOW" && -n "$SCREENENV" ]]; then
   function snarf_screen_env {
     local record
-    for record in `cat $HOME/.screenenv`; do
+    for record in `cat "$SCREENENV"`; do
       case $record in
         DISPLAY*|XAUTHORITY*|DBUS_SESSION_BUS_ADDRESS*) export $record;;
       esac
@@ -305,8 +311,9 @@ bindkey "^[^[[D"  _backward-to-/
 bindkey "^[O5C" _forward-to-/
 bindkey "^[O5D" _backward-to-/
 # PuTTY
-bindkey "^[OC" _forward-to-/
-bindkey "^[OD" _backward-to-/
+# TODO(jleen): Why did we want these next two?  They break ssh from Darwin.
+#bindkey "^[OC" _forward-to-/
+#bindkey "^[OD" _backward-to-/
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 # xterm over NX on Leopard (bite me)

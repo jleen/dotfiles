@@ -1,0 +1,29 @@
+#!/usr/bin/perl 
+#
+#   FILE: webster.pl
+# AUTHOR: Stephanie Schaaf (sas)
+#   DATE: Tue Mar  4 19:55:11 EST 1997
+#  DESCR: simple webster hack
+#
+$TRAILER = "Pronunciation Symbols";
+$TRAILER2 = "____________________________________________________";
+$TRAILER3 = "Get the Top 10";
+$HEADER =  "Main Entry";
+$NOTFOUND = "No entries found that match your query.";
+if (($#ARGV == -1) || ($ARGV[0] eq "-h")) {
+  print("Usage: webster word [words ...]\n");
+  exit(2);
+}
+@words = @ARGV;
+while ($word = shift(@words)) {
+  $p = 0;
+  open (LINES, "lynx -nolist -dump 'http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=$word' |") || die "Can't open command pipeline";
+  print("\n");
+  while (<LINES>) {
+    /$TRAILER|$TRAILER2|$TRAILER3/ && ($p = 0);
+    /$HEADER/ && ($p = 1);
+    /$NOTFOUND/ && print("$word: not found\n");
+    print $_ if $p;
+  }
+  print("\n");
+}

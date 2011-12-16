@@ -1,0 +1,75 @@
+#!/bin/ksh
+
+unalias -a
+unset FPATH
+
+STMP=${TMP:-${TMPDIR:-$HOME}}/.swrite$$
+
+cleanup() {
+rm $STMP 2> /dev/null
+umask $UM
+exit 0
+}
+
+#trap 'cleanup' INT
+trap 'cleanup' 1 2 3 15
+
+if [ "$1" = "-h" ]; then
+	echo "Usage: swrite [ -dot ] user [ user2 [ usern ] ]"
+	exit 0
+fi
+
+if [ $# -lt 1 -o "$1" = '-dot' -a $# -lt 2 ]; then
+  echo you are trying to write to 0 users...probably not a good plan
+  exit 1
+fi
+
+#The $1 should not need "s because the above test should guarantee a first arg
+if [ $1 = "-dot" ]; then 
+	DOT=true
+	shift
+fi
+
+if [ `/usr/local/bin/loc $*|/usr/bin/wc -l` -lt 1 ]; then
+	echo "recipient(s) not logged in"
+	exit 1
+fi
+
+UM=`umask`
+umask 077
+#trap "rm /tmp/swrite.$$" 
+
+#echo > $STMP   #adds a line at the top of the message
+echo "      --swrite message.../th/bin/swrite to respond--" > $STMP
+if [ -z $DOT ]; then
+	echo "Enter your message terminated with a ^D at the beginning of a line:"
+	cat >> $STMP
+else
+	echo "Enter your message terminated with a . at the beginning of a line:"
+	read in
+	until [ "$in" = "." ]; do
+		echo $in >> $STMP
+		read in
+	done
+fi
+
+for i in $*; do
+	WHODATA=`finger 2>/dev/null|grep "^$i "|grep -v "\*cu" | sort -n +0.37 \
+		|head -1|cut -c25-`
+	#echo $WHODATA
+	TTY=`echo $WHODATA|awk '{print $1}'`
+	if [ "`echo $TTY|cut -c1`" = '*' ]; then
+		echo "$i is a punk with messages turned off (running pine?)"
+		echo "Is $TTY cua0?"
+	else
+		#echo $TTY
+		echo
+		echo "Sending to user $i (maybe on $TTY...)"
+
+		cat $STMP|awk '{ printf "%-80s\n",$0; }' |/usr/bin/write $i $TTY #2> /dev/null
+	fi
+done
+
+#clean up the .rhosts file if we modified it
+#on this system, we don't use rhosts or rsh to other machines
+cleanup
