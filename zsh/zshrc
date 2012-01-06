@@ -8,7 +8,11 @@ gman () { man $* | col -b | gview - }
 bindkey -e
 bindkey '^u' backward-kill-line
 
+# Beeping is rude.
 setopt no_beep
+
+# Retain literal '*' when there's no glob match.  This is sloppy but useful.
+setopt no_nomatch
 
 HISTFILE=$HOME/.history
 HISTSIZE=10100
