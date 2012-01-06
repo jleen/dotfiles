@@ -107,7 +107,8 @@ if [ "$OSTYPE" = cygwin ]; then
     fi
   }
   alias vv='gvim.bat -R -'
-elif [ "$TERM_PROGRAM" = Apple_Terminal ]; then  # Wrong condition!!
+elif [[ "$TERM_PROGRAM" = Apple_Terminal || 
+        "$TERM_PROGRAM" = iTerm.app ]]; then  # Wrong condition!!
   v () {
     if [ -z "$*" ]; then
       mvim
