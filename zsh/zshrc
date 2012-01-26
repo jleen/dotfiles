@@ -152,12 +152,28 @@ fi
 
 
 ##
+## Private Temp Dir
+##
+SVTMP="$TMPPREFIX-$USERNAME-sv"
+if [ -e "$SVTMP" ]; then
+  if [[ ! ( -O "$SVTMP" && -d "$SVTMP" ) ]]; then
+    echo "Bad $SVTMP"
+    unset SVTMP
+  fi
+else
+  if mkdir -m 700 "$SVTMP"; then
+    echo "Created $SVTMP"
+  else
+    echo "Unable to create $SVTMP"
+    unset SVTMP
+  fi
+fi
+
+
+##
 ## Screen Meta-Management
 ##
-SCREENENV="$TMPPREFIX-$USERNAME-screenenv"
-# TODO(jleen): Figure out a secure way to create this automatically.
-#[ -f "$SCREENENV" ] || touch "$SCREENENV"
-[ -O "$SCREENENV" ] || unset SCREENENV
+SCREENENV="$SVTMP/screenenv"
 
 ss () {
   if [ -n "$WINDOW" ]; then
