@@ -1,5 +1,5 @@
 alias ls='ls --color=auto -pUG'
-eval `dircolors -b "$SVCONFIGDIR/dircolors.cygwin"`
+eval `dircolors -b "$SVCONFIGDIR/cygwin/dircolors"`
 export SVN_EDITOR='gvim.bat -f'
 
 # Let's see how completely this confuses me on the Mac.

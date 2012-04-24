@@ -344,4 +344,4 @@ bindkey "^[[1;9D" _backward-to-/
 ##
 ## But wait--there's more (maybe)!
 ##
-[ "$OSTYPE" = cygwin ] && source "$SVCONFIGDIR/cygwin.bash"
+[ "$OSTYPE" = cygwin ] && source "$SVCONFIGDIR/cygwin/zshrc"

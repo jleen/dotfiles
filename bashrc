@@ -1,3 +1,5 @@
+echo "*** TODO: install zsh! ***"
+
 export SVCONFIGDIR=`dirname ${BASH_ARGV[0]}`
 
 HISTFILE="$HOME/.history"
@@ -7,26 +9,16 @@ export INPUTRC="$SVCONFIGDIR/inputrc"
 shopt -s extglob
 shopt -s no_empty_cmd_completion
 shopt -s checkwinsize
+set -o emacs
 
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-# TODO: Is this useful?
-# PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-set -o emacs
 
 if [ "$PS1" ]; then
 
     LS_COLOR_OPT=--color=auto
 
-    alias ss='screen -ls | grep prime > /dev/null && screen -x prime || screen -S prime'
-    alias ll='ls -l'
-    alias la='ls -A'
-    alias l='ls -CF'
-    alias dir='ls $LS_COLOR_OPT --format=vertical'
-    alias vdir='ls $LS_COLOR_OPT --format=long'
     alias r='fc -s'
-    alias beep='echo -e \\007'
-    alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
 
     SHORTHOSTNAME=`echo $HOSTNAME|cut -d. -f1`
     if [ "$TERM" = "dumb" ]; then
@@ -46,12 +38,7 @@ if [ "$PS1" ]; then
 
 fi
 
-[ "$OSTYPE" == cygwin ] && source "$SVCONFIGDIR/cygwin.bash"
-
-go ()
-{
-    cd `locate $1|sed -e 's/\/[^/]*$//'`
-}
+[ "$OSTYPE" == cygwin ] && source "$SVCONFIGDIR/cygwin/zshrc"
 
 if [ "$OSTYPE" == cygwin ]; then
     v ()
@@ -106,8 +93,3 @@ else
     v () { vi "$@"; }
     alias vv='vi -R -'
 fi
-
-gman ()
-{
-    man $* | col -b | gview -
-}
