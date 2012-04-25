@@ -41,3 +41,6 @@ if [ "$UID" != 0 ]; then
   }
   set_editor
 fi
+
+# Source zshrc here when interactive, so we don't need a bootstrap in ~/.zshrc.
+[[ -o i ]] && source "$SVCONFIGDIR/zsh/zshrc"
