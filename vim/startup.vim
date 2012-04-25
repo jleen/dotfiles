@@ -47,6 +47,7 @@ set modelines=5
 if has("gui_running")
     set lines=50
     set cursorline
+    colorscheme solarized
 endif
 
 set guioptions+=a  " autoselect: xterm-style clipboard cut
