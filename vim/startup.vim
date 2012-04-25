@@ -20,6 +20,9 @@ endif
 " Netrw hygiene.
 let g:netrw_home=$HOME
 
+" HTML hygiene.
+let html_no_rendering=1
+
 " Make buffers behave
 set autoread
 
@@ -120,6 +123,5 @@ let &errorformat = &errorformat . ',%DProject\\ "%f\\[A-Za-z]%#.csproj"\\ (defau
 set errorformat +=%f(%l\\,%c):\ warning\ CS%n:%m
 set errorformat +=%f(%l\\,%c):\ error\ CS%n:%m
 
-" Me
-let trillianUserNames = '\(Sonbal *Boantjies\|jleen\)'
-let html_no_rendering=1
+" It's your turn!
+source $HOME/.vimrc
