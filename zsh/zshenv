@@ -16,9 +16,23 @@ if [ "$UID" != 0 ]; then
 
   export INPUTRC="$SVCONFIGDIR/inputrc"
   export SCREENRC="$SVCONFIGDIR/screenrc"
+  export VIMINIT="source $SVCONFIGDIR/vim/startup.vim"
+
+  if [ "$OSTYPE" = cygwin ]; then
+    SVPLATFORM=cygwin
+  elif [[ "$TERM_PROGRAM" = Apple_Terminal || 
+	  "$TERM_PROGRAM" = iTerm.app ]]; then  # Wrong condition!!
+    SVPLATFORM=mac
+  elif [ -n "$DISPLAY" ]; then
+    SVPLATFORM=X11
+  elif [ -n "$WINDOW" ]; then
+    SVPLATFORM=screen
+  else
+    SVPLATFORM=vt
+  fi
 
   function set_editor {
-    if [ -n "$DISPLAY" ]; then
+    if [ "$SVPLATFORM" = X11 ]; then
       export EDITOR='gvim -f'
     else
       export EDITOR='vi'

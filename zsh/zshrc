@@ -95,7 +95,7 @@ unfunction setprompt
 ##
 ## Saturn Valley Pandimensional Uniform Editor Launcher
 ##
-if [ "$OSTYPE" = cygwin ]; then
+if [ "$SVPLATFORM" = cygwin ]; then
   v () {
     if [ -z "$*" ]; then
       cygstart --hide gvim.bat
@@ -107,8 +107,7 @@ if [ "$OSTYPE" = cygwin ]; then
     fi
   }
   alias vv='gvim.bat -R -'
-elif [[ "$TERM_PROGRAM" = Apple_Terminal || 
-        "$TERM_PROGRAM" = iTerm.app ]]; then  # Wrong condition!!
+elif [ "$SVPLATFORM" = mac ]; then
   v () {
     if [ -z "$*" ]; then
       mvim
@@ -121,7 +120,7 @@ elif [[ "$TERM_PROGRAM" = Apple_Terminal ||
   alias vv='mvim -R - > /dev/null'
 else
   v () {
-    if [ -n "$DISPLAY" ]; then
+    if [ "$SVPLATFORM" = X11 ]; then
       if [ -z "$*" ]; then
         gvim
       else
@@ -129,7 +128,7 @@ else
           gvim "$fn"
         done
       fi
-    elif [ -n "$WINDOW" ]; then
+    elif [ "$SVPLATFORM" = screen ]; then
       if [ -z "$*" ]; then
         screen -t vi vi
       else
@@ -142,7 +141,7 @@ else
     fi
   }
   vv () {
-    if [ -n "$DISPLAY" ]; then
+    if [ "SVPLATFORM" = X11 ]; then
       gvim -R -
     else
       vi -R -
