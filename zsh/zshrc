@@ -4,6 +4,10 @@
 alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
 [ `uname` = Darwin ] && alias top='top -o cpu'
 gman () { man $* | col -b | gview - }
+srcgrep () {
+    grep -r "$*" . | grep -v tags | grep -v \\.svn| grep -v \\.git | grep -v "Binary file"
+}
+
 
 bindkey -e
 bindkey '^u' backward-kill-line
