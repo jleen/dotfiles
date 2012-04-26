@@ -1,5 +1,6 @@
 " Now it's a whole tree!
-exec "set runtimepath=$SVCONFIGDIR/vim," . escape(&runtimepath, ' ') . ",$SVCONFIGDIR/vim/after"
+let s:current_file=expand("<sfile>:h")
+exec "set runtimepath=" . s:current_file . "," . escape(&runtimepath, ' ') . "," . s:current_file . "/after"
 
 " Swapfile hygiene.
 if has("unix")
