@@ -20,6 +20,9 @@ if [ "$UID" != 0 ]; then
 
   if [ "$OSTYPE" = cygwin ]; then
     SVPLATFORM=cygwin
+    [[ -o l ]] && PATH=/usr/bin:$PATH && cd  # Srsly?
+    VIMINIT="source `cygpath -wa $SVCONFIGDIR`/vim/startup.vim"
+    setopt NO_GLOBAL_RCS
   elif [[ "$TERM_PROGRAM" = Apple_Terminal || 
 	  "$TERM_PROGRAM" = iTerm.app ]]; then  # Wrong condition!!
     SVPLATFORM=mac
