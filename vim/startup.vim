@@ -50,6 +50,7 @@ set modelines=5
 " GUI display options
 if has("gui_running")
     set lines=50
+    set columns=80
     set cursorline
     colorscheme solarized
 endif
