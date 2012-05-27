@@ -11,6 +11,7 @@ srcgrep () {
 
 bindkey -e
 bindkey '^u' backward-kill-line
+bindkey '\eq' push-line-or-edit
 
 # Beeping is rude.
 setopt no_beep
