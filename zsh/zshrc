@@ -11,6 +11,7 @@ srcgrep () {
 
 bindkey -e
 bindkey '^u' backward-kill-line
+bindkey '\eq' push-line-or-edit
 
 # Beeping is rude.
 setopt no_beep
@@ -133,13 +134,18 @@ else
         done
       fi
     elif [ "$SVPLATFORM" = screen ]; then
+      # screen runs as root, and thus has weird chdir problems when root can't
+      # read the pwd (e.g. when it's on NFS.)  So we hack around the issue.
+      local filepwd="$PWD"
+      pushd -q /
       if [ -z "$*" ]; then
-        screen -t vi vi
+        screen -t vi vi --cmd "cd $filepwd"
       else
         for fn in "$@"; do
-          screen -t "vi $fn" vi "$fn"
+          screen -t "vi $fn" vi --cmd "cd $filepwd" "$filepwd/$fn"
         done
       fi
+      popd -q
     else
       vi "$@"
     fi
@@ -206,6 +212,7 @@ if [[ -n "$WINDOW" && -n "$SCREENENV" ]]; then
         DISPLAY*|XAUTHORITY*|DBUS_SESSION_BUS_ADDRESS*) export $record;;
       esac
     done
+    set_platform
     set_editor
   }
 

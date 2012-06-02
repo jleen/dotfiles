@@ -17,5 +17,5 @@ else
 fi > $TEMPFILE
 
 rsync -vrt --modify-window=1 --files-from=$TEMPFILE --delete --exclude=.* \
-    $SRC $TARGET/
+    $SRC $TARGET
 rm $TEMPFILE
