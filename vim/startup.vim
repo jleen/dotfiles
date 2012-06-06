@@ -75,6 +75,7 @@ endif
 
 if has ("gui_macvim")
     set transparency=0
+    set guifont=Menlo_Regular:h13
 endif
 
 " Generic display options
