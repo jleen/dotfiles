@@ -9,7 +9,6 @@ defscrollback 10000
 bind k
 bind ^k
 bind .
-bind ^\
 bind \\
 bind ^h
 bind h
