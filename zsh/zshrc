@@ -170,8 +170,10 @@ if [ -e "$SVTMP" ]; then
     unset SVTMP
   fi
 else
-  if mkdir -m 700 "$SVTMP"; then
+  if mkdir -pm 700 "$SVTMP" 2> /dev/null; then
     echo "Created $SVTMP"
+  elif [[ -O "$SVTMP" && -d "$SVTMP" ]]; then
+    echo "Another process created $SVTMP for us, yay"
   else
     echo "Unable to create $SVTMP"
     unset SVTMP
