@@ -1,3 +1,8 @@
+# zshenv sets up environment variables that we want even if this is a
+# noninteractive shell, e.g. variables that we'd like to have available in
+# processes launched by wrapper scripts.
+
+# For root shells, don't do anything fancy.
 if [ "$UID" != 0 ]; then
   # This is zshenv but it's useful to have it bash-compatible (so it can be
   # sourced from .xsession, for example).
@@ -7,6 +12,7 @@ if [ "$UID" != 0 ]; then
     export SVCONFIGDIR="${0:h:h}"
   fi
 
+  # Add Saturn Valley stuff to the PATH and FPATH if they're not already there.
   SVCONFIGPATH=$SVCONFIGDIR/bin
   SVCONFIGFPATH=$SVCONFIGDIR/zsh/functions
 
@@ -14,19 +20,21 @@ if [ "$UID" != 0 ]; then
   [[ $FPATH = *$SVCONFIGFPATH* ]] || FPATH=$SVCONFIGFPATH:$FPATH
   [[ $PATH = *$HOME/bin* ]] || PATH=$HOME/bin:$PATH
 
+  # Where to find a few config files.  We override the default location via
+  # environment variables so the user doesn't have to create stubs in $HOME.
   export INPUTRC="$SVCONFIGDIR/inputrc"
   export SCREENRC="$SVCONFIGDIR/screenrc"
   export VIMINIT="source $SVCONFIGDIR/vim/startup.vim"
 
+  # Figure out the sort of environment we're running on, so later tweaks can
+  # behave appropriately.
   function set_platform {
     if [ "$OSTYPE" = cygwin ]; then
       SVPLATFORM=cygwin
-      [[ -o l ]] && PATH=/usr/bin:$PATH && cd  # Srsly?
-      VIMINIT="source `cygpath -wa $SVCONFIGDIR`/vim/startup.vim"
-      setopt NO_GLOBAL_RCS
+    # TODO(jleen): Make the OS X check less bogus.
     elif [[ "$TERM_PROGRAM" = Apple_Terminal || 
-        "$TERM_PROGRAM" = iTerm.app ]]; then  # Wrong condition!!
-      SVPLATFORM=mac
+        "$TERM_PROGRAM" = iTerm.app ]]; then  
+      SVPLATFORM=osx
     elif [ -n "$DISPLAY" ]; then
       SVPLATFORM=X11
     elif [ -n "$WINDOW" ]; then
@@ -37,6 +45,7 @@ if [ "$UID" != 0 ]; then
   }
   set_platform
 
+  # The all-important EDITOR.
   function set_editor {
     if [ "$SVPLATFORM" = X11 ]; then
       export EDITOR='gvim -f'

@@ -1,8 +1,11 @@
 alias ls='ls --color=auto -pUG'
 eval `dircolors -b "$SVCONFIGDIR/cygwin/dircolors"`
 export SVN_EDITOR='gvim.bat -f'
+[[ -o l ]] && PATH=/usr/bin:$PATH && cd  # Srsly?
+VIMINIT="source `cygpath -wa $SVCONFIGDIR`/vim/startup.vim"
+setopt NO_GLOBAL_RCS
 
-# Let's see how completely this confuses me on the Mac.
+# Let's see how completely this confuses me on OS X.
 alias open=cygstart
 
 cygtrans () {
