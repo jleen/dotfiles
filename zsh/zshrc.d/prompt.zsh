@@ -67,6 +67,3 @@ setprompt () {
 }
 setprompt
 unfunction setprompt
-
-
-
