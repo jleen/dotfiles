@@ -51,7 +51,7 @@ else
     fi
   }
   vv () {
-    if [ "SVPLATFORM" = X11 ]; then
+    if [ "$SVPLATFORM" = X11 ]; then
       gvim -R -
     else
       vi -R -
