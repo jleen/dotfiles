@@ -1,2 +1,2 @@
 #!/bin/sh
-vc-vimdiff-core "GIT_EXTERNAL_DIFF=\"collect-git-vimdiff\" git diff \"$@\""
+vc-vimdiff-core "GIT_EXTERNAL_DIFF=\"collect-git-vimdiff\" git diff $*"
