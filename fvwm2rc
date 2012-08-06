@@ -135,7 +135,6 @@ Key F12   A    M    Stick
 Key L     A    CM   Exec exec xscreensaver-command -lock
 
 #Key Print A    A    Exec exec scrot -s
-Key Print Exec exec xscreensaver-command -lock
 
 # Immediate Move Click Hold Doubleclick
 
