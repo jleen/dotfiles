@@ -1,28 +1,7 @@
 # zshrc sets up aliases, bindings, and anything else that's only needed for
-# interactive shells.
-
-alias aptup='sudo apt-get update; sudo apt-get dist-upgrade'
-[ "$SVPLATFORM" = osx ] && alias top='top -o cpu'
-gman () { man $* | col -b | gview - }
-srcgrep () {
-  grep -r "$*" . | grep -v tags | grep -v \\.svn| grep -v \\.git \
-      | grep -v "Binary file"
-}
-
-bindkey -e
-bindkey '^u' backward-kill-line
-bindkey '\eq' push-line-or-edit
-
-# Beeping is rude.
-setopt no_beep
-
-# Retain literal '*' when there's no glob match.  This is sloppy but useful.
-setopt no_nomatch
-
-HISTFILE=$HOME/.history
-HISTSIZE=10100
-SAVEHIST=10000
-setopt inc_append_history  # fc -RI to import from other shells.
+# interactive shells.  This implementation is a stub that sets up basic options
+# that everything else depends on, then reads the rest of the configuration from
+# zshrc.d.
 
 # Private temp dir.
 SVTMP="$TMPPREFIX-$USERNAME-sv"
