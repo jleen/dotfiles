@@ -55,6 +55,9 @@ if [ "$UID" != 0 ]; then
     export VISUAL="$EDITOR"
   }
   set_editor
+
+  # The less-important less.
+  [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 fi
 
 # Source zshrc here when interactive, so we don't need a bootstrap in ~/.zshrc.
