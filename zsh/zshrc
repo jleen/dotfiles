@@ -19,6 +19,12 @@ setopt no_beep
 # Retain literal '*' when there's no glob match.  This is sloppy but useful.
 setopt no_nomatch
 
+# Completion can happen to anyone at any time.
+setopt complete_in_word
+
+# Heck yeah wildcard moves!
+autoload -U zmv
+
 HISTFILE=$HOME/.history
 HISTSIZE=10100
 SAVEHIST=10000
@@ -43,9 +49,13 @@ else
 fi
 
 # Dot dee!
-for rc in $SVCONFIGDIR/zsh/zshrc.d/*.zsh; do
-  source $rc
-done
+dot_dee () {
+  for rc in "$1/"*.zsh; do
+    source $rc
+  done
+}
+
+dot_dee "$SVCONFIGDIR/zsh/zshrc.d"
 
 # But wait--there's more (maybe)!
 [ "$SVPLATFORM" = cygwin ] && source "$SVCONFIGDIR/cygwin/zshrc"
