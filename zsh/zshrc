@@ -3,12 +3,6 @@
 # that everything else depends on, then reads the rest of the configuration from
 # zshrc.d.
 
-# Completion can happen to anyone at any time.
-setopt complete_in_word
-
-# Heck yeah wildcard moves!
-autoload -U zmv
-
 # Private temp dir.
 SVTMP="$TMPPREFIX-$USERNAME-sv"
 if [ -e "$SVTMP" ]; then

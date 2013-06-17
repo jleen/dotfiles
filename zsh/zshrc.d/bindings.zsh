@@ -13,3 +13,10 @@ setopt no_beep
 
 # Retain literal '*' when there's no glob match.  This is sloppy but useful.
 setopt no_nomatch
+
+# Completion can happen to anyone at any time.
+setopt complete_in_word
+
+# Heck yeah wildcard moves!
+autoload -U zmv
+
