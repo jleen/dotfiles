@@ -3,6 +3,12 @@
 # that everything else depends on, then reads the rest of the configuration from
 # zshrc.d.
 
+# Completion can happen to anyone at any time.
+setopt complete_in_word
+
+# Heck yeah wildcard moves!
+autoload -U zmv
+
 # Private temp dir.
 SVTMP="$TMPPREFIX-$USERNAME-sv"
 if [ -e "$SVTMP" ]; then
@@ -22,9 +28,13 @@ else
 fi
 
 # Dot dee!
-for rc in $SVCONFIGDIR/zsh/zshrc.d/*.zsh; do
-  source $rc
-done
+dot_dee () {
+  for rc in "$1/"*.zsh; do
+    source $rc
+  done
+}
+
+dot_dee "$SVCONFIGDIR/zsh/zshrc.d"
 
 # But wait--there's more (maybe)!
 [ "$SVPLATFORM" = cygwin ] && source "$SVCONFIGDIR/cygwin/zshrc"
