@@ -22,9 +22,13 @@ else
 fi
 
 # Dot dee!
-for rc in $SVCONFIGDIR/zsh/zshrc.d/*.zsh; do
-  source $rc
-done
+dot_dee () {
+  for rc in "$1/"*.zsh; do
+    source $rc
+  done
+}
+
+dot_dee "$SVCONFIGDIR/zsh/zshrc.d"
 
 # But wait--there's more (maybe)!
 [ "$SVPLATFORM" = cygwin ] && source "$SVCONFIGDIR/cygwin/zshrc"
