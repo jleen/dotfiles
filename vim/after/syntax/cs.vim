@@ -8,7 +8,7 @@ hi def link csAtString String
 
 " async/await keywords from C# 5.0
 syn keyword csModifier async
-syn keyword csRepeat await
+syn keyword csUnspecifiedStatement await
 
 " Automatic variables.
 syn keyword csType var
