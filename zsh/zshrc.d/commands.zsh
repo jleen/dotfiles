@@ -1,8 +1,12 @@
 # Apply all deb updates.
-alias aptup='sudo apt-get --yes update && sudo apt-get --yes dist-upgrade'
+if type apt-get > /dev/null; then
+  alias aptup='sudo apt-get --yes update && sudo apt-get --yes dist-upgrade'
+fi
 
 # Ditto for homebrew.
-alias brewup='brew update && brew upgrade'
+if type brew > /dev/null; then
+  alias brewup='brew update && brew upgrade'
+fi
 
 # Sort "top" by CPU use on OS X, where for some reason this isn't the default.
 [ "$SVPLATFORM" = osx ] && alias top='top -o cpu'
