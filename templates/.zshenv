@@ -2,4 +2,4 @@
 # HOSTNAME=___
 source $HOME/sv/zsh/zshenv
 
-# PATH=___:$PATH
+# path[1,0]=___
