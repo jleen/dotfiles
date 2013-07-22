@@ -12,13 +12,11 @@ if [ "$UID" != 0 ]; then
     export SVCONFIGDIR="${0:h:h}"
   fi
 
-  # Add Saturn Valley stuff to the PATH and FPATH if they're not already there.
-  SVCONFIGPATH=$SVCONFIGDIR/bin
-  SVCONFIGFPATH=$SVCONFIGDIR/zsh/functions
-
-  [[ $PATH = *$SVCONFIGPATH* ]] || PATH=$SVCONFIGPATH:$PATH
-  [[ $FPATH = *$SVCONFIGFPATH* ]] || FPATH=$SVCONFIGFPATH:$FPATH
-  [[ $PATH = *$HOME/bin* ]] || PATH=$HOME/bin:$PATH
+  # Make paths behave sanely (unique values only!) and make sure Saturn Valley
+  # stuff is near the head.  Also add local stuff if it exists.
+  typeset -U path fpath cdpath
+  path[1,0]=($HOME/bin(N-/) $SVCONFIGDIR/bin)
+  fpath[1,0]=$SVCONFIGDIR/zsh/functions
 
   # Where to find a few config files.  We override the default location via
   # environment variables so the user doesn't have to create stubs in $HOME.
