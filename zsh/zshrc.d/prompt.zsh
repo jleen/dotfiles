@@ -42,20 +42,20 @@ PR_GIT_UPDATE=1
 # that's executed immediately.  Maybe it only works on versions > 4.3.4, which
 # is what Leopard gives me?
 setprompt () {
-  [ -n "$HOST" ] && host="$HOST" || host=`uname -n`
+  [[ -n $HOST ]] && host=$HOST || host=`uname -n`
   local short_host=`echo ${host}|cut -d. -f1`
-  if [ "$TERM" = "dumb" ]; then
+  if [[ $TERM = dumb ]]; then
     # We're probably in Emacs M-x shell.
     PROMPT='${short_host} [%~]%# '
   else
-    if [ -n "$WINDOW" ]; then
+    if [[ -n $WINDOW ]]; then
       local screen=":$WINDOW"
       local screen_clear="`print \\\\ek\\\\e\\\\134`"
     fi
     if [[ $TERM = (xterm*|rxvt*|screen|cygwin) ]]; then
       local xterm="`print \\\\e`]0;$SHELLPREFIX${short_host}${screen}:%~`print \\\\007`"
     fi
-    if [ -n "$SHELLPREFIX" ]; then
+    if [[ -n $SHELLPREFIX ]]; then
       local prefix="%{`tput setaf 0``tput bold`%}$SHELLPREFIX%{`tput sgr0`%}"
     fi
     local cruft="%{${screen_clear}${xterm}${shellprefix}%}"

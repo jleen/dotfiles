@@ -3,10 +3,10 @@
 # processes launched by wrapper scripts.
 
 # For root shells, don't do anything fancy.
-if [ "$UID" != 0 ]; then
+if [[ $UID != 0 ]]; then
   # This is zshenv but it's useful to have it bash-compatible (so it can be
   # sourced from .xsession, for example).
-  if [ -n "$BASH_VERSION" ]; then
+  if [[ -n $BASH_VERSION ]]; then
     export SVCONFIGDIR=`dirname $(dirname ${BASH_ARGV[0]})`
   else
     export SVCONFIGDIR="${0:h:h}"
@@ -20,42 +20,39 @@ if [ "$UID" != 0 ]; then
 
   # Where to find a few config files.  We override the default location via
   # environment variables so the user doesn't have to create stubs in $HOME.
-  export INPUTRC="$SVCONFIGDIR/inputrc"
-  export SCREENRC="$SVCONFIGDIR/screenrc"
+  export INPUTRC=$SVCONFIGDIR/inputrc
+  export SCREENRC=$SVCONFIGDIR/screenrc
   export VIMINIT="source $SVCONFIGDIR/vim/startup.vim"
 
-  # Figure out the sort of environment we're running on, so later tweaks can
-  # behave appropriately.
-  function set_platform {
-    if [ "$OSTYPE" = cygwin ]; then
-      SVPLATFORM=cygwin
+  # We call this on startup, and also when reconnecting a screen session.
+  function init_svplatform () {
+    # Figure out the sort of environment we're running on, so later tweaks can
+    # behave appropriately.
+    if [[ $OSTYPE = cygwin ]]; then
+        PLATFORM=cygwin
     # TODO(jleen): Make the OS X check less bogus.
-    elif [[ "$TERM_PROGRAM" = Apple_Terminal || 
-        "$TERM_PROGRAM" = iTerm.app ]]; then  
+    elif [[ $TERM_PROGRAM = Apple_Terminal || $TERM_PROGRAM = iTerm.app ]]; then  
       SVPLATFORM=osx
-    elif [ -n "$DISPLAY" ]; then
+    elif [[ -n $DISPLAY ]]; then
       SVPLATFORM=X11
-    elif [ -n "$WINDOW" ]; then
+    elif [[ -n $WINDOW ]]; then
       SVPLATFORM=screen
     else
       SVPLATFORM=vt
     fi
-  }
-  set_platform
 
-  # The all-important EDITOR.
-  function set_editor {
-    if [ "$SVPLATFORM" = X11 ]; then
+    # The all-important EDITOR.
+    if [[ $SVPLATFORM = X11 ]]; then
       export EDITOR='gvim -f'
     else
       export EDITOR='vi'
     fi
-    export VISUAL="$EDITOR"
+    export VISUAL=$EDITOR
   }
-  set_editor
+  init_svplatform
 
   # The less-important less.
-  [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+  [[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
 fi
 
 # Source zshrc here when interactive, so we don't need a bootstrap in ~/.zshrc.
