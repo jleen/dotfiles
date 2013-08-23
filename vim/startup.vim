@@ -107,7 +107,7 @@ set ruler
 set showmode
 set showmatch
 
-" Macros
+" Emacs-style paragraph reflowing
 map <esc>q gqap
 
 " Coding conventions
