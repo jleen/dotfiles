@@ -4,7 +4,7 @@
 # zshrc.d.
 
 # Private temp dir.
-SVTMP="$TMPPREFIX-$USERNAME-sv"
+SVTMP=$TMPPREFIX-$USERNAME-sv
 if [[ -e $SVTMP ]]; then
   if [[ ! ( -O $SVTMP && -d $SVTMP ) ]]; then
     echo "Bad $SVTMP"
