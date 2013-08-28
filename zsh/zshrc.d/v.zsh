@@ -34,18 +34,13 @@ else
         done
       fi
     elif [[ $SVPLATFORM = screen ]]; then
-      # screen runs as root, and thus has weird chdir problems when root can't
-      # read the pwd (e.g. when it's on NFS.)  So we hack around the issue.
-      local filepwd=$PWD
-      pushd -q /
       if [[ -z $* ]]; then
-        screen -t vi vi --cmd "cd $filepwd"
+        screen -t vi
       else
         for fn in $@; do
-          screen -t "vi $fn" vi --cmd "cd $filepwd" "$filepwd/$fn"
+          screen -t "vi $fn" vi $fn
         done
       fi
-      popd -q
     else
       vi $@
     fi
