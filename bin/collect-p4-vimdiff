@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 oldfile=$1
 newfile=$2
