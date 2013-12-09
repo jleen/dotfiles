@@ -1,0 +1,8 @@
+#!/bin/sh
+
+amixer set Master unmute
+amixer set PCM unmute
+amixer set Front unmute
+amixer set Headphone unmute
+amixer set PCM 25%
+amixer set Master 5%-
