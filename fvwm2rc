@@ -1,6 +1,9 @@
-# This is a very pared down version of a Debian default configuration that
-# found its way into Catherine's profile, probably when she was at Brown.
-# I'm sure I've seen versions of it before that.  Yay oral tradition.
+# Based upon a a very pared down version of a Debian default configuration that
+# found its way into Catherine's profile, probably when she was at Brown.  I'm
+# sure I've seen versions of it before that.  Yay oral tradition.
+#
+# I added a lot of new behavior for the Windows key and other such twenty-first
+# century accoutrements.
 
 Style * SloppyFocus
 DeskTopSize 2x2
@@ -11,12 +14,16 @@ Style * EdgeMoveResistance 100
 Style * SnapAttraction 25 all screen
 OpaqueMoveSize unlimited
 
-Style "default-style" Font -adobe-helvetica-bold-r-*-*-12-*
+Style "default-style" \
+    Font "xft:Helvetica:Bold:size=10:minspace=False:antialias=True"
+# Non-xft font: Font -adobe-helvetica-bold-r-*-*-12-*
 Style "default-style" HilightFore black
 Style "default-style" HilightBack lightsteelblue
+#
+# Should use Helvetica.
+MenuStyle "*" 
 
 # VECTOR ART!!!
-
 DestroyDecor default-decor
 AddToDecor default-decor
 + ButtonStyle Reset
@@ -50,7 +57,21 @@ AddToFunc   InitFunction
 DestroyFunc RestartFunction
 
 MenuStyle "*" Foreground black, Background grey, Greyed white, \
-    Font -adobe-helvetica-medium-r-*-*-12-*
+    Font "xft:Helvetica:Medium:size=10:minspace=False:antialias=True"
+# Non-xft font: -adobe-helvetica-medium-r-*-*-12-*
+
+# Teach grabby software some manners.
+Style "*" !FPFocusByProgram
+Style "*" !FPFocusByFunction
+DestroyFunc UrgencyFunc
+
+# Modifier 2 is... uh... NumLock.
+IgnoreModifiers 2L
+
+# This only works on the Sun keyboard.  On a Windows keyboard the BIOS grabs it
+# and actually shuts the machine down.
+# TODO(jleen): Maybe the BIOS behavior can be disabled?
+Key XF86PowerOff     A    A   Exec exec xscreensaver-command -lock
 
 DestroyMenu /Main
 AddToMenu /Main
@@ -134,9 +155,11 @@ Key F11   A    M    Raise
 Key F12   A    M    Stick
 Key L     A    CM   Exec exec xscreensaver-command -lock
 
-#Key Print A    A    Exec exec scrot -s
+Key Print A    A    Exec exec scrot -s
 
-# Immediate Move Click Hold Doubleclick
+Key XF86AudioLowerVolume A A Exec exec $SVCONFIGDIR/bin/audio-lower
+Key XF86AudioRaiseVolume A A Exec exec $SVCONFIGDIR/bin/audio-raise
+Key XF86AudioMute A A Exec exec $SVCONFIGDIR/bin/audio-mute
 
 DestroyFunc move-or-winmenu-or-deiconify
 AddToFunc   move-or-winmenu-or-deiconify

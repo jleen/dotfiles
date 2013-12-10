@@ -1,0 +1,7 @@
+#!/bin/sh
+
+amixer set Master toggle
+amixer set PCM unmute
+amixer set Front unmute
+amixer set Headphone unmute
+amixer set PCM 25%
