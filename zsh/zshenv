@@ -3,7 +3,7 @@
 # processes launched by wrapper scripts.
 
 # For root shells, don't do anything fancy.
-if [[ $UID != 0 ]]; then
+if [[ $UID != 0  && -z $SUDO_USER ]]; then
   # This is zshenv but it's useful to have it bash-compatible (so it can be
   # sourced from .xsession, for example).
   if [[ -n $BASH_VERSION ]]; then

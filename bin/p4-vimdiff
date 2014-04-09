@@ -1,2 +1,6 @@
-#!/bin/sh
-vc-vimdiff-core "P4DIFF=\"collect-p4-vimdiff\" p4 diff $@"
+#!/usr/bin/zsh
+if [[ $1 == '-c' ]]; then
+    p4 opened -c $2 | cut -d# -f1 | xargs $0
+else
+    vc-vimdiff-core "P4DIFF=\"collect-p4-vimdiff\" p4 diff $*"
+fi
