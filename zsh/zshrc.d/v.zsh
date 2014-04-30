@@ -35,7 +35,7 @@ else
       fi
     elif [[ $SVPLATFORM = screen ]]; then
       if [[ -z $* ]]; then
-        screen -t vi
+        screen -t vi vi
       else
         for fn in $@; do
           screen -t "vi $fn" vi $fn
