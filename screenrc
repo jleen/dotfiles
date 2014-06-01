@@ -1,4 +1,4 @@
-escape \\
+escape T
 nethack on
 vbell on
 defhstatus 'H:n:t'
