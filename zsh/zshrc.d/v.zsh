@@ -2,6 +2,14 @@
 
 if [[ $SVPLATFORM = cygwin ]]; then
   v () {
+    if [[ $#* -gt 3 ]]; then
+      if [[ $1 == -f ]]; then
+        shift
+      else
+        echo 'Specify -f to edit lots of files at once.'
+        return 1
+      fi
+    fi
     if [[ -z $* ]]; then
       cygstart --hide gvim.bat
     else
@@ -14,6 +22,14 @@ if [[ $SVPLATFORM = cygwin ]]; then
   alias vv='gvim.bat -R -'
 elif [[ $SVPLATFORM = osx ]]; then
   v () {
+    if [[ $#* -gt 3 ]]; then
+      if [[ $1 == -f ]]; then
+        shift
+      else
+        echo 'Specify -f to edit lots of files at once.'
+        return 1
+      fi
+    fi
     if [[ -z $* ]]; then
       mvim
     else
@@ -25,6 +41,14 @@ elif [[ $SVPLATFORM = osx ]]; then
   alias vv='mvim -R - > /dev/null'
 else
   v () {
+    if [[ $#* -gt 3 ]]; then
+      if [[ $1 == -f ]]; then
+        shift
+      else
+        echo 'Specify -f to edit lots of files at once.'
+        return 1
+      fi
+    fi
     if [[ $SVPLATFORM = X11 ]]; then
       if [[ -z $* ]]; then
         gvim
