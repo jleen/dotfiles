@@ -1,6 +1,8 @@
 " Now it's a whole tree!
 let s:current_file=expand("<sfile>:h")
-exec "set runtimepath=" . s:current_file . "," . escape(&runtimepath, ' ') . "," . s:current_file . "/after"
+exec "set runtimepath=" . escape(s:current_file, ' ') . ","
+                      \ . escape(&runtimepath, ' ') . ","
+                      \ . escape(s:current_file, ' ') . "/after"
 
 " Swapfile hygiene.
 if has("unix")
