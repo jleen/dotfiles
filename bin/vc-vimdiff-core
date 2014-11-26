@@ -1,11 +1,19 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 TEMPLATE=/tmp/vimdiff.XXXXXX
 export TMPFILE=`mktemp $TEMPLATE`
 export TMPDIR=`mktemp -d $TEMPLATE`
 mkdir -p $TMPDIR/old $TMPDIR/new
 
-[ -x /usr/local/bin/mvim ] && VIM_BINARY=mvim || VIM_BINARY=gvim
+if [[ -x /usr/local/bin/mvim ]]; then
+    VIM_BINARY=mvim
+elif [[ `uname` == CYGWIN* ]]; then
+    VIM_BINARY=gvim.bat
+    source $SVCONFIGDIR/cygwin/zshrc
+    SVCONFIGDIR=`cygpath -wa $SVCONFIGDIR`
+else
+    VIM_BINARY=gvim
+fi
 
 cleanup() {
   rm -rf $TMPFILE $TMPDIR
@@ -18,5 +26,5 @@ echo >> $TMPFILE
 # TODO(jleen): Comment preserved from ancestor.  What does it mean?
 # save STDIN to restore for vimdiff
 exec 7<&0
-$VIM_BINARY -f '+so $SVCONFIGDIR/vim/multidiff.vim' `cat $TMPFILE`
+eval "$VIM_BINARY -f '+so $SVCONFIGDIR/vim/multidiff.vim' `cat $TMPFILE`"
 cleanup
