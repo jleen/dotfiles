@@ -1,5 +1,12 @@
 #!/usr/bin/zsh
-if [[ $1 == '-c' ]]; then
+if [[ -z $1 ]]; then
+    local -a stuff
+    for cl in default $(p4 changes -u `whoami` -c $P4CLIENT -s pending \
+                  | grep -v 'DO NOT CHECK IN' \
+                  | cut -d' ' -f2); do
+        p4 opened -c $cl | cut -d# -f1
+    done | xargs $0
+elif [[ $1 == '-c' ]]; then
     p4 opened -c $2 | cut -d# -f1 | xargs $0
 else
     vc-vimdiff-core "P4DIFF=\"collect-p4-vimdiff\" p4 diff $*"
