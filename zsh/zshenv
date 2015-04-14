@@ -29,7 +29,7 @@ if [[ $UID != 0  && -z $SUDO_USER ]]; then
     # Figure out the sort of environment we're running on, so later tweaks can
     # behave appropriately.
     if [[ $OSTYPE = cygwin ]]; then
-        PLATFORM=cygwin
+      SVPLATFORM=cygwin
     # TODO(jleen): Make the OS X check less bogus.
     elif [[ $TERM_PROGRAM = Apple_Terminal || $TERM_PROGRAM = iTerm.app ]]; then  
       SVPLATFORM=osx

@@ -2,7 +2,7 @@ alias ls='ls --color=auto -pUG'
 eval `dircolors -b "$SVCONFIGDIR/cygwin/dircolors"`
 export SVN_EDITOR='gvim.bat -f'
 [[ -o l ]] && path[1,0]=/usr/bin && cd  # Srsly?
-VIMINIT="source `cygpath -wa $SVCONFIGDIR`/vim/startup.vim"
+VIMINIT="source `cygpath -wa $SVCONFIGDIR | sed 's/ /\\ /'`/vim/startup.vim"
 setopt NO_GLOBAL_RCS
 
 # Let's see how completely this confuses me on OS X.
