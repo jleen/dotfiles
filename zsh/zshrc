@@ -35,7 +35,7 @@ if [[ $UID != 0  && -z $SUDO_USER ]]; then
   [[ $SVPLATFORM = cygwin ]] && source $SVCONFIGDIR/cygwin/zshrc
 else
   # Minimal configuration for sudo shells.
-  PROMPT='jleen-wsl [%/]%# '
+  PROMPT="$HOST [%/]%# "
   alias v=vi
   alias vv='vi -R -'
 fi

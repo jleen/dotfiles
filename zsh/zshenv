@@ -2,15 +2,17 @@
 # noninteractive shell, e.g. variables that we'd like to have available in
 # processes launched by wrapper scripts.
 
+# This is zshenv but it's useful to have it bash-compatible (so it can be
+# sourced from .xsession, for example).
+if [[ -n $BASH_VERSION ]]; then
+  export SVCONFIGDIR=`dirname $(dirname ${BASH_ARGV[0]})`
+else
+   export SVCONFIGDIR="${0:h:h}"
+fi
+
 # For root shells, don't do anything fancy.
 if [[ $UID != 0  && -z $SUDO_USER ]]; then
-  # This is zshenv but it's useful to have it bash-compatible (so it can be
-  # sourced from .xsession, for example).
-  if [[ -n $BASH_VERSION ]]; then
-    export SVCONFIGDIR=`dirname $(dirname ${BASH_ARGV[0]})`
-  else
-    export SVCONFIGDIR="${0:h:h}"
-
+  if [[ -z $BASH_VERSION ]]; then
     # Make paths behave sanely (unique values only!) and make sure Saturn Valley
     # stuff is near the head.  Also add local stuff if it exists.
     [[ -z $BASH_VERSION ]] && typeset -U path fpath cdpath
