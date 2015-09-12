@@ -1,8 +1,4 @@
 #!/bin/sh
 
-xmodmap -e 'keycode 66 = Control_L'
-xmodmap -e 'clear Lock'
-xmodmap -e 'add Control = Control_L'
-
-# TODO(jleen): Is it preferable to do:
-# /usr/bin/setxkbmap -option 'ctrl:nocaps'
+setxkbmap -option 'ctrl:nocaps'
+setxkbmap -option 'lv3:lwin_switch'
