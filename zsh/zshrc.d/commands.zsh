@@ -5,7 +5,7 @@ fi
 
 # Ditto for homebrew.
 if type brew > /dev/null; then
-  alias brewup='brew update && brew upgrade'
+  alias brewup='brew update && brew upgrade && brew cleanup'
 fi
 
 # Sort "top" by CPU use on OS X, where for some reason this isn't the default.
