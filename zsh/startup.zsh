@@ -2,6 +2,9 @@
 # noninteractive shell, e.g. variables that we'd like to have available in
 # processes launched by wrapper scripts.
 
+HOST=$1
+SHELLCOLOR=$2
+
 # This is for zsh but it's useful to have it bash-compatible (so it can be
 # sourced from .xsession, for example).
 if [[ -n $BASH_VERSION ]]; then
