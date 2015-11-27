@@ -4,59 +4,47 @@
 
 # This is zshenv but it's useful to have it bash-compatible (so it can be
 # sourced from .xsession, for example).
-if [[ -n $BASH_VERSION ]]; then
-  export SVCONFIGDIR=`dirname $(dirname ${BASH_ARGV[0]})`
-else
-   export SVCONFIGDIR="${0:h:h}"
+if [[ -z $BASH_VERSION ]]; then
+  # Make paths behave sanely (unique values only!) and make sure Saturn Valley
+  # stuff is near the head.  Also add local stuff if it exists.
+  typeset -U path fpath cdpath
+  [[ -d $HOME/bin ]] && path[1,0]=$HOME/bin
+  path[1,0]=$SVCONFIGDIR/bin
+  fpath[1,0]=$SVCONFIGDIR/zsh/functions
 fi
 
-# For root shells, don't do anything fancy.
-if [[ $UID != 0  && -z $SUDO_USER ]]; then
-  if [[ -z $BASH_VERSION ]]; then
-    # Make paths behave sanely (unique values only!) and make sure Saturn Valley
-    # stuff is near the head.  Also add local stuff if it exists.
-    [[ -z $BASH_VERSION ]] && typeset -U path fpath cdpath
-    [[ -d $HOME/bin ]] && path[1,0]=$HOME/bin
-    path[1,0]=$SVCONFIGDIR/bin
-    fpath[1,0]=$SVCONFIGDIR/zsh/functions
+# Where to find a few config files.  We override the default location via
+# environment variables so the user doesn't have to create stubs in $HOME.
+export INPUTRC=$SVCONFIGDIR/inputrc
+export SCREENRC=$SVCONFIGDIR/screenrc
+export VIMINIT="source $SVCONFIGDIR/vim/startup.vim"
+
+# We call this on startup, and also when reconnecting a screen session.
+function init_svplatform () {
+  # Figure out the sort of environment we're running on, so later tweaks can
+  # behave appropriately.
+  if [[ $OSTYPE = cygwin ]]; then
+    SVPLATFORM=cygwin
+  # TODO(jleen): Make the OS X check less bogus.
+  elif [[ $TERM_PROGRAM = Apple_Terminal || $TERM_PROGRAM = iTerm.app ]]; then  
+    SVPLATFORM=osx
+  elif [[ -n $DISPLAY ]]; then
+    SVPLATFORM=X11
+  elif [[ -n $WINDOW ]]; then
+    SVPLATFORM=screen
+  else
+    SVPLATFORM=vt
   fi
 
-  # Where to find a few config files.  We override the default location via
-  # environment variables so the user doesn't have to create stubs in $HOME.
-  export INPUTRC=$SVCONFIGDIR/inputrc
-  export SCREENRC=$SVCONFIGDIR/screenrc
-  export VIMINIT="source $SVCONFIGDIR/vim/startup.vim"
+  # The all-important EDITOR.
+  if [[ $SVPLATFORM = X11 ]]; then
+    export EDITOR='gvim -f'
+  else
+    export EDITOR='vi'
+  fi
+  export VISUAL=$EDITOR
+}
+init_svplatform
 
-  # We call this on startup, and also when reconnecting a screen session.
-  function init_svplatform () {
-    # Figure out the sort of environment we're running on, so later tweaks can
-    # behave appropriately.
-    if [[ $OSTYPE = cygwin ]]; then
-      SVPLATFORM=cygwin
-    # TODO(jleen): Make the OS X check less bogus.
-    elif [[ $TERM_PROGRAM = Apple_Terminal || $TERM_PROGRAM = iTerm.app ]]; then  
-      SVPLATFORM=osx
-    elif [[ -n $DISPLAY ]]; then
-      SVPLATFORM=X11
-    elif [[ -n $WINDOW ]]; then
-      SVPLATFORM=screen
-    else
-      SVPLATFORM=vt
-    fi
-
-    # The all-important EDITOR.
-    if [[ $SVPLATFORM = X11 ]]; then
-      export EDITOR='gvim -f'
-    else
-      export EDITOR='vi'
-    fi
-    export VISUAL=$EDITOR
-  }
-  init_svplatform
-
-  # The less-important less.
-  [[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
-fi
-
-# Source zshrc here when interactive, so we don't need a bootstrap in ~/.zshrc.
-[[ -o i ]] && source $SVCONFIGDIR/zsh/zshrc
+# The less-important less.
+[[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
