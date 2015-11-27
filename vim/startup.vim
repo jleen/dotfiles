@@ -129,6 +129,6 @@ set errorformat +=%f(%l\\,%c):\ warning\ CS%n:%m
 set errorformat +=%f(%l\\,%c):\ error\ CS%n:%m
 
 " It's your turn!
-if filereadable($HOME . "/.vimrc")
-  source $HOME/.vimrc
+if filereadable(escape(s:current_file, ' ') . "/../local/vimrc")
+  exec "source " . escape(s:current_file, ' ') . "/../local/vimrc"
 endif
