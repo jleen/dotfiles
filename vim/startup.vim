@@ -36,6 +36,10 @@ set ttimeoutlen=50
 " Make tab behave
 set wildmode=longest:list
 
+" Make search behave
+set ignorecase
+set smartcase
+
 " Look harder
 set tags=tags;
 
