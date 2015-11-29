@@ -5,16 +5,12 @@
 HOST=$1
 SHELLCOLOR=$2
 
-# This is for zsh but it's useful to have it bash-compatible (so it can be
-# sourced from .xsession, for example).
-if [[ -n $BASH_VERSION ]]; then
-  export SVCONFIGDIR=`dirname $(dirname ${BASH_ARGV[0]})`
-else
-  export SVCONFIGDIR="${0:h:h}"
-fi
+export SVCONFIGDIR="${0:h:h}"
 
 # For root shells, don't do anything fancy.
-if [[ ! -o PRIVILEGED ]]; then
+if [[ $UID = 0 || $EUID = 0 ]]; then
+  setopt PRIVILEGED
+else
   source $SVCONFIGDIR/zsh/zshenv
   [[ -f $SVCONFIGDIR/local/zshenv ]] && source $SVCONFIGDIR/local/zshenv
 
