@@ -10,13 +10,20 @@ SHELLCOLOR=$2
 if [[ -n $BASH_VERSION ]]; then
   export SVCONFIGDIR=`dirname $(dirname ${BASH_ARGV[0]})`
 else
-   export SVCONFIGDIR="${0:h:h}"
+  export SVCONFIGDIR="${0:h:h}"
 fi
 
 # For root shells, don't do anything fancy.
-if [[ $UID != 0  && -z $SUDO_USER ]]; then
+if [[ ! -o PRIVILEGED ]]; then
   source $SVCONFIGDIR/zsh/zshenv
   [[ -f $SVCONFIGDIR/local/zshenv ]] && source $SVCONFIGDIR/local/zshenv
-  [[ -o i ]] && source $SVCONFIGDIR/zsh/zshrc
-  [[ -f $SVCONFIGDIR/local/zshrc ]] && source $SVCONFIGDIR/local/zshrc
+
+  if [[ -o INTERACTIVE ]]; then
+      source $SVCONFIGDIR/zsh/zshrc
+      [[ -f $SVCONFIGDIR/local/zshrc ]] && source $SVCONFIGDIR/local/zshrc
+  fi
+
+  if [[ -o LOGIN ]]; then
+      [[ -f $SVCONFIGDIR/local/zlogin ]] && source $SVCONFIGDIR/local/zlogin
+  fi
 fi
