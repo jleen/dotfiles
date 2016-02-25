@@ -1,6 +1,7 @@
 typeset -ga precmd_functions
 typeset -ga chpwd_functions
 typeset -ga preexec_functions
+typeset -ga sv_special_prompt_specs
 
 function set_git_prompt {
   gitref=$(git symbolic-ref HEAD 2> /dev/null)
