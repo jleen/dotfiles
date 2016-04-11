@@ -1,6 +1,6 @@
 # From https://iterm2.com/misc/zsh_startup.in
-if [[ -o login ]]; then
-  if [ x"$TERM" != "xscreen" ]; then
+if [[ -o interactive ]]; then
+  if [[ $TERM != screen* ]]; then
     # Indicates start of command output. Runs just before command executes.
     iterm2_before_cmd_executes() {
       printf "\033]133;C;\r\007"
