@@ -3,11 +3,11 @@ if [[ -o interactive ]]; then
   if [[ $TERM != screen* ]]; then
     # Indicates start of command output. Runs just before command executes.
     iterm2_before_cmd_executes() {
-      printf "\033]133;C;\r\007"
+      printf "\e]133;C;\r\007"
     }
 
     iterm2_set_user_var() {
-      printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(printf "%s" "$2" | base64)
+      printf "\e]1337;SetUserVar=%s=%s\007" "$1" $(printf "%s" "$2" | base64)
     }
 
     # Users can write their own version of this method. It should call
@@ -19,25 +19,25 @@ if [[ -o interactive ]]; then
     }
 
     iterm2_print_state_data() {
-      printf "\033]1337;RemoteHost=%s@%s\007" "$USER" "$iterm2_hostname"
-      printf "\033]1337;CurrentDir=%s\007" "$PWD"
+      printf "\e]1337;RemoteHost=%s@%s\007" "$USER" "$iterm2_hostname"
+      printf "\e]1337;CurrentDir=%s\007" "$PWD"
       iterm2_print_user_vars
     }
 
     # Report return code of command; runs after command finishes but before prompt
     iterm2_after_cmd_executes() {
-      printf "\033]133;D;$?\007"
+      printf "\e]133;D;$?\007"
       iterm2_print_state_data
     }
 
     # Mark start of prompt
     iterm2_prompt_start() {
-      printf "\033]133;A\007"
+      printf "\e]133;A\007"
     }
 
     # Mark end of prompt
     iterm2_prompt_end() {
-      printf "\033]133;B\007"
+      printf "\e]133;B\007"
     }
 
     # There are three possible paths in life.
@@ -116,6 +116,6 @@ if [[ -o interactive ]]; then
     preexec_functions=($preexec_functions iterm2_preexec)
 
     iterm2_print_state_data
-    printf "\033]1337;ShellIntegrationVersion=1\007"
+    printf "\e]1337;ShellIntegrationVersion=1\007"
   fi
 fi
