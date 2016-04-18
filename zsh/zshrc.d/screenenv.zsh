@@ -9,7 +9,7 @@ ss () {
     [[ -n $SCREENENV ]] && echo "" > $SCREENENV
     if screen -ls | grep -q prime; then
       if [[ -n $SCREENENV ]]; then
-        for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS; do
+        for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS SV_SUPPRESS_ITERM; do
           local val=${(P)var}
           screen -S prime -X setenv $var "$val"
           echo "$var=$val" >> $SCREENENV
@@ -27,7 +27,7 @@ if [[ -n $WINDOW && -n $SCREENENV ]]; then
     local record
     for record in `cat $SCREENENV`; do
       case $record in
-        DISPLAY*|XAUTHORITY*|DBUS_SESSION_BUS_ADDRESS*) export $record;;
+        DISPLAY*|XAUTHORITY*|DBUS_SESSION_BUS_ADDRESS*|SV_SUPPRESS_ITERM*) export $record ;;
       esac
     done
     init_svplatform

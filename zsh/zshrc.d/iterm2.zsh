@@ -1,4 +1,10 @@
-# From https://iterm2.com/misc/zsh_startup.in
+# Based upon https://iterm2.com/misc/zsh_startup.in
+if [[ -z SV_SUPPRESS_ITERM ]]; then
+  [[ $TERM == linux ]] && export SV_SUPPRESS_ITERM=yes || export SV_SUPPRESS_ITERM=no
+fi
+
+alias is_iterm='[[ $SV_SUPPRESS_ITERM != yes ]]'
+
 if [[ -o interactive ]]; then
   screen_dc=
   screen_st=
@@ -7,11 +13,11 @@ if [[ -o interactive ]]; then
 
   # Indicates start of command output. Runs just before command executes.
   iterm2_before_cmd_executes() {
-    printf "$screen_dc\e]133;C;\r\007$screen_st"
+    is_iterm && printf "$screen_dc\e]133;C;\r\007$screen_st"
   }
 
   iterm2_set_user_var() {
-    printf "$screen_dc\e]1337;SetUserVar=%s=%s\007$screen_st" "$1" $(printf "%s" "$2" | base64)
+    is_iterm && printf "$screen_dc\e]1337;SetUserVar=%s=%s\007$screen_st" "$1" $(printf "%s" "$2" | base64)
   }
 
   # Users can write their own version of this method. It should call
@@ -23,25 +29,25 @@ if [[ -o interactive ]]; then
   }
 
   iterm2_print_state_data() {
-    printf "$screen_dc\e]1337;RemoteHost=%s@%s\007$screen_st" "$USER" "$iterm2_hostname"
-    printf "$screen_dc\e]1337;CurrentDir=%s\007$screen_st" "$PWD"
+    is_iterm && printf "$screen_dc\e]1337;RemoteHost=%s@%s\007$screen_st" "$USER" "$iterm2_hostname"
+    is_iterm && printf "$screen_dc\e]1337;CurrentDir=%s\007$screen_st" "$PWD"
     iterm2_print_user_vars
   }
 
   # Report return code of command; runs after command finishes but before prompt
   iterm2_after_cmd_executes() {
-    printf "$screen_dc\e]133;D;$?\007$screen_st"
+    is_iterm && printf "$screen_dc\e]133;D;$?\007$screen_st"
     iterm2_print_state_data
   }
 
   # Mark start of prompt
   iterm2_prompt_start() {
-    printf "$screen_dc\e]133;A\007$screen_st"
+    is_iterm && printf "$screen_dc\e]133;A\007$screen_st"
   }
 
   # Mark end of prompt
   iterm2_prompt_end() {
-    printf "$screen_dc\e]133;B\007$screen_st"
+    is_iterm && printf "$screen_dc\e]133;B\007$screen_st"
   }
 
   # There are three possible paths in life.
@@ -86,16 +92,16 @@ if [[ -o interactive ]]; then
     ITERM2_PRECMD_PS1="$PS1"
 
     # Add our escape sequences just before the prompt is shown.
-    PS1="%{$(iterm2_prompt_start)%}$PS1%{$(iterm2_prompt_end)%}"
+    is_iterm && PS1="%{$(iterm2_prompt_start)%}$PS1%{$(iterm2_prompt_end)%}"
   }
 
   iterm2_precmd() {
     if [ -n "$ITERM2_PRECMD_PS1" ]; then
       # You pressed ^C while entering a command (iterm2_preexec did not run)
-      iterm2_before_cmd_executes
+      is_iterm && iterm2_before_cmd_executes
     fi
 
-    iterm2_after_cmd_executes
+    is_iterm && iterm2_after_cmd_executes
 
     if [ -z "$ITERM2_PRECMD_PS1" ]; then
       iterm2_decorate_prompt
@@ -107,7 +113,7 @@ if [[ -o interactive ]]; then
     # Set PS1 back to its raw value prior to executing the command.
     PS1="$ITERM2_PRECMD_PS1"
     ITERM2_PRECMD_PS1=""
-    iterm2_before_cmd_executes
+    is_iterm && iterm2_before_cmd_executes
   }
 
   # If hostname -f is slow on your system, set iterm2_hostname prior to sourcing this script.
@@ -119,6 +125,6 @@ if [[ -o interactive ]]; then
   [[ -z $preexec_functions ]] && preexec_functions=()
   preexec_functions=($preexec_functions iterm2_preexec)
 
-  iterm2_print_state_data
-  printf "$screen_dc\e]1337;ShellIntegrationVersion=1\007$screen_st"
+  is_iterm && iterm2_print_state_data
+  is_iterm && printf "$screen_dc\e]1337;ShellIntegrationVersion=1\007$screen_st"
 fi
