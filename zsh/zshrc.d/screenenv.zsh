@@ -2,6 +2,10 @@
 
 SCREENENV=$SVTMP/screenenv
 
+sv_exportable_vars=(
+    DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS SV_SUPPRESS_ITERM
+)
+
 ss () {
   if [[ -n $WINDOW ]]; then
     echo "You have your slaw, sir!"
@@ -9,7 +13,7 @@ ss () {
     [[ -n $SCREENENV ]] && echo "" > $SCREENENV
     if screen -ls | grep -q prime; then
       if [[ -n $SCREENENV ]]; then
-        for var in DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS SV_SUPPRESS_ITERM; do
+        for var in $sv_exportable_vars; do
           local val=${(P)var}
           screen -S prime -X setenv $var "$val"
           echo "$var=$val" >> $SCREENENV
@@ -26,9 +30,11 @@ if [[ -n $WINDOW && -n $SCREENENV ]]; then
   function snarf_screen_env {
     local record
     for record in `cat $SCREENENV`; do
-      case $record in
-        DISPLAY*|XAUTHORITY*|DBUS_SESSION_BUS_ADDRESS*|SV_SUPPRESS_ITERM*) export $record ;;
-      esac
+      local varname=`echo $record | cut -d= -f1`
+      local varval=`echo $record | cut -d= -f2-`
+      if (( $sv_exportable_vars[(I)$varname] )); then
+        export $varname=$varval
+      fi
     done
     init_svplatform
   }
