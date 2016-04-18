@@ -1,5 +1,5 @@
 # Based upon https://iterm2.com/misc/zsh_startup.in
-if [[ -z SV_SUPPRESS_ITERM ]]; then
+if [[ -z $SV_SUPPRESS_ITERM ]]; then
   [[ $TERM == linux ]] && export SV_SUPPRESS_ITERM=yes || export SV_SUPPRESS_ITERM=no
 fi
 
