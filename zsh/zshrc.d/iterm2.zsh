@@ -1,6 +1,8 @@
 # Based upon https://iterm2.com/misc/zsh_startup.in
+
 if [[ -z $SV_SUPPRESS_ITERM ]]; then
-  [[ $TERM == linux ]] && export SV_SUPPRESS_ITERM=yes || export SV_SUPPRESS_ITERM=no
+  # TODO(jleen) This logic is pretty bogus.
+  [[ $TERM == linux && -z $SSH_TTY ]] && export SV_SUPPRESS_ITERM=yes || export SV_SUPPRESS_ITERM=no
 fi
 
 alias is_iterm='[[ $SV_SUPPRESS_ITERM != yes ]]'
