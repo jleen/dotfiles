@@ -2,7 +2,7 @@
 
 if [[ -z $SV_SUPPRESS_ITERM ]]; then
   # TODO(jleen) This logic is pretty bogus.
-  [[ ($TERM == xterm) || ($TERM == linux && -z $SSH_TTY) ]] && export SV_SUPPRESS_ITERM=yes || export SV_SUPPRESS_ITERM=no
+  [[ ($TERM == xterm) || ($TERM == linux && -z $SSH_TTY && $SVPLATFORM != osx) ]] && export SV_SUPPRESS_ITERM=yes || export SV_SUPPRESS_ITERM=no
 fi
 
 alias is_iterm='[[ $SV_SUPPRESS_ITERM != yes ]]'
