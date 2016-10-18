@@ -1,6 +1,6 @@
 if [[ $SVPLATFORM = cygwin ]]; then
     alias ls='ls --color=auto -pUG'
-    eval `dircolors -b "$SVCONFIGDIR/cygwin/dircolors"`
+    eval `dircolors -b "$SVCONFIGDIR/dircolors"`
     export SVN_EDITOR='gvim.bat -f'
     [[ -o l ]] && path[1,0]=/usr/bin && cd  # Srsly?
     VIMINIT="source `cygpath -wa $SVCONFIGDIR | sed 's/ /\\ /'`/vim/startup.vim"
