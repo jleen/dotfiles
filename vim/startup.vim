@@ -58,7 +58,9 @@ set modelines=5
 
 " GUI display options
 if has("gui_running")
-    set lines=50
+    if !has ("gui_macvim")
+        set lines=50
+    endif
     set columns=80
     set cursorline
     colorscheme solarized
