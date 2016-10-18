@@ -33,8 +33,12 @@ elif [[ $SVPLATFORM = osx ]]; then
     if [[ -z $* ]]; then
       mvim
     else
+      local groggy sleeping
+      pgrep -qx MacVim || groggy=1
       for fn in $@; do
+        [[ -n $sleeping ]] && sleep 0.3 && unset sleeping
         mvim $fn
+        [[ -n $groggy ]] && sleeping=1 && unset groggy
       done
     fi
   }
