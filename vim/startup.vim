@@ -71,11 +71,11 @@ hi normal guifg=gray90 guibg=black
 hi Hungarian guifg=gray70
 hi CursorLine guibg=gray20
 
-" WTF?
-"au WinEnter * set cursorline
-"au WinLeave * set nocursorline
-"au FocusGained * set cursorline
-"au FocusLost * set nocursorline
+" Cursor line travels with focus.
+au WinEnter * set cursorline
+au WinLeave * set nocursorline
+au FocusGained * set cursorline
+au FocusLost * set nocursorline
 
 if has("gui_win32")
     set winaltkeys=no
@@ -84,7 +84,15 @@ endif
 
 if has ("gui_macvim")
     set transparency=0
-    set guifont=Menlo_Regular:h13
+    function! s:set_font()
+        if len(getfontname('Monoid'))
+            let big_font="Monoid:h18"
+            set guifont=Monoid:h14
+        else
+            set guifont=Menlo_Regular:h13
+        endif
+    endfunction
+    autocmd GUIEnter * call s:set_font()
 endif
 
 " Generic display options
