@@ -4,6 +4,10 @@ exec "set runtimepath=" . escape(s:current_file, ' ') . ","
                       \ . escape(&runtimepath, ' ') . ","
                       \ . escape(s:current_file, ' ') . "/after"
 
+" With lots of plugin modules!
+runtime autoload/pathogen.vim
+execute pathogen#infect()
+
 " Swapfile hygiene.
 if has("unix")
     let s:swapdir = "/var/tmp/jleen/vim"
