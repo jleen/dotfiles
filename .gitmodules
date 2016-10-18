@@ -10,3 +10,6 @@
 [submodule "vim/bundle/typescript"]
 	path = vim/bundle/typescript
 	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "vim/bundle/eco"]
+	path = vim/bundle/eco
+	url = https://github.com/AndrewRadev/vim-eco.git
