@@ -1,6 +1,0 @@
-#!/bin/sh
-
-while true; do
-    echo -en '\007'
-    sleep 1
-done

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-lynx -cookies http://wwwapps.ups.com/WebTracking/processInputRequest?TypeOfInquiryNumber=T\&InquiryNumber1=$1
