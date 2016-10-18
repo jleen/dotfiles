@@ -5,7 +5,6 @@ exec "set runtimepath=" . escape(s:current_file, ' ') . ","
                       \ . escape(s:current_file, ' ') . "/after"
 
 " With lots of plugin modules!
-runtime pathogen.vim
 execute pathogen#infect()
 
 " Swapfile hygiene.
