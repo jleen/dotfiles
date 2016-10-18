@@ -157,9 +157,9 @@ Key L     A    CM   Exec exec xscreensaver-command -lock
 
 Key Print A    A    Exec exec scrot -s
 
-Key XF86AudioLowerVolume A A Exec exec $SVCONFIGDIR/bin/audio-lower
-Key XF86AudioRaiseVolume A A Exec exec $SVCONFIGDIR/bin/audio-raise
-Key XF86AudioMute A A Exec exec $SVCONFIGDIR/bin/audio-mute
+Key XF86AudioLowerVolume A A Exec exec $SVCONFIGDIR/share/audio/audio-lower
+Key XF86AudioRaiseVolume A A Exec exec $SVCONFIGDIR/share/audio/audio-raise
+Key XF86AudioMute A A Exec exec $SVCONFIGDIR/share/audio/audio-mute
 
 DestroyFunc move-or-winmenu-or-deiconify
 AddToFunc   move-or-winmenu-or-deiconify
