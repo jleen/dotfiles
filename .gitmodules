@@ -19,3 +19,6 @@
 [submodule "vim/bundle/vimwiki"]
 	path = vim/bundle/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule "vim/bundle/javap"]
+	path = vim/bundle/javap
+	url = https://github.com/yuratomo/javap.vim.git
