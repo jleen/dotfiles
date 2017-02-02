@@ -19,3 +19,6 @@
 [submodule "vim/bundle/vimwiki"]
 	path = vim/bundle/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule "vim/bundle/vaxe"]
+	path = vim/bundle/vaxe
+	url = https://github.com/jdonaldson/vaxe.git

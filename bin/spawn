@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 $* > /dev/null 2>&1 &
-disown $!
+disown %1
