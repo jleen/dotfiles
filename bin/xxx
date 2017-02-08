@@ -1,0 +1,6 @@
+#!/bin/sh
+
+setxkbmap -option altwin:meta_win
+setxkbmap -option altwin:meta_alt
+xmodmap -e 'clear mod4'
+xmodmap -e 'add mod1 = Meta_L'
