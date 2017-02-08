@@ -22,3 +22,9 @@
 [submodule "vim/bundle/javap"]
 	path = vim/bundle/javap
 	url = https://github.com/yuratomo/javap.vim.git
+[submodule "vim/bundle/vaxe"]
+	path = vim/bundle/vaxe
+	url = https://github.com/jdonaldson/vaxe.git
+[submodule "vim/bundle/vimpager"]
+	path = vim/bundle/vimpager
+	url = https://github.com/rkitover/vimpager.git
