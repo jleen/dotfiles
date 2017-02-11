@@ -1,6 +1,10 @@
 # Apply all deb updates.
 if type apt-get > /dev/null; then
-  alias aptup='sudo apt-get --yes update && sudo apt-get --yes dist-upgrade'
+  if type apt > /dev/null; then
+    alias aptup='sudo apt --yes update && sudo apt --yes dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+  else
+    alias aptup='sudo apt-get --yes update && sudo apt-get --yes dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+  fi
 fi
 
 # Ditto for homebrew.
