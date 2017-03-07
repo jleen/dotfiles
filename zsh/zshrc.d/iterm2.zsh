@@ -119,7 +119,13 @@ if [[ -o interactive ]]; then
   }
 
   # If hostname -f is slow on your system, set iterm2_hostname prior to sourcing this script.
-  [[ -z "$iterm2_hostname" ]] && iterm2_hostname=`hostname -f`
+  if [[ -z "$iterm2_hostname" ]]; then
+    if [[ `uname -v` == *PREEMPT* ]]; then
+      iterm2_hostname=`hostname `
+    else
+      iterm2_hostname=`hostname -f`
+    fi
+  fi
 
   [[ -z $precmd_functions ]] && precmd_functions=()
   precmd_functions=($precmd_functions iterm2_precmd)
