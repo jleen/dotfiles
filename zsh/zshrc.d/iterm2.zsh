@@ -120,8 +120,8 @@ if [[ -o interactive ]]; then
 
   # If hostname -f is slow on your system, set iterm2_hostname prior to sourcing this script.
   if [[ -z "$iterm2_hostname" ]]; then
-    if [[ `uname -v` == *PREEMPT* ]]; then
-      iterm2_hostname=`hostname `
+    if [[ $SVLINUX = wsl ]]; then
+      iterm2_hostname=`hostname`
     else
       iterm2_hostname=`hostname -f`
     fi

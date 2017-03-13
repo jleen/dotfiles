@@ -32,6 +32,10 @@ function init_svplatform () {
     SVPLATFORM=vt
   fi
 
+  if [[ `uname -v` = *PREEMPT* ]]; then
+    SVLINUX=wsl
+  fi
+
   # The all-important EDITOR.
   if [[ $SVPLATFORM = X11 ]]; then
     export EDITOR='gvim -f'
