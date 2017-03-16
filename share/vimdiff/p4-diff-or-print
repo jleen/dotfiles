@@ -1,0 +1,9 @@
+#!/usr/bin/zsh
+
+for opened in $*; do
+    if p4 opened $opened | grep -q ' - edit '; then
+        p4 diff $opened
+    else
+        $P4DIFF /dev/null `p4 where $opened | cut -d' ' -f3`
+    fi
+done

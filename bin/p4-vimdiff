@@ -9,5 +9,5 @@ if [[ -z $1 ]]; then
 elif [[ $1 == '-c' ]]; then
     p4 opened -c $2 | cut -d# -f1 | xargs $0
 else
-    $SVCONFIGDIR/share/vimdiff/vc-vimdiff-core "P4DIFF=\"$SVCONFIGDIR/share/vimdiff/collect-p4-vimdiff\" p4 diff $*"
+    $SVCONFIGDIR/share/vimdiff/vc-vimdiff-core "P4DIFF=\"$SVCONFIGDIR/share/vimdiff/collect-p4-vimdiff\" \"$SVCONFIGDIR/share/vimdiff/p4-diff-or-print\" $*"
 fi
