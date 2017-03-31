@@ -21,6 +21,9 @@ if [[ $SVPLATFORM = cygwin ]]; then
   }
   alias vv='gvim.bat -R -'
 elif [[ $SVPLATFORM = osx ]]; then
+  local macvim_dir=/Applications/MacVim.app/Contents/bin
+  [[ -d $macvim_dir ]] && path+=$macvim_dir
+
   v () {
     if [[ $#* -gt 3 ]]; then
       if [[ $1 == -f ]]; then
