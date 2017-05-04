@@ -88,10 +88,23 @@ if has ("gui_macvim")
     set transparency=0
     function! s:set_font()
         if len(getfontname('Monoid'))
-            let big_font="Monoid:h18"
             set guifont=Monoid:h14
+            let g:big_font="Monoid:h18"
         else
             set guifont=Menlo_Regular:h13
+        endif
+    endfunction
+    autocmd GUIEnter * call s:set_font()
+endif
+
+if has("gui_gtk")
+    function! s:set_font()
+        if len(getfontname('Monoid'))
+            set guifont=Monoid\ 9
+            let g:big_font="Monoid 14"
+        else
+            set guifont=Monospace\ 12
+            let g:big_font="Monospace 16"
         endif
     endfunction
     autocmd GUIEnter * call s:set_font()
