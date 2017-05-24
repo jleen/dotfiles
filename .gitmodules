@@ -30,4 +30,4 @@
 	url = https://github.com/rkitover/vimpager.git
 [submodule "vim/bundle/rmvim"]
 	path = vim/bundle/rmvim
-	url = https://github.com/wannesm/rmvim.vim.git
+	url = https://github.com/jleen/rmvim.vim.git
