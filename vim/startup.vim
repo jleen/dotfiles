@@ -25,6 +25,7 @@ endif
 
 " Netrw hygiene.
 let g:netrw_home=$HOME
+let g:netrw_silent=1
 
 " HTML hygiene.
 let html_no_rendering=1
