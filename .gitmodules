@@ -31,3 +31,6 @@
 [submodule "vim/bundle/rmvim"]
 	path = vim/bundle/rmvim
 	url = https://github.com/jleen/rmvim.vim.git
+[submodule "vim/bundle/vim-latex"]
+	path = vim/bundle/vim-latex
+	url = https://github.com/vim-latex/vim-latex.git
