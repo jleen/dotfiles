@@ -98,7 +98,7 @@ if has ("gui_macvim")
     autocmd GUIEnter * call s:set_font()
 
     let g:Tex_ViewRule_pdf='open -a Preview'
-    let g:Tex_CompileRule_pdf='xelatex -interaction=nonstopmode $*' 
+    let g:Tex_CompileRule_pdf='latexmk -xelatex -interaction=nonstopmode $*'
     let g:Tex_UseMakefile=0
     let g:Tex_DefaultTargetFormat='pdf'
 endif
