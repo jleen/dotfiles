@@ -1,9 +1,9 @@
 # Apply all deb updates.
 if type apt-get > /dev/null; then
   if type apt > /dev/null; then
-    alias aptup='sudo apt --yes update && sudo apt --yes dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+    alias aptup='sudo apt --yes update && sudo apt --yes dist-upgrade && sudo apt-get --yes autoremove && sudo apt-get --yes autoclean'
   else
-    alias aptup='sudo apt-get --yes update && sudo apt-get --yes dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean'
+    alias aptup='sudo apt-get --yes update && sudo apt-get --yes dist-upgrade && sudo apt-get --yes autoremove && sudo apt-get --yes autoclean'
   fi
 fi
 
