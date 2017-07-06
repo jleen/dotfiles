@@ -5,6 +5,10 @@ exec "set runtimepath=" . escape(s:current_file, ' ') . ","
                       \ . escape(s:current_file, ' ') . "/after"
 
 " With lots of plugin modules!
+if has("win32") || has("win64")
+    " Probably ought to blacklist *itself*, but so be it.
+    let g:pathogen_blacklist = ["rmvim"]
+endif
 execute pathogen#infect()
 
 " Swapfile hygiene.
