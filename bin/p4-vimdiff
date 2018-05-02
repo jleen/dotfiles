@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 if [[ -z $1 ]]; then
     local -a stuff
     for cl in default $(p4 changes -u `whoami` -c $P4CLIENT -s pending \
