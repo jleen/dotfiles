@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
 for opened in $*; do
     if p4 opened $opened | grep -q ' - \(edit\|integrate\) '; then
