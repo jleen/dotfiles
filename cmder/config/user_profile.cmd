@@ -17,3 +17,5 @@
 :: %ccall% "/customOption" "command/program"
 
 @echo off
+set SVCONFIGDIR=%CMDER_USER_CONFIG%\..\..
+call %SVCONFIGDIR%\local\cmder\user_profile.cmd
