@@ -57,16 +57,17 @@ local function get_git_branch(git_dir)
     -- otherwise it is a detached commit
     local branch_name = HEAD:match('ref: refs/heads/(.+)')
 
-    return branch_name or 'HEAD detached at '..HEAD:sub(1, 7)
+    return branch_name or HEAD:sub(1, 7)
 end
 
 function sv_prompt_filter()
+    local edge = ""
     local git_prompt = ""
     local git_branch = get_git_branch()
     if git_branch then
-        git_prompt = ":" .. git_branch
+        git_prompt = "\x1b[44m" .. edge .."\x1b[0;44m" .. git_branch .. "\x1b[0;34m"
     end
-    clink.prompt.value = "\x1b[42m" .. clink.get_cwd() .. "\x1b[0m" .. git_prompt .. "\x1b[32m\x1b[0m"
+    clink.prompt.value = "\x1b[42m" .. clink.get_cwd() .. "\x1b[0;32m" .. git_prompt .. edge .. "\x1b[0m"
 end
 
 clink.prompt.filters = {}
