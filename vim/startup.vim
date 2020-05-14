@@ -68,7 +68,9 @@ if has("gui_running")
     endif
     set columns=80
     set cursorline
-    colorscheme solarized
+    colorscheme paisaje
+    set laststatus=2
+    let g:lightline = { 'colorscheme': 'landscape' }
 endif
 
 set guioptions+=a  " autoselect: xterm-style clipboard cut
