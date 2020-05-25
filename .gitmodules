@@ -34,9 +34,9 @@
 [submodule "vim/bundle/vim-latex"]
 	path = vim/bundle/vim-latex
 	url = git@github.com:jleen/vim-latex.git
-[submodule "vim/bundle\\lightline"]
-	path = vim/bundle\\lightline
+[submodule "vim/bundle/lightline"]
+	path = vim/bundle/lightline
 	url = https://github.com/itchyny/lightline.vim
-[submodule "vim/bundle\\landscape"]
-	path = vim/bundle\\landscape
+[submodule "vim/bundle/landscape"]
+	path = vim/bundle/landscape
 	url = https://github.com/itchyny/landscape.vim
