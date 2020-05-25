@@ -1,12 +1,31 @@
 # Saturn Valley Pandimensional Uniform Editor Launcher
 
-if [[ $SVPLATFORM = cygwin ]]; then
+if [[ $SVLINUX = wsl ]]; then
   v () {
     if [[ $#* -gt 3 ]]; then
       if [[ $1 == -f ]]; then
         shift
       else
         echo 'Specify -f to edit lots of files at once.'
+        return 1
+      fi
+    fi
+    if [[ -z $* ]]; then
+      spawn gvim.exe
+    else
+      for fn in $@; do
+        spawn gvim.exe "$fn"
+      done
+    fi
+  }
+  alias vv='spawn gvim.exe -R -'
+elif [[ $svplatform = cygwin ]]; then
+  v () {
+    if [[ $#* -gt 3 ]]; then
+      if [[ $1 == -f ]]; then
+        shift
+      else
+        echo 'specify -f to edit lots of files at once.'
         return 1
       fi
     fi

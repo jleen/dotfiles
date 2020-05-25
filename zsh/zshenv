@@ -32,7 +32,7 @@ function init_svplatform () {
     SVPLATFORM=vt
   fi
 
-  if [[ `uname -v` = *PREEMPT* ]]; then
+  if [[ `uname -v` = *PREEMPT* || `uname -r` = *Microsoft* ]]; then
     SVLINUX=wsl
   fi
 
