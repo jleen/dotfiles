@@ -46,7 +46,9 @@ function sv_set_special_prompt {
     local prompt_name=`echo $prompt_spec|cut -d: -f2`
     if [[ $PWD == $prompt_trigger* ]]; then
       SV_SPECIAL_PROMPT="%{`tput bold`%}$prompt_name%{`tput sgr0`%}:"
-      SV_PWD_PROMPT=`echo $PWD | cut -c$((${#prompt_trigger}+1))-`
+      SV_SPECIAL_WINDOW_PROMPT="$prompt_name:"
+      SV_PWD_PROMPT=`echo $PWD | cut -c$((${#prompt_trigger}+2))-`
+      SV_PWD_PROMPT=${SV_PWD_PROMPT:=.}
     fi
   done
 }

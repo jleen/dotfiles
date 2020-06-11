@@ -1,6 +1,19 @@
 # Saturn Valley Intergalactic Standard Command Prompt
 
-[[ -n $HOST ]] && host=$HOST || host=`uname -n`
+local pre_pwd post_pwd pre_window host
+if [[ -n $SV_HOST_SIGIL ]]; then
+  host=$SV_HOST_SIGIL
+else
+  pre_pwd='['
+  post_pwd=']'
+  pre_window=':'
+  if [[ -n $HOST ]]; then
+    host=$HOST
+  else
+    host=`uname -n`
+  fi
+fi
+
 local short_host=`echo ${host}|cut -d. -f1`
 if [[ $TERM = dumb ]]; then
   # We're probably in Emacs M-x shell.
@@ -24,7 +37,7 @@ else
     local screen_clear="`print \\\\ek\\\\e\\\\134`"
   fi
   if [[ $TERM = (xterm*|rxvt*|screen|cygwin) ]]; then
-    local xterm="`print \\\\e`]0;$SHELLPREFIX${short_host}${screen}:%~`print \\\\007`"
+    local xterm="`print \\\\e`]0;$SHELLPREFIX${short_host}${screen}$pre_window\${SV_SPECIAL_WINDOW_PROMPT}\${SV_PWD_PROMPT:-%~}`print \\\\007`"
   fi
   if [[ -n $SHELLPREFIX ]]; then
     local prefix="%{$tput_setaf_0$tput_bold%}$SHELLPREFIX%{$tput_sgr0%}"
@@ -33,5 +46,5 @@ else
   local color_on="%{$tput_setaf$tput_bold%}"
   local color_off="%{$tput_sgr0%}"
   setopt prompt_subst
-  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} [\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}]%# "
+  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd%# "
 fi
