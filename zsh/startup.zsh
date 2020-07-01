@@ -2,8 +2,8 @@
 # noninteractive shell, e.g. variables that we'd like to have available in
 # processes launched by wrapper scripts.
 
-HOST=$1
-SHELLCOLOR=$2
+[[ -n $1 ]] && HOST=$1
+[[ -n $2 ]] && SHELLCOLOR=$2
 
 export SVCONFIGDIR="${0:h:h}"
 
