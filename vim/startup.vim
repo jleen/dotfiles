@@ -94,7 +94,7 @@ au FocusLost * set nocursorline
 
 if has("gui_win32")
     set winaltkeys=no
-    set guifont=Lucida_Console:h9:cANSI
+    set guifont=Cascadia_Code_PL:h10:cANSI,Lucida_Console:h10:cANSI
 endif
 
 if has ("gui_macvim")
