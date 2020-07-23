@@ -57,6 +57,9 @@ set clipboard=unnamed
 "TODO: 'autoselect' is incompatible with yankring. Why?
 "set clipboard=unnamed,autoselect
 
+" Mouse in terminal
+set mouse=a
+
 " File format
 set encoding=utf-8
 set modelines=5
