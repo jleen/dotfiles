@@ -14,6 +14,6 @@ function ls
         case '-*'
             /bin/ls $argv
         case '*'
-            exa $argv[2..-1]
+            exa $argv
     end
 end
