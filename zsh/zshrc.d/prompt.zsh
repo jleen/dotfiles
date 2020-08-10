@@ -48,5 +48,5 @@ else
   local color_on="%{$tput_setaf$tput_bold%}"
   local color_off="%{$tput_sgr0%}"
   setopt prompt_subst
-  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd$caret$post_caret "
+  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd$caret "
 fi
