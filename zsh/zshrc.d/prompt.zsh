@@ -1,11 +1,13 @@
 # Saturn Valley Intergalactic Standard Command Prompt
 
-local pre_pwd post_pwd pre_window host
+local caret=${SV_CARET:-%#}
+local pre_pwd=${SV_PRE_PWD:-[}
+local post_pwd=${SV_POST_PWD:-]}
+
+local pre_window host
 if [[ -n $SV_HOST_SIGIL ]]; then
   host=$SV_HOST_SIGIL
 else
-  pre_pwd='['
-  post_pwd=']'
   pre_window=':'
   if [[ -n $HOST ]]; then
     host=$HOST
@@ -46,5 +48,5 @@ else
   local color_on="%{$tput_setaf$tput_bold%}"
   local color_off="%{$tput_sgr0%}"
   setopt prompt_subst
-  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd%# "
+  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd$caret$post_caret "
 fi

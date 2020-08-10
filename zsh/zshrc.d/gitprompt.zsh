@@ -3,14 +3,16 @@ typeset -ga chpwd_functions
 typeset -ga preexec_functions
 typeset -ga sv_special_prompt_specs
 
+
 function set_git_prompt {
-  gitref=$(git symbolic-ref HEAD 2> /dev/null)
+  local open=${SV_GIT_OPEN:-[}
+  local close=${SV_GIT_CLOSE:-]}
+  local gitref=$(git symbolic-ref HEAD 2> /dev/null)
   if [[ -n $gitref ]] ; then
-    gitbranch="[${gitref#refs/heads/}]"
+    RPROMPT="$open${gitref#refs/heads/}$close"
   else
-    gitbranch=""
+    RPROMPT=""
   fi
-  RPROMPT="${gitbranch}"
 }
 
 function zsh_git_prompt_precmd {
