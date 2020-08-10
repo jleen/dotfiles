@@ -11,6 +11,8 @@ elif [[ `uname` == CYGWIN* ]]; then
     VIM_BINARY=gvim.bat
     source $SVCONFIGDIR/cygwin/zshrc
     SVCONFIGDIR=`cygpath -wa $SVCONFIGDIR`
+elif [[ $SVLINUX = wsl ]]; then
+    VIM_BINARY=gvim.exe
 else
     VIM_BINARY=gvim
 fi
