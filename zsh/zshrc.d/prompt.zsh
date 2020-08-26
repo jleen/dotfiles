@@ -32,7 +32,6 @@ else
     local tput_bold=$'\e[1m'
     local tput_sgr0=$'\e(B\e[m'
     local tput_setaf=$"\e}[3${SHELLCOLOR:-4}m"
-    local tput_setaf=$'\e[34m'
   fi
   if [[ -n $WINDOW ]]; then
     local screen=":$WINDOW"
@@ -45,7 +44,7 @@ else
     local prefix="%{$tput_setaf_0$tput_bold%}$SHELLPREFIX%{$tput_sgr0%}"
   fi
   local cruft="%{${screen_clear}${xterm}${shellprefix}%}"
-  local color_on="%{$tput_setaf$tput_bold%}"
+  local color_on=${SV_SIGIL_COLOR:-%{$tput_setaf$tput_bold%}}
   local color_off="%{$tput_sgr0%}"
   setopt prompt_subst
   PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd$caret$post_caret "
