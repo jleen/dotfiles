@@ -16,6 +16,7 @@ else
   [[ -f $SVCONFIGDIR/local/zshenv ]] && source $SVCONFIGDIR/local/zshenv
 
   if [[ -o INTERACTIVE ]]; then
+      [[ -f $SVCONFIGDIR/local/zshrc-pre ]] && source $SVCONFIGDIR/local/zshrc-pre
       source $SVCONFIGDIR/zsh/zshrc
       [[ -f $SVCONFIGDIR/local/zshrc ]] && source $SVCONFIGDIR/local/zshrc
   fi
