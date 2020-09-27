@@ -5,8 +5,13 @@ typeset -ga sv_special_prompt_specs
 
 
 function set_git_prompt {
-  local open=${SV_GIT_OPEN:-[}
-  local close=${SV_GIT_CLOSE:-]}
+  local gitcolorstart gitcolorend
+  if [[ -n $SV_PROMPT_COLOR_GIT ]]; then
+    gitcolorstart=$'%{\e[38;5;${SV_PROMPT_COLOR_GIT}m%}'
+    gitcolorend=$'%{\e(B\e[m%}'
+  fi
+  local open="$gitcolorstart${SV_PROMPT_GIT_L:-[}"
+  local close="${SV_PROMPT_GIT_R:-]}$gitcolorend"
   local gitref=$(git symbolic-ref HEAD 2> /dev/null)
   if [[ -n $gitref ]] ; then
     RPROMPT="$open${gitref#refs/heads/}$close"

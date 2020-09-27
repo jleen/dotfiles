@@ -1,12 +1,17 @@
 # Saturn Valley Intergalactic Standard Command Prompt
 
-local caret=${SV_CARET:-%#}
-local pre_pwd=${SV_PRE_PWD:-[}
-local post_pwd=${SV_POST_PWD:-]}
+local caret=${SV_PROMPT_CARET:-%#}
+if [[ -n $SV_PROMPT_COLOR_CARET ]]; then
+  caret=$'%{\e[38;5;${SV_PROMPT_COLOR_CARET}m%}${SV_PROMPT_CARET:-%#}%{\e(B\e[m%}'
+fi
 
-local pre_window host
-if [[ -n $SV_HOST_SIGIL ]]; then
-  host=$SV_HOST_SIGIL
+local pre_pwd post_pwd pre_window host
+if [[ -n $SV_PROMPT_SIGIL ]]; then
+  host=$SV_PROMPT_SIGIL
+  if [[ -n $SV_PROMPT_COLOR_PWD ]]; then
+    pre_pwd=$'%{\e[38;5;${SV_PROMPT_COLOR_PWD}m%}'
+    post_pwd=$'%{\e(B\e[m%}'
+  fi
 else
   pre_window=':'
   if [[ -n $HOST ]]; then
@@ -14,6 +19,8 @@ else
   else
     host=`uname -n`
   fi
+  pre_pwd='['
+  post_pwd=']'
 fi
 
 local short_host=`echo ${host}|cut -d. -f1`
@@ -25,13 +32,13 @@ else
     local tput_setaf_0=`tput setaf 0`
     local tput_bold=`tput bold`
     local tput_sgr0=`tput sgr0`
-    local tput_setaf=`tput setaf ${SHELLCOLOR:-4}`
+    local tput_setaf=`tput setaf ${SV_PROMPT_COLOR:-4}`
   else
     # Do it by hand.
     local tput_setaf_0=$'\e[30m'
     local tput_bold=$'\e[1m'
     local tput_sgr0=$'\e(B\e[m'
-    local tput_setaf=$"\e}[3${SHELLCOLOR:-4}m"
+    local tput_setaf=$'\e}[3${SV_PROMPT_COLOR:-4}m'
     local tput_setaf=$'\e[34m'
   fi
   if [[ -n $WINDOW ]]; then
