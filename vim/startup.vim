@@ -180,3 +180,9 @@ set errorformat +=%f(%l\\,%c):\ error\ CS%n:%m
 if filereadable(escape(s:current_file, ' ') . "/../local/vimrc")
   exec "source " . escape(s:current_file, ' ') . "/../local/vimrc"
 endif
+
+" Hack the WSL
+let s:wslpath=matchlist(getcwd(), '\\\\wsl$\\\([a-zA-Z]*\)\\')
+if len(s:wslpath) > 1
+    let $HOME='\\wsl$\' . s:wslpath[1] . '\home\' . $USERNAME
+endif
