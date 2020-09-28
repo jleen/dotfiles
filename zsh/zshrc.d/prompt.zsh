@@ -39,7 +39,6 @@ else
     local tput_bold=$'\e[1m'
     local tput_sgr0=$'\e(B\e[m'
     local tput_setaf=$'\e}[3${SV_PROMPT_COLOR:-4}m'
-    local tput_setaf=$'\e[34m'
   fi
   if [[ -n $WINDOW ]]; then
     local screen=":$WINDOW"
