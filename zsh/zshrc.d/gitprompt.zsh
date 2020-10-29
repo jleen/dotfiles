@@ -46,6 +46,7 @@ PR_GIT_UPDATE=1
 
 function sv_set_special_prompt {
   unset SV_SPECIAL_PROMPT
+  unset SV_SPECIAL_WINDOW_PROMPT
   unset SV_PWD_PROMPT
 
   for prompt_spec in $sv_special_prompt_specs; do
