@@ -11,14 +11,14 @@ if [[ $SVLINUX = wsl ]]; then
       fi
     fi
     if [[ -z $* ]]; then
-      spawn gvim.exe
+      spawn "${SV_GVIM_EXE:-gvim.exe}"
     else
       for fn in $@; do
-        spawn gvim.exe "$fn"
+        spawn "${SV_GVIM_EXE:-gvim.exe}" "$fn"
       done
     fi
   }
-  alias vv='spawn gvim.exe -R -'
+  alias vv="spawn ${SV_GVIM_EXE:-gvim.exe} -R -"
 elif [[ $svplatform = cygwin ]]; then
   v () {
     if [[ $#* -gt 3 ]]; then
