@@ -55,3 +55,12 @@
 [submodule "vim/bundle/gruvbox-material"]
 	path = vim/bundle/gruvbox-material
 	url = https://github.com/sainnhe/gruvbox-material
+[submodule "vim/bundle/edge"]
+	path = vim/bundle/edge
+	url = git@github.com:sainnhe/edge
+[submodule "vim/bundle/sonokai"]
+	path = vim/bundle/sonokai
+	url = git@github.com:sainnhe/sonokai
+[submodule "vim/bundle/forest-night"]
+	path = vim/bundle/forest-night
+	url = git@github.com:sainnhe/forest-night
