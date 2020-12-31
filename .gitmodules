@@ -46,3 +46,9 @@
 [submodule "vim/bundle/vim-fish"]
 	path = vim/bundle/vim-fish
 	url = https://github.com/dag/vim-fish
+[submodule "zsh/bundle/zsh-autosuggestions"]
+	path = zsh/bundle/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/bundle/zsh-syntax-highlighting"]
+	path = zsh/bundle/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
