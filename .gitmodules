@@ -52,3 +52,6 @@
 [submodule "zsh/bundle/zsh-syntax-highlighting"]
 	path = zsh/bundle/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "vim/bundle/gruvbox-material"]
+	path = vim/bundle/gruvbox-material
+	url = https://github.com/sainnhe/gruvbox-material
