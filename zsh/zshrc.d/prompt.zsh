@@ -50,9 +50,9 @@ else
   if [[ -n $SHELLPREFIX ]]; then
     local prefix="%{$tput_setaf_0$tput_bold%}$SHELLPREFIX%{$tput_sgr0%}"
   fi
-  local cruft="%{${screen_clear}${xterm}${shellprefix}%}"
+  SV_PROMPT_TITLE="%{${screen_clear}${xterm}${shellprefix}%}"
   local color_on="%{$tput_setaf$tput_bold%}"
   local color_off="%{$tput_sgr0%}"
   setopt prompt_subst
-  PROMPT="${cruft}${prefix}${color_on}${short_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd$caret "
+  PROMPT="${SV_PROMPT_TITLE}${prefix}${color_on}${short_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd$caret "
 fi
