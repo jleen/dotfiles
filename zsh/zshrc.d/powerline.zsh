@@ -7,6 +7,7 @@ if [[ -n "$SV_POWERLINE_GO_BIN" ]]; then
 
     function powerline_precmd() {
         eval "$($SV_POWERLINE_GO_BIN -condensed -error $? -modules venv,host,ssh,cwd,perms,jobs,exit,root -modules-right git,hg,svn -shell zsh -eval)"
+        PS1="$SV_PROMPT_TITLE$PS1"
     }
 
     function install_powerline_precmd() {
