@@ -24,6 +24,7 @@ else
 fi
 
 local short_host=`echo ${host}|cut -d. -f1`
+local color_host=${SV_PROMPT_SIGIL_COLOR:-$short_host}
 if [[ $TERM = dumb ]]; then
   # We're probably in Emacs M-x shell.
   PROMPT='${short_host} [%~]%# '
@@ -54,5 +55,5 @@ else
   local color_on="%{$tput_setaf$tput_bold%}"
   local color_off="%{$tput_sgr0%}"
   setopt prompt_subst
-  PROMPT="${SV_PROMPT_TITLE}${prefix}${color_on}${short_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd$caret "
+  PROMPT="${SV_PROMPT_TITLE}${prefix}${color_on}${color_host}${screen}${color_off} $pre_pwd\${SV_SPECIAL_PROMPT}\${SV_PWD_PROMPT:-%~}$post_pwd$caret "
 fi
