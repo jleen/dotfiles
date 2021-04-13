@@ -6,7 +6,7 @@
 if [[ -n "$SV_POWERLINE_GO_BIN" ]]; then
 
     function powerline_precmd() {
-        eval "$($SV_POWERLINE_GO_BIN -condensed -error $? -modules venv,host,ssh,cwd,perms,jobs,exit,root -modules-right git,hg,svn -shell zsh -eval -theme ${SV_POWERLINE_GO_THEME:-default} -path-aliases $SV_POWERLINE_EXTRA_ARGS)"
+        eval "$($SV_POWERLINE_GO_BIN -condensed -error $? -static-prompt-indicator -modules venv,host,ssh,cwd,perms,jobs,exit,root -modules-right git,hg,svn -shell zsh -eval -theme ${SV_POWERLINE_GO_THEME:-default} -path-aliases $SV_POWERLINE_EXTRA_ARGS)"
         if [[ -n "$SV_PROMPT_SIGIL" ]]; then
             PS1=`echo $PS1 | sed -e s/%m/$SV_PROMPT_SIGIL/`
             PS1=`echo $PS1 | sed -e 's/%m/%F{73}❽ /'`
