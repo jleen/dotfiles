@@ -50,5 +50,6 @@ init_svplatform
 # The less-important less.
 [[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
 
+export POETRY_VIRTUALENVS_IN_PROJECT=true
 export PIPENV_VENV_IN_PROJECT=1
 export OPEN_SOURCE_CONTRIBUTOR=true
