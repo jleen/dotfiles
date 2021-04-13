@@ -24,6 +24,7 @@ else
 fi
 
 local short_host=`echo ${host}|cut -d. -f1`
+local color_host=${SV_PROMPT_SIGIL_COLOR:-$short_host}
 if [[ $TERM = dumb ]]; then
   # We're probably in Emacs M-x shell.
   PROMPT='${short_host} [%~]%# '
