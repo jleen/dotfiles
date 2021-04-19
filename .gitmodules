@@ -64,3 +64,12 @@
 [submodule "vim/bundle/forest-night"]
 	path = vim/bundle/forest-night
 	url = git@github.com:sainnhe/forest-night
+[submodule "vim/bundle/vim-toml"]
+	path = vim/bundle/vim-toml
+	url = https://github.com/cespare/vim-toml
+[submodule "vim/bundle/tokyonight-vim"]
+	path = vim/bundle/tokyonight-vim
+	url = https://github.com/ghifarit53/tokyonight-vim
+[submodule "vim/bundle/rainglow"]
+	path = vim/bundle/rainglow
+	url = https://github.com/rainglow/vim
