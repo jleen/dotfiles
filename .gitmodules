@@ -55,3 +55,6 @@
 [submodule "vim/bundle/rainglow"]
 	path = vim/pack/theme/start/rainglow
 	url = https://github.com/rainglow/vim
+[submodule "vim/pack/lang/start/python-syntax"]
+	path = vim/pack/lang/start/python-syntax
+	url = https://github.com/vim-python/python-syntax
