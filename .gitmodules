@@ -1,32 +1,32 @@
 [submodule "vim/bundle/solarized"]
-	path = vim/bundle/solarized
+	path = vim/pack/theme/start/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/typescript"]
-	path = vim/bundle/typescript
+	path = vim/pack/lang/start/typescript
 	url = https://github.com/leafgarland/typescript-vim.git
 [submodule "vim/bundle/ruby"]
-	path = vim/bundle/ruby
+	path = vim/pack/lang/start/ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
 [submodule "vim/bundle/javap"]
-	path = vim/bundle/javap
+	path = vim/pack/lang/start/javap
 	url = https://github.com/yuratomo/javap.vim.git
 [submodule "vim/bundle/vaxe"]
-	path = vim/bundle/vaxe
+	path = vim/pack/lang/start/haxe
 	url = https://github.com/jdonaldson/vaxe.git
 [submodule "vim/bundle/vimpager"]
-	path = vim/bundle/vimpager
+	path = vim/pack/tool/start/vimpager
 	url = https://github.com/rkitover/vimpager.git
 [submodule "vim/bundle/vim-latex"]
-	path = vim/bundle/vim-latex
+	path = vim/pack/lang/start/latex
 	url = git@github.com:jleen/vim-latex.git
 [submodule "vim/bundle/lightline"]
-	path = vim/bundle/lightline
+	path = vim/pack/tool/start/lightline
 	url = https://github.com/itchyny/lightline.vim
 [submodule "vim/bundle/landscape"]
-	path = vim/bundle/landscape
+	path = vim/pack/theme/start/landscape
 	url = https://github.com/itchyny/landscape.vim
 [submodule "vim/bundle/jinja2"]
-	path = vim/bundle/jinja2
+	path = vim/pack/lang/start/jinja2
 	url = https://github.com/Glench/Vim-Jinja2-Syntax
 [submodule "zsh/bundle/zsh-autosuggestions"]
 	path = zsh/bundle/zsh-autosuggestions
@@ -35,23 +35,23 @@
 	path = zsh/bundle/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 [submodule "vim/bundle/gruvbox-material"]
-	path = vim/bundle/gruvbox-material
+	path = vim/pack/theme/opt/gruvbox-material
 	url = https://github.com/sainnhe/gruvbox-material
 [submodule "vim/bundle/edge"]
-	path = vim/bundle/edge
+	path = vim/pack/theme/opt/edge
 	url = git@github.com:sainnhe/edge
 [submodule "vim/bundle/sonokai"]
-	path = vim/bundle/sonokai
+	path = vim/pack/theme/opt/sonokai
 	url = git@github.com:sainnhe/sonokai
 [submodule "vim/bundle/forest-night"]
-	path = vim/bundle/forest-night
+	path = vim/pack/theme/opt/forest-night
 	url = git@github.com:sainnhe/forest-night
 [submodule "vim/bundle/vim-toml"]
-	path = vim/bundle/vim-toml
+	path = vim/pack/lang/start/toml
 	url = https://github.com/cespare/vim-toml
 [submodule "vim/bundle/tokyonight-vim"]
-	path = vim/bundle/tokyonight-vim
+	path = vim/pack/theme/start/tokyonight
 	url = https://github.com/ghifarit53/tokyonight-vim
 [submodule "vim/bundle/rainglow"]
-	path = vim/bundle/rainglow
+	path = vim/pack/theme/start/rainglow
 	url = https://github.com/rainglow/vim
