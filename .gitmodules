@@ -58,3 +58,6 @@
 [submodule "vim/pack/lang/start/python-syntax"]
 	path = vim/pack/lang/start/python-syntax
 	url = https://github.com/vim-python/python-syntax
+[submodule "vim/pack/theme/start/iceberg"]
+	path = vim/pack/theme/start/iceberg
+	url = https://github.com/cocopon/iceberg.vim
