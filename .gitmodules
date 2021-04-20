@@ -1,24 +1,12 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/coffeescript"]
-	path = vim/bundle/coffeescript
-	url = http://github.com/kchmck/vim-coffee-script
-[submodule "vim/bundle/javascript"]
-	path = vim/bundle/javascript
-	url = https://github.com/pangloss/vim-javascript
 [submodule "vim/bundle/typescript"]
 	path = vim/bundle/typescript
 	url = https://github.com/leafgarland/typescript-vim.git
-[submodule "vim/bundle/eco"]
-	path = vim/bundle/eco
-	url = https://github.com/AndrewRadev/vim-eco.git
 [submodule "vim/bundle/ruby"]
 	path = vim/bundle/ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
-[submodule "vim/bundle/vimwiki"]
-	path = vim/bundle/vimwiki
-	url = https://github.com/vimwiki/vimwiki.git
 [submodule "vim/bundle/javap"]
 	path = vim/bundle/javap
 	url = https://github.com/yuratomo/javap.vim.git
@@ -28,9 +16,6 @@
 [submodule "vim/bundle/vimpager"]
 	path = vim/bundle/vimpager
 	url = https://github.com/rkitover/vimpager.git
-[submodule "vim/bundle/rmvim"]
-	path = vim/bundle/rmvim
-    url = git@github.com:jleen/rmvim.vim.git
 [submodule "vim/bundle/vim-latex"]
 	path = vim/bundle/vim-latex
 	url = git@github.com:jleen/vim-latex.git
@@ -43,9 +28,6 @@
 [submodule "vim/bundle/jinja2"]
 	path = vim/bundle/jinja2
 	url = https://github.com/Glench/Vim-Jinja2-Syntax
-[submodule "vim/bundle/vim-fish"]
-	path = vim/bundle/vim-fish
-	url = https://github.com/dag/vim-fish
 [submodule "zsh/bundle/zsh-autosuggestions"]
 	path = zsh/bundle/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
