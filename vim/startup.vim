@@ -72,6 +72,7 @@ if has("gui_running")
 endif
 
 if has("gui_running") || &t_Co >= 256
+    set background=dark
     colorscheme paisaje
     set laststatus=2
     let g:lightline = { 'colorscheme': 'landscape' }
@@ -115,7 +116,9 @@ endif
 
 if has("gui_gtk")
     function! s:set_font()
-        if len(getfontname('Monoid'))
+        if len(g:sv_font)
+            let &guifont=g:sv_font
+        elseif len(getfontname('Monoid'))
             set guifont=Monoid\ 9
             let g:big_font="Monoid 14"
         else
