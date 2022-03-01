@@ -61,3 +61,15 @@
 [submodule "vim/pack/theme/start/iceberg"]
 	path = vim/pack/theme/start/iceberg
 	url = https://github.com/cocopon/iceberg.vim
+[submodule "vim/pack/theme/start/one"]
+	path = vim/pack/theme/start/one
+	url = https://github.com/rakr/vim-one
+[submodule "vim/pack/tool/start/goyo"]
+	path = vim/pack/tool/start/goyo
+	url = https://github.com/junegunn/goyo.vim
+[submodule "vim/pack/theme/opt/seoul"]
+	path = vim/pack/theme/opt/seoul
+	url = https://github.com/junegunn/seoul256.vim
+[submodule "vim/pack/lang/start/julia"]
+	path = vim/pack/lang/start/julia
+	url = https://github.com/JuliaEditorSupport/julia-vim
