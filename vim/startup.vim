@@ -1,3 +1,7 @@
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " Now it's a whole tree!
 let s:current_file=expand("<sfile>:h")
 exec "set runtimepath=" . escape(s:current_file, ' ') . ","
@@ -94,6 +98,7 @@ au FocusLost * set nocursorline
 if has("gui_win32")
     set winaltkeys=no
     set guifont=Cascadia_Code_PL:h10:cANSI,Lucida_Console:h10:cANSI
+    let g:Tex_UsePython=0
 endif
 
 if has ("gui_macvim")
