@@ -12,7 +12,7 @@ elif [[ `uname` == CYGWIN* ]]; then
     source $SVCONFIGDIR/cygwin/zshrc
     SVCONFIGDIR=`cygpath -wa $SVCONFIGDIR`
 elif [[ $SVLINUX = wsl ]]; then
-    VIM_BINARY=gvim.exe
+    VIM_BINARY="${SV_GVIM_EXE:-gvim.exe}"
 else
     VIM_BINARY=gvim
 fi
@@ -28,5 +28,5 @@ echo >> $TMPFILE
 # TODO(jleen): Comment preserved from ancestor.  What does it mean?
 # save STDIN to restore for vimdiff
 exec 7<&0
-eval "$VIM_BINARY -f '+so $SVCONFIGDIR/share/vimdiff/multidiff.vim' `cat $TMPFILE`"
+eval "\"$VIM_BINARY\" -f '+so $SVCONFIGDIR/share/vimdiff/multidiff.vim' `cat $TMPFILE`"
 cleanup
