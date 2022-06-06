@@ -19,6 +19,7 @@ if [[ $SVLINUX = wsl ]]; then
     fi
   }
   alias vv='spawn "${SV_GVIM_EXE:-gvim.exe}" -R -'
+  alias vvv='spawn "${SV_GVIM_EXE:-gvim.exe}"'
 elif [[ $svplatform = cygwin ]]; then
   v () {
     if [[ $#* -gt 3 ]]; then
@@ -39,6 +40,7 @@ elif [[ $svplatform = cygwin ]]; then
     fi
   }
   alias vv='gvim.bat -R -'
+  alias vvv='givm.bat'
 elif [[ $SVPLATFORM = osx ]]; then
   local macvim_dir=/Applications/MacVim.app/Contents/bin
   [[ -d $macvim_dir ]] && path+=$macvim_dir
@@ -65,6 +67,7 @@ elif [[ $SVPLATFORM = osx ]]; then
     fi
   }
   alias vv='mvim -R - > /dev/null'
+  alias vvv='mvim -R'
 else
   v () {
     if [[ $#* -gt 3 ]]; then
@@ -95,11 +98,19 @@ else
       vi $@
     fi
   }
+  # Check SVPLATFORM at invocation time, to support screen reattach.
   vv () {
     if [[ $SVPLATFORM = X11 ]]; then
       gvim -R -
     else
       vi -R -
+    fi
+  }
+  vvv () {
+    if [[ $SVPLATFORM = X11 ]]; then
+      gvim
+    else
+      vi
     fi
   }
 fi
