@@ -1,0 +1,17 @@
+[user]
+	email = jleen@saturnvalley.org
+	name = John Leen
+
+[core]
+    # TODO: Don't hardcode ~/sv.
+	excludesfile = ~/sv/gitignore
+    pager = delta
+
+[delta]
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = "Spitfire (rainglow)"
+    navigate = true
+
+[interactive]
+    diffFilter = delta --color-only
