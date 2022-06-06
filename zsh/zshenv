@@ -53,4 +53,4 @@ init_svplatform
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 export PIPENV_VENV_IN_PROJECT=1
 export OPEN_SOURCE_CONTRIBUTOR=true
-export BAT_STYLE=plain
+export BAT_CONFIG_PATH="$SVCONFIGDIR/batconfig"
