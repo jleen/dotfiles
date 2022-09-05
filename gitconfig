@@ -6,6 +6,7 @@
     # TODO: Don't hardcode ~/sv.
 	excludesfile = ~/sv/gitignore
     pager = delta
+	quotepath = off
 
 [delta]
     syntax-theme = "Spitfire (rainglow)"
