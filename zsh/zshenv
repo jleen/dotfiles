@@ -15,6 +15,7 @@ export INPUTRC=$SVCONFIGDIR/inputrc
 export SCREENRC=$SVCONFIGDIR/screenrc
 export VIMINIT="source $SVCONFIGDIR/vim/startup.vim"
 export PYTHONSTARTUP="$SVCONFIGDIR/python/startup.py"
+export GIT_CONFIG_GLOBAL="$SVCONFIGDIR/gitconfig"
 
 # We call this on startup, and also when reconnecting a screen session.
 function init_svplatform () {
