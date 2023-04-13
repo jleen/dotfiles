@@ -3,7 +3,7 @@
     [[ -x `go env GOPATH`/bin/powerline-go ]] &&
     SV_POWERLINE_GO_BIN=`go env GOPATH`/bin/powerline-go
 
-if [[ -n "$SV_POWERLINE_GO_BIN" ]]; then
+if [[ -x "$SV_POWERLINE_GO_BIN" ]]; then
 
     function powerline_precmd() {
         # TODO: Avoid the need for a nonsense qqq string.

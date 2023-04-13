@@ -1,0 +1,12 @@
+[python]
+pyenv_version_name = true
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+
+[git_status]
+disabled = true
+
+[package]
+format = '[$symbol$version]($style) '
