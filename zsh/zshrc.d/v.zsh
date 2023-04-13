@@ -14,6 +14,7 @@ if [[ $SVLINUX = wsl ]]; then
       spawn "${SV_GVIM_EXE:-gvim.exe}"
     else
       for fn in $@; do
+        fn=`wslpath -wa $fn`
         spawn "${SV_GVIM_EXE:-gvim.exe}" "$fn"
       done
     fi
