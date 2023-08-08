@@ -76,3 +76,6 @@
 [submodule "bat/themes/rainglow"]
 	path = bat/themes/rainglow
 	url = https://github.com/rainglow/sublime
+[submodule "vim/pack/theme/start/blackbird"]
+	path = vim/pack/theme/start/blackbird
+	url = https://github.com/blackbirdtheme/vim/
