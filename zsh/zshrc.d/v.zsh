@@ -1,6 +1,25 @@
 # Saturn Valley Pandimensional Uniform Editor Launcher
 
-if [[ $SVLINUX = wsl ]]; then
+if [[ $SV_NEOVIDE_BIN ]]; then
+  v () {
+    if [[ $#* -gt 3 ]]; then
+      if [[ $1 == -f ]]; then
+        shift
+      else
+        echo 'Specify -f to edit lots of files at once.'
+        return 1
+      fi
+    fi
+    if [[ -z $* ]]; then
+      spawn "$SV_NEOVIDE_BIN" --wsl
+    else
+      for fn in $@; do
+        spawn "$SV_NEOVIDE_BIN" --wsl "$fn"
+      done
+    fi
+  }
+  alias vv='nvim -R -'
+elif [[ $SVLINUX = wsl ]]; then
   v () {
     if [[ $#* -gt 3 ]]; then
       if [[ $1 == -f ]]; then
