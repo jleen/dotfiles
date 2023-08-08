@@ -77,6 +77,7 @@ endif
 
 if has("gui_running") || &t_Co >= 256
     set background=dark
+    syntax enable
     colorscheme paisaje
     set laststatus=2
     let g:lightline = { 'colorscheme': 'landscape' }
