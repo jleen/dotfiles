@@ -79,3 +79,6 @@
 [submodule "vim/pack/theme/start/blackbird"]
 	path = vim/pack/theme/start/blackbird
 	url = https://github.com/blackbirdtheme/vim/
+[submodule "vim/pack/tool/start/neoscroll"]
+	path = vim/pack/tool/start/neoscroll
+	url = https://github.com/karb94/neoscroll.nvim

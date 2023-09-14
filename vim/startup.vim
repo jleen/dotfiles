@@ -163,6 +163,9 @@ set expandtab
 set ruler
 set showmode
 set showmatch
+if has('nvim')
+    lua require('neoscroll').setup()
+endif
 
 " Emacs-style paragraph reflowing
 map <esc>q gqap
@@ -193,3 +196,5 @@ let s:wslpath=matchlist(getcwd(), '\\\\wsl$\\\([a-zA-Z]*\)\\')
 if len(s:wslpath) > 1
     let $HOME='\\wsl$\' . s:wslpath[1] . '\home\' . $USERNAME
 endif
+
+set title
