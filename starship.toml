@@ -1,8 +1,16 @@
+[dart]
+format = '[$symbol($version )]($style)'
+
 [git_branch]
 format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [git_status]
 disabled = true
+
+[nodejs]
+detect_extensions = ['mjs', 'cjs', 'ts', 'mts', 'cts']
+format = '[$symbol($version )]($style)'
+symbol = '🥔 '
 
 [package]
 format = '[$symbol$version]($style) '
