@@ -14,7 +14,7 @@ if [[ $SV_NEOVIDE_BIN ]]; then
       spawn "$SV_NEOVIDE_BIN" --wsl
     else
       for fn in $@; do
-        spawn "$SV_NEOVIDE_BIN" --wsl "$fn"
+        spawn "$SV_NEOVIDE_BIN" --wsl "\"$fn\""
       done
     fi
   }
