@@ -5,7 +5,11 @@ format = '[$symbol($version )]($style)'
 format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [git_status]
-disabled = true
+disabled = false
+
+[hg_branch]
+disabled = false
+format= '[$symbol$branch(:$topic)]($style) '
 
 [nodejs]
 detect_extensions = ['mjs', 'cjs', 'ts', 'mts', 'cts']
