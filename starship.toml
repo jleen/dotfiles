@@ -11,6 +11,9 @@ disabled = false
 disabled = false
 format= '[$symbol$branch(:$topic)]($style) '
 
+[lua]
+format = '[$symbol($version )]($style)'
+
 [nodejs]
 detect_extensions = ['mjs', 'cjs', 'ts', 'mts', 'cts']
 format = '[$symbol($version )]($style)'
