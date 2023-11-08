@@ -1,24 +1,12 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/pack/theme/start/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/typescript"]
-	path = vim/pack/lang/start/typescript
-	url = https://github.com/leafgarland/typescript-vim.git
-[submodule "vim/bundle/ruby"]
-	path = vim/pack/lang/start/ruby
-	url = https://github.com/vim-ruby/vim-ruby.git
 [submodule "vim/bundle/javap"]
 	path = vim/pack/lang/start/javap
 	url = https://github.com/yuratomo/javap.vim.git
-[submodule "vim/bundle/vaxe"]
-	path = vim/pack/lang/start/haxe
-	url = https://github.com/jdonaldson/vaxe.git
 [submodule "vim/bundle/vimpager"]
 	path = vim/pack/tool/start/vimpager
 	url = https://github.com/rkitover/vimpager.git
-[submodule "vim/bundle/vim-latex"]
-	path = vim/pack/lang/start/latex
-	url = git@github.com:jleen/vim-latex.git
 [submodule "vim/bundle/lightline"]
 	path = vim/pack/tool/start/lightline
 	url = https://github.com/itchyny/lightline.vim
@@ -46,9 +34,6 @@
 [submodule "vim/bundle/forest-night"]
 	path = vim/pack/theme/opt/forest-night
 	url = git@github.com:sainnhe/forest-night
-[submodule "vim/bundle/vim-toml"]
-	path = vim/pack/lang/start/toml
-	url = https://github.com/cespare/vim-toml
 [submodule "vim/bundle/tokyonight-vim"]
 	path = vim/pack/theme/start/tokyonight
 	url = https://github.com/ghifarit53/tokyonight-vim
@@ -67,9 +52,6 @@
 [submodule "vim/pack/theme/opt/seoul"]
 	path = vim/pack/theme/opt/seoul
 	url = https://github.com/junegunn/seoul256.vim
-[submodule "vim/pack/lang/start/julia"]
-	path = vim/pack/lang/start/julia
-	url = https://github.com/JuliaEditorSupport/julia-vim
 [submodule "bat/themes/rainglow"]
 	path = bat/themes/rainglow
 	url = https://github.com/rainglow/sublime
