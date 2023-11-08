@@ -55,9 +55,6 @@
 [submodule "vim/bundle/rainglow"]
 	path = vim/pack/theme/start/rainglow
 	url = https://github.com/rainglow/vim
-[submodule "vim/pack/lang/start/python-syntax"]
-	path = vim/pack/lang/start/python-syntax
-	url = https://github.com/vim-python/python-syntax
 [submodule "vim/pack/theme/start/iceberg"]
 	path = vim/pack/theme/start/iceberg
 	url = https://github.com/cocopon/iceberg.vim
@@ -82,3 +79,6 @@
 [submodule "vim/pack/tool/start/neoscroll"]
 	path = vim/pack/tool/start/neoscroll
 	url = https://github.com/karb94/neoscroll.nvim
+[submodule "vim/pack/treesitter/opt/treesitter"]
+	path = vim/pack/treesitter/opt/treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
