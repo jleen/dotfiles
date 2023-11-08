@@ -1,5 +1,5 @@
 [submodule "vim/bundle/solarized"]
-	path = vim/pack/theme/start/solarized
+	path = vim/pack/theme/opt/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/javap"]
 	path = vim/pack/lang/start/javap
@@ -11,7 +11,7 @@
 	path = vim/pack/tool/start/lightline
 	url = https://github.com/itchyny/lightline.vim
 [submodule "vim/bundle/landscape"]
-	path = vim/pack/theme/start/landscape
+	path = vim/pack/theme/opt/landscape
 	url = https://github.com/itchyny/landscape.vim
 [submodule "vim/bundle/jinja2"]
 	path = vim/pack/lang/start/jinja2
@@ -35,16 +35,16 @@
 	path = vim/pack/theme/opt/forest-night
 	url = git@github.com:sainnhe/forest-night
 [submodule "vim/bundle/tokyonight-vim"]
-	path = vim/pack/theme/start/tokyonight
+	path = vim/pack/theme/opt/tokyonight
 	url = https://github.com/ghifarit53/tokyonight-vim
 [submodule "vim/bundle/rainglow"]
-	path = vim/pack/theme/start/rainglow
+	path = vim/pack/theme/opt/rainglow
 	url = https://github.com/rainglow/vim
 [submodule "vim/pack/theme/start/iceberg"]
-	path = vim/pack/theme/start/iceberg
+	path = vim/pack/theme/opt/iceberg
 	url = https://github.com/cocopon/iceberg.vim
 [submodule "vim/pack/theme/start/one"]
-	path = vim/pack/theme/start/one
+	path = vim/pack/theme/opt/one
 	url = https://github.com/rakr/vim-one
 [submodule "vim/pack/tool/start/goyo"]
 	path = vim/pack/tool/start/goyo
@@ -56,7 +56,7 @@
 	path = bat/themes/rainglow
 	url = https://github.com/rainglow/sublime
 [submodule "vim/pack/theme/start/blackbird"]
-	path = vim/pack/theme/start/blackbird
+	path = vim/pack/theme/opt/blackbird
 	url = https://github.com/blackbirdtheme/vim/
 [submodule "vim/pack/tool/start/neoscroll"]
 	path = vim/pack/tool/start/neoscroll
