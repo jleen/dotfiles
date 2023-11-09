@@ -7,9 +7,12 @@ format = '[$symbol$branch(:$remote_branch)]($style) '
 [git_status]
 disabled = false
 
+[haskell]
+format = '[$symbol($version )]($style)'
+
 [hg_branch]
 disabled = false
-format= '[$symbol$branch(:$topic)]($style) '
+format = '[$symbol$branch(:$topic)]($style) '
 
 [lua]
 format = '[$symbol($version )]($style)'
