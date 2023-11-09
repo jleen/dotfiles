@@ -4,7 +4,7 @@
 
 [core]
     # TODO: Don't hardcode ~/sv.
-	excludesfile = ~/sv/gitignore
+	excludesfile = "~/sv/git/gitignore"
     pager = delta
 	quotepath = off
 
