@@ -24,7 +24,11 @@ endif
 
 " Viminfo hygiene.
 if has("win32") || has("win64")
-    set viminfo+=n~/.viminfo
+    if has("nvim")
+        set viminfo+=n~/.nviminfo
+    else
+        set viminfo+=n~/.viminfo
+    endif
 endif
 
 " Netrw hygiene.
