@@ -15,4 +15,4 @@ fi
 
 local newline=$'\n'
 setopt prompt_subst
-PROMPT="$screenclear$title$newline%B%F{cyan}%~%f%b$screen$newline%B%F{blue}$starboat%f%b "
+PROMPT="$screenclear$title$newline%B%F{cyan}%~%f%b$screen\$SV_PROMPT_EXTRA$newline%B%F{blue}$starboat%f%b "

@@ -14,9 +14,11 @@ if [[ ! -x "$SV_STARSHIP_BIN" ]]; then
       local close="${SV_PROMPT_GIT_R:-]}$gitcolorend"
       local gitref=$(git symbolic-ref HEAD 2> /dev/null)
       if [[ -n $gitref ]] ; then
-        RPROMPT="$open${gitref#refs/heads/}$close"
+        #RPROMPT="$open${gitref#refs/heads/}$close"
+        SV_PROMPT_EXTRA=" %F{yellow}${gitref#refs/heads/}%f"
       else
-        RPROMPT=""
+        #RPROMPT=""
+        unset SV_PROMPT_EXTRA
       fi
     }
 
