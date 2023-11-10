@@ -1,6 +1,11 @@
 [dart]
 format = '[$symbol($version )]($style)'
 
+[env_var.WINDOW]
+format = '$symbol[$env_value]($style) '
+style = 'green'
+symbol = '🖥️'
+
 [git_branch]
 format = '[$symbol$branch(:$remote_branch)]($style) '
 
