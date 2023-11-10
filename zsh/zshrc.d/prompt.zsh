@@ -16,6 +16,9 @@ if [[ $TERM = (xterm*|rxvt*|screen) ]]; then
     local title="%{`print \\\\e`]0;$screen%~`print \\\\007`%}"
 fi
 
+# Are you local?
+[[ -n $SSH_CONNECTION ]] && local ssh="%B%F{green}$HOST%f%b "
+
 # Hack around annoying shell quote behavior.
 local newline=$'\n'
 
@@ -23,4 +26,4 @@ local newline=$'\n'
 setopt prompt_subst
 
 # Put it all together.
-PROMPT="$screenclear$title$newline%B%F{cyan}%~%f%b$screen\$SV_PROMPT_EXTRA$newline%B%F{blue}$starboat%f%b "
+PROMPT="$screenclear$title$newline$ssh%B%F{cyan}%~%f%b$screen\$SV_PROMPT_EXTRA$newline%B%F{blue}$starboat%f%b "
