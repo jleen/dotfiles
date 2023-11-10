@@ -11,13 +11,16 @@ if [[ -n $WINDOW ]]; then
     local screenclear="%{`print \\\\ek\\\\e\\\\134`%}"
 fi
 
-# Window title.
-if [[ $TERM = (xterm*|rxvt*|screen) ]]; then
-    local title="%{`print \\\\e`]0;$screen%~`print \\\\007`%}"
+# Are you local?
+if [[ -n $SSH_CONNECTION ]]; then
+    local ssh="%B%F{green}$HOST%f%b "
+    local xssh="$HOST "
 fi
 
-# Are you local?
-[[ -n $SSH_CONNECTION ]] && local ssh="%B%F{green}$HOST%f%b "
+# Window title.
+if [[ $TERM = (xterm*|rxvt*|screen) ]]; then
+    local title="%{`print \\\\e`]0;$xssh$screen%~`print \\\\007`%}"
+fi
 
 # Hack around annoying shell quote behavior.
 local newline=$'\n'
