@@ -126,7 +126,7 @@ endif
 
 if has("gui_gtk")
     function! s:set_font()
-        if len(g:sv_font)
+        if exists("g:sv_font") && len(g:sv_font)
             let &guifont=g:sv_font
         elseif len(getfontname('Monoid'))
             set guifont=Monoid\ 9
