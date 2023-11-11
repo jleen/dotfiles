@@ -11,7 +11,9 @@ export SVCONFIGDIR="${0:h:h}"
 if [[ $UID = 0 || $EUID = 0 ]]; then
   setopt PRIVILEGED
 else
-  source $SVCONFIGDIR/zsh/zshenv
+  source $SVCONFIGDIR/zsh/paths.zsh
+  source $SVCONFIGDIR/zsh/env.zsh
+
   [[ -f $SVCONFIGDIR/local/zshenv ]] && source $SVCONFIGDIR/local/zshenv
 
   if [[ -o INTERACTIVE ]]; then

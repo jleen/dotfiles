@@ -1,7 +1,3 @@
-# zshenv sets up environment variables that we want even if this is a
-# noninteractive shell, e.g. variables that we'd like to have available in
-# processes launched by wrapper scripts.
-
 # Make paths behave sanely (unique values only!) and make sure Saturn Valley
 # stuff is near the head.  Also add local stuff if it exists.
 typeset -U path fpath cdpath
@@ -17,10 +13,3 @@ export INPUTRC="$SVCONFIGDIR/readline/inputrc"
 export PYTHONSTARTUP="$SVCONFIGDIR/python/startup.py"
 export SCREENRC="$SVCONFIGDIR/screen/screenrc"
 export VIMINIT="source $SVCONFIGDIR/vim/startup.vim"
-
-# The less-important less.
-[[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
-
-export POETRY_VIRTUALENVS_IN_PROJECT=true
-export PIPENV_VENV_IN_PROJECT=1
-export OPEN_SOURCE_CONTRIBUTOR=true
