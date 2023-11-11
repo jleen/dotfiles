@@ -13,7 +13,7 @@ if type brew > /dev/null; then
 fi
 
 # Sort "top" by CPU use on OS X, where for some reason this isn't the default.
-[[ $SVPLATFORM = osx ]] && alias top='top -o cpu'
+[[ $OSTYPE = darwin* ]] && alias top='top -o cpu'
 
 # Show a man page in a gvim window.
 # TODO(jleen): Make this part of v.zsh and make it work on OS X.

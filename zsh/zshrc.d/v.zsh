@@ -1,5 +1,32 @@
 # Saturn Valley Pandimensional Uniform Editor Launcher
 
+# Figure out the sort of environment we're running on, so later tweaks can
+# behave appropriately.
+if [[ $OSTYPE = cygwin ]]; then
+  sv_v_platform=cygwin
+# TODO(jleen): Make the OS X check less bogus.
+elif [[ $TERM_PROGRAM = Apple_Terminal || $TERM_PROGRAM = iTerm.app ]]; then  
+  sv_v_platform=osx
+elif [[ -n $DISPLAY ]]; then
+  sv_v_platform=X11
+elif [[ -n $WINDOW ]]; then
+  sv_v_platform=screen
+else
+  sv_v_platform=vt
+fi
+
+if [[ `uname -r` = *Microsoft* || -n $WSL_INTEROP ]]; then
+  sv_v_linux=wsl
+fi
+
+# The all-important EDITOR.
+if [[ $sv_v_platform = X11 ]]; then
+  export EDITOR='gvim -f'
+else
+  export EDITOR='vi'
+fi
+export VISUAL=$EDITOR
+
 if [[ $SV_NEOVIDE_BIN ]]; then
   v () {
     if [[ $#* -gt 3 ]]; then
@@ -19,7 +46,7 @@ if [[ $SV_NEOVIDE_BIN ]]; then
     fi
   }
   alias vv='nvim -R -'
-elif [[ $SVLINUX = wsl ]]; then
+elif [[ $sv_v_linux = wsl ]]; then
   v () {
     if [[ $#* -gt 3 ]]; then
       if [[ $1 == -f ]]; then
@@ -61,7 +88,7 @@ elif [[ $svplatform = cygwin ]]; then
   }
   alias vv='gvim.bat -R -'
   alias vvv='givm.bat'
-elif [[ $SVPLATFORM = osx ]]; then
+elif [[ $sv_v_platform = osx ]]; then
   local macvim_dir=/Applications/MacVim.app/Contents/bin
   [[ -d $macvim_dir ]] && path+=$macvim_dir
 
@@ -98,7 +125,7 @@ else
         return 1
       fi
     fi
-    if [[ $SVPLATFORM = X11 ]]; then
+    if [[ $sv_v_platform = X11 ]]; then
       if [[ -z $* ]]; then
         gvim
       else
@@ -106,7 +133,7 @@ else
           gvim $fn
         done
       fi
-    elif [[ $SVPLATFORM = screen ]]; then
+    elif [[ $sv_v_platform = screen ]]; then
       if [[ -z $* ]]; then
         screen -t vi vi
       else
@@ -118,16 +145,16 @@ else
       vi $@
     fi
   }
-  # Check SVPLATFORM at invocation time, to support screen reattach.
+  # Check sv_v_platform at invocation time, to support screen reattach.
   vv () {
-    if [[ $SVPLATFORM = X11 ]]; then
+    if [[ $sv_v_platform = X11 ]]; then
       gvim -R -
     else
       vi -R -
     fi
   }
   vvv () {
-    if [[ $SVPLATFORM = X11 ]]; then
+    if [[ $sv_v_platform = X11 ]]; then
       gvim
     else
       vi

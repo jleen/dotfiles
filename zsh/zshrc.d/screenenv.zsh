@@ -58,7 +58,6 @@ if [[ -n $WINDOW && -n $SCREENENV ]]; then
         export $varname=$varval
       fi
     done
-    init_svplatform
   }
 
   precmd_functions+=snarf_screen_env
