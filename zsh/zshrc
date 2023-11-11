@@ -22,21 +22,12 @@ if [[ $UID != 0 && -z $SUDO_USER ]]; then
     fi
   fi
 
-  # Dot dee!
-  dot_dee () {
-    for rc in $1/*.zsh; do
-      source $rc
-    done
-  }
-
   setopt hist_ignore_all_dups
 
-  #bindkey "^?" backward-delete-char  # If needed.
-
-  dot_dee $SVCONFIGDIR/zsh/scripts
-
-  # But wait--there's more (maybe)!
-  [[ $SVPLATFORM = cygwin ]] && source $SVCONFIGDIR/cygwin/zshrc
+  # Pick up the rest of the configuration.
+  for rc in $SVCONFIGDIR/zsh/scripts/*.zsh; do
+    source $rc
+  done
 else
   # Minimal configuration for sudo shells.
   if [[ $UID != 0 ]]; then
