@@ -1,7 +1,7 @@
 # zshrc sets up aliases, bindings, and anything else that's only needed for
 # interactive shells.  This implementation is a stub that sets up basic options
 # that everything else depends on, then reads the rest of the configuration from
-# zshrc.d.
+# the "scripts" directory.
 
 if [[ $UID != 0 && -z $SUDO_USER ]]; then
   # Private temp dir.
@@ -33,7 +33,7 @@ if [[ $UID != 0 && -z $SUDO_USER ]]; then
 
   #bindkey "^?" backward-delete-char  # If needed.
 
-  dot_dee $SVCONFIGDIR/zsh/zshrc.d
+  dot_dee $SVCONFIGDIR/zsh/scripts
 
   # But wait--there's more (maybe)!
   [[ $SVPLATFORM = cygwin ]] && source $SVCONFIGDIR/cygwin/zshrc
