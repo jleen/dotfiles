@@ -10,14 +10,15 @@ export SVCONFIGDIR="${0:h:h}"
 # For root shells, don't do anything fancy.
 if [[ $UID = 0 || $EUID = 0 ]]; then
   setopt PRIVILEGED
-  source $SVCONFIGDIR/zsh/scripts/prompt.zsh
 else
   source $SVCONFIGDIR/zsh/zshenv
   [[ -f $SVCONFIGDIR/local/zshenv ]] && source $SVCONFIGDIR/local/zshenv
 
   if [[ -o INTERACTIVE ]]; then
       [[ -f $SVCONFIGDIR/local/zshrc-pre ]] && source $SVCONFIGDIR/local/zshrc-pre
-      source $SVCONFIGDIR/zsh/zshrc
+      for rc in $SVCONFIGDIR/zsh/zshrc.d/*.zsh; do
+        source $rc
+      done
       [[ -f $SVCONFIGDIR/local/zshrc ]] && source $SVCONFIGDIR/local/zshrc
   fi
 
