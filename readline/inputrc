@@ -1,9 +1,4 @@
-$if term=cygwin
-    set completion-ignore-case on
-$else
-    set input-meta off
-$endif
-
+set input-meta off
 set show-all-if-ambiguous on
 set bell-style none
 

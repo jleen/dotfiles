@@ -5,7 +5,6 @@
 # slackware version of dircolors) are recognized but ignored.
 
 # Below, there should be one TERM entry for each termtype that is colorizable
-TERM cygwin
 TERM linux
 TERM linux-c
 TERM mach-color

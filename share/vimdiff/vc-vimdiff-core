@@ -7,10 +7,6 @@ mkdir -p $TMPDIR/old $TMPDIR/new
 
 if [[ -x /usr/local/bin/mvim ]]; then
     VIM_BINARY=mvim
-elif [[ `uname` == CYGWIN* ]]; then
-    VIM_BINARY=gvim.bat
-    source $SVCONFIGDIR/cygwin/zshrc
-    SVCONFIGDIR=`cygpath -wa $SVCONFIGDIR`
 elif [[ $SVLINUX = wsl ]]; then
     VIM_BINARY="${SV_GVIM_EXE:-gvim.exe}"
 else

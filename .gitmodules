@@ -4,9 +4,6 @@
 [submodule "vim/bundle/javap"]
 	path = vim/pack/lang/start/javap
 	url = https://github.com/yuratomo/javap.vim.git
-[submodule "vim/bundle/vimpager"]
-	path = vim/pack/tool/start/vimpager
-	url = https://github.com/rkitover/vimpager.git
 [submodule "vim/bundle/lightline"]
 	path = vim/pack/tool/start/lightline
 	url = https://github.com/itchyny/lightline.vim
