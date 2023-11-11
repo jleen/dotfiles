@@ -60,15 +60,9 @@ set tags=tags;
 " Make mouse behave
 behave xterm
 set clipboard=unnamed
-"TODO: 'autoselect' is incompatible with yankring. Why?
-"set clipboard=unnamed,autoselect
 
 " Mouse in terminal
 set mouse=a
-
-" File format
-set encoding=utf-8
-set modelines=5
 
 " GUI display options
 if has("gui_running")
@@ -91,7 +85,6 @@ set guioptions+=a  " autoselect: xterm-style clipboard cut
 set guioptions-=T  " no toolbar
 
 hi normal guifg=gray90 guibg=black
-hi Hungarian guifg=gray70
 hi CursorLine guibg=gray20
 
 " Cursor line travels with focus.
@@ -117,11 +110,6 @@ if has ("gui_macvim")
         endif
     endfunction
     autocmd GUIEnter * call s:set_font()
-
-    let g:Tex_ViewRule_pdf='open -a Preview'
-    let g:Tex_CompileRule_pdf='latexmk -xelatex -interaction=nonstopmode $*'
-    let g:Tex_UseMakefile=0
-    let g:Tex_DefaultTargetFormat='pdf'
 endif
 
 if has("gui_gtk")
@@ -154,9 +142,7 @@ set scrolloff=3
 set foldlevelstart=1
 set showbreak=+ 
 set display=lastline
-if version >= 700
-    set completeopt=
-endif
+set completeopt=
 
 " Tabs
 set shiftwidth=4
@@ -167,28 +153,11 @@ set expandtab
 set ruler
 set showmode
 set showmatch
+set title
+
 if has('nvim')
     lua require('neoscroll').setup({ mappings = {'<C-d>', '<C-u>' }})
 endif
-
-" Emacs-style paragraph reflowing
-map <esc>q gqap
-
-" Coding conventions
-set cinoptions+=>s	" text inside braces is one sw in
-set cinoptions+=es	" indent 1 sw if { is not first char in prev line
-set cinoptions+=n0	" in 1 sw if no { after if
-set cinoptions+=f0	" open brace of func in column 0
-set cinoptions+==0  " no indent underneath a case
-set cinoptions+={0	" open brace 1 sw in
-set cinoptions+=(0  " line up inside parens
-
-" Error logs from msbuild.exe
-let &errorformat = &errorformat . ',%DProject\\ "%f\\[A-Za-z]%#.csproj"\\ (default\\ targets):'
-
-" C# errors
-set errorformat +=%f(%l\\,%c):\ warning\ CS%n:%m
-set errorformat +=%f(%l\\,%c):\ error\ CS%n:%m
 
 " It's your turn!
 if filereadable(escape(s:current_file, ' ') . "/../local/vimrc")
@@ -200,5 +169,3 @@ let s:wslpath=matchlist(getcwd(), '\\\\wsl$\\\([a-zA-Z]*\)\\')
 if len(s:wslpath) > 1
     let $HOME='\\wsl$\' . s:wslpath[1] . '\home\' . $USERNAME
 endif
-
-set title
