@@ -1,4 +1,0 @@
-#!/bin/sh
-
-setxkbmap -option 'ctrl:nocaps'
-setxkbmap -option 'lv3:lwin_switch'
