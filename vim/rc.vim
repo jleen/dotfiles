@@ -55,7 +55,3 @@ set ruler
 set showmode
 set showmatch
 set title
-
-if has('nvim')
-    lua require('neoscroll').setup({ mappings = {'<C-d>', '<C-u>' }})
-endif
