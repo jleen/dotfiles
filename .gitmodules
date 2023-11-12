@@ -1,18 +1,12 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/pack/theme/opt/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/javap"]
-	path = vim/pack/lang/start/javap
-	url = https://github.com/yuratomo/javap.vim.git
 [submodule "vim/bundle/lightline"]
 	path = vim/pack/tool/start/lightline
 	url = https://github.com/itchyny/lightline.vim
 [submodule "vim/bundle/landscape"]
 	path = vim/pack/theme/opt/landscape
 	url = https://github.com/itchyny/landscape.vim
-[submodule "vim/bundle/jinja2"]
-	path = vim/pack/lang/start/jinja2
-	url = https://github.com/Glench/Vim-Jinja2-Syntax
 [submodule "zsh/bundle/zsh-autosuggestions"]
 	path = zsh/bundle/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
