@@ -1,57 +1,67 @@
-" Netrw hygiene.
+" Store .netrwhist and .netrwbook in home directory.
 let g:netrw_home=$HOME
+
+" Suppress chatter during file transfers.
 let g:netrw_silent=1
 
-let g:python_highlight_all=1
-
-" HTML hygiene.
+" Do not want hokey HTML WYSIWYG.
 let html_no_rendering=1
 
-" Make buffers behave
+" Auto-reload files that are externally but not internally changed.
+" (This is the default for nvim but not vim.)
 set autoread
 
-" Make keystrokes behave
-set timeoutlen=1000
-set ttimeoutlen=50
+" One-second timeout for key sequences, but 50 ms for escape codes.
+" (This is the default for nvim but not vim.)
+set timeoutlen=1000 ttimeoutlen=50
 
-" Make tab behave
+" Tab completes longest ambiguous substring; double-tab lists alternatives.
 set wildmode=longest:list
 
-" Make search behave
-set ignorecase
-set smartcase
+" Ignore case if search string is all lowercase.
+set ignorecase smartcase
 
-" Look harder
-set tags=tags;
+" Right mouse button extends selection.
+set mousemodel=extend
 
-" Make mouse behave
-behave xterm
+" System clipboard at the top of the register stack.
 set clipboard=unnamed
 
-" Mouse in terminal
+" Mouse in terminal, all modes (including command line).
 set mouse=a
 
-" Wacky fun
-syntax on
-filetype plugin on
-filetype indent on
+" Turn on all filetype support.
+" (This is the default for nvim but not vim.)
+filetype plugin indent on
 
 " Editing behavior
-set backspace=2
-set autoindent
+" (This is the default for nvim but not vim.)
+set backspace=indent,eol,start autoindent display=lastline
+
+" Always show some context lines when scrolling.
 set scrolloff=3
+
+" Start with one fold expanded.
 set foldlevelstart=1
+
+" Visually indicate continued lines.
 set showbreak=+ 
-set display=lastline
+
+" Less visual noise when tab completing.
 set completeopt=
 
-" Tabs
+" Indent 4 columns and never insert tabs.
 set shiftwidth=4
 set tabstop=4
 set expandtab
 
-" Terminal display options
+" Always show the ruler.
+" (This is the default for nvim but not vim.)
 set ruler
-set showmode
+
+" Highlight match while searching (like Emacs i-search).
 set showmatch
+
+" Always try to set the window title.
+" (I'm not quite sure why this is isn't the nvim default.)
 set title
