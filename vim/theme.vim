@@ -26,24 +26,10 @@ else
     if has("gui_win32")
         set guifont=Cascadia_Code_PL:h10:cANSI,Lucida_Console:h10:cANSI
     elseif has ("gui_macvim")
-        set transparency=0  " No, thank you.
-        function! s:set_font()
-            if len(getfontname('Monoid'))
-                set guifont=Monoid:h14
-                let g:big_font="Monoid:h18"
-            else
-                set guifont=Menlo_Regular:h13
-                let g:big_font="Menlo_Regular:h17"
-            endif
-        endfunction
-        autocmd GUIEnter * call s:set_font()
+        set guifont=Monoid:h14,Menlo_Regular:h13
+        let g:big_font="Monoid:h18,Menlo_Regular:h17"
     elseif has("gui_gtk")
-        function! s:set_font()
-            else
-                set guifont=Monospace\ 12
-                let g:big_font="Monospace 16"
-            endif
-        endfunction
-        autocmd GUIEnter * call s:set_font()
+        set guifont=Monospace\ 12
+        let g:big_font="Monospace 16"
     endif
 endif
