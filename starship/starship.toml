@@ -1,6 +1,8 @@
 [dart]
 format = '[$symbol($version )]($style)'
 
+[elm]
+format = '[$symbol($version )]($style) '
 [env_var.WINDOW]
 format = '$symbol[$env_value]($style) '
 style = 'green'
@@ -19,6 +21,8 @@ format = '[$symbol($version )]($style)'
 disabled = false
 format = '[$symbol$branch(:$topic)]($style) '
 
+[java]
+format = '[$symbol($version )]($style)'
 [lua]
 format = '[$symbol($version )]($style)'
 
