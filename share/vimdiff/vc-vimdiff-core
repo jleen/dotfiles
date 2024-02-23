@@ -5,12 +5,14 @@ export TMPFILE=`mktemp $TEMPLATE`
 export TMPDIR=`mktemp -d $TEMPLATE`
 mkdir -p $TMPDIR/old $TMPDIR/new
 
-if [[ -x /usr/local/bin/mvim ]]; then
-    VIM_BINARY=mvim
+if [[ -n $SV_VIMR_BIN ]]; then
+    VIM_BINARY='vimr --wait --nvim'
+elif [[ -x /usr/local/bin/mvim ]]; then
+    VIM_BINARY='mvim -f'
 elif [[ $SVLINUX = wsl ]]; then
     VIM_BINARY="${SV_GVIM_EXE:-gvim.exe}"
 else
-    VIM_BINARY=gvim
+    VIM_BINARY='gvim -f'
 fi
 
 cleanup() {
@@ -24,5 +26,5 @@ echo >> $TMPFILE
 # TODO(jleen): Comment preserved from ancestor.  What does it mean?
 # save STDIN to restore for vimdiff
 exec 7<&0
-eval "\"$VIM_BINARY\" -f '+so $SVCONFIGDIR/share/vimdiff/multidiff.vim' `cat $TMPFILE`"
+eval "$VIM_BINARY '+so $SVCONFIGDIR/share/vimdiff/multidiff.vim' `cat $TMPFILE`"
 cleanup

@@ -89,32 +89,55 @@ elif [[ $svplatform = cygwin ]]; then
   alias vv='gvim.bat -R -'
   alias vvv='givm.bat'
 elif [[ $sv_v_platform = osx ]]; then
-  local macvim_dir=/Applications/MacVim.app/Contents/bin
-  [[ -d $macvim_dir ]] && path+=$macvim_dir
-
-  v () {
-    if [[ $#* -gt 3 ]]; then
-      if [[ $1 == -f ]]; then
-        shift
-      else
-        echo 'Specify -f to edit lots of files at once.'
-        return 1
+  if [[ -n $SV_VIMR_BIN ]]; then
+    v () {
+      if [[ $#* -gt 3 ]]; then
+        if [[ $1 == -f ]]; then
+          shift
+        else
+          echo 'Specify -f to edit lots of files at once.'
+          return 1
+        fi
       fi
-    fi
-    if [[ -z $* ]]; then
-      mvim
-    else
-      local groggy sleeping
-      pgrep -qx MacVim || groggy=1
-      for fn in $@; do
-        [[ -n $sleeping ]] && sleep 0.3 && unset sleeping
-        mvim $fn
-        [[ -n $groggy ]] && sleeping=1 && unset groggy
-      done
-    fi
-  }
-  alias vv='mvim -R - > /dev/null'
-  alias vvv='mvim -R'
+      if [[ -z $* ]]; then
+        vimr
+      else
+        vimr -s $*
+      fi
+    }
+  else
+    local macvim_dir=/Applications/MacVim.app/Contents/bin
+    [[ -d $macvim_dir ]] && path+=$macvim_dir
+
+    v () {
+      if [[ $#* -gt 3 ]]; then
+        if [[ $1 == -f ]]; then
+          shift
+        else
+          echo 'Specify -f to edit lots of files at once.'
+          return 1
+        fi
+      fi
+      if [[ -z $* ]]; then
+        mvim
+      else
+        local groggy sleeping
+        pgrep -qx MacVim || groggy=1
+        for fn in $@; do
+          [[ -n $sleeping ]] && sleep 0.3 && unset sleeping
+          mvim $fn
+          [[ -n $groggy ]] && sleeping=1 && unset groggy
+        done
+      fi
+    }
+  fi
+  if [[ -n $SV_NVIM_BIN ]]; then
+    alias vv='nvim -R -'
+    alias vv='nvim'
+  else
+    alias vv='mvim -R - > /dev/null'
+    alias vvv='mvim -R'
+  fi
 else
   v () {
     if [[ $#* -gt 3 ]]; then
