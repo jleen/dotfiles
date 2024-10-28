@@ -55,3 +55,6 @@
 [submodule "vim/pack/lspconfig/opt/lspconfig"]
 	path = vim/pack/lspconfig/opt/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig
+[submodule "vim/pack/tool/start/vindent.vim"]
+	path = vim/pack/tool/start/vindent.vim
+	url = https://github.com/jessekelighine/vindent.vim
