@@ -41,7 +41,8 @@ if [[ $SV_NEOVIDE_BIN ]]; then
       spawn "$SV_NEOVIDE_BIN" --wsl
     else
       for fn in $@; do
-        spawn "$SV_NEOVIDE_BIN" --wsl "\"$fn\""
+        # We use -- to work around https://github.com/neovide/neovide/issues/2689
+        spawn "$SV_NEOVIDE_BIN" --wsl -- "\"$fn\""
       done
     fi
   }
