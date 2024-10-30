@@ -41,6 +41,8 @@ if len(s:wslpath) > 1
     let $HOME='\\wsl$\' . s:wslpath[1] . '\home\' . $USERNAME
 endif
 
+let g:neovide_cursor_animate_command_line = v:false
+
 let g:vindent_motion_OO_prev   = '[=' " jump to prev block of same indent.
 let g:vindent_motion_OO_next   = ']=' " jump to next block of same indent.
 let g:vindent_motion_more_prev = '[+' " jump to prev line with more indent.
