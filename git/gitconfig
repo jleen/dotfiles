@@ -1,15 +1,18 @@
+[include]
+    path = "~/sv/delta/themes/catppuccin/catppuccin.gitconfig"
+
 [user]
-	email = jleen@saturnvalley.org
-	name = John Leen
+    email = jleen@saturnvalley.org
+    name = John Leen
 
 [core]
     # TODO: Don't hardcode ~/sv.
-	excludesfile = "~/sv/git/gitignore"
+    excludesfile = "~/sv/git/gitignore"
     pager = delta
-	quotepath = off
+    quotepath = off
 
 [delta]
-    syntax-theme = "Spitfire (rainglow)"
+    features = catppuccin-frappe
     navigate = true
 
 [interactive]
