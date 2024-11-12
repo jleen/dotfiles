@@ -67,3 +67,6 @@
 [submodule "zsh/bundle/catppuccin-syntax-highlighting"]
 	path = zsh/bundle/catppuccin-syntax-highlighting
 	url = https://github.com/catppuccin/zsh-syntax-highlighting
+[submodule "eza/eza-community-themes"]
+	path = eza/eza-community-themes
+	url = https://github.com/eza-community/eza-themes
