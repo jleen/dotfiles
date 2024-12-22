@@ -8,6 +8,7 @@ set scrolloff=3  " Always show some context lines when scrolling.
 set shiftwidth=4 tabstop=4 expandtab  " Indent 4 cols; never insert tabs.
 set showbreak=+  " Visually indicate continued lines.
 set showmatch  " Highlight match while searching (like Emacs i-search).
+set noshowmode  " Don't need the mode since we have lightline.
 set title  " Always try to set the window title.  (Not the nvim default; why?)
 set wildmode=longest:list  " Tab complete longest unambiguous and show choices.
 
