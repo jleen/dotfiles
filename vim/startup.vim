@@ -35,6 +35,10 @@ if filereadable(escape(s:current_file, ' ') . "/../local/vimrc")
   exec "source " . escape(s:current_file, ' ') . "/../local/vimrc"
 endif
 
+if has('nvim') && filereadable(escape(s:current_file, ' ') . "/../local/vimrc")
+  exec "source " . escape(s:current_file, ' ') . "/../local/vim.lua"
+endif
+
 " Hack the WSL.
 let s:wslpath=matchlist(getcwd(), '\\\\wsl$\\\([a-zA-Z]*\)\\')
 if len(s:wslpath) > 1
