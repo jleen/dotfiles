@@ -2,7 +2,7 @@ Saturn Valley Dotfiles of Doom
 ==============================
 
 Contains jleen's lovingly hand-wrangled battle-scarred Unix config that has
-been evolving for over a decade of fun-filled whimsy.
+been evolving for over two decades of fun-filled whimsy.
 
 Installation
 ------------
