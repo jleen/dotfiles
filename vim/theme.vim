@@ -19,6 +19,7 @@ endif
 set winaltkeys=no  " On Windows, don't use Alt for menus.
 set guioptions-=T  " On Windows, don't show the toolbar.
 set guioptions+=a  " On X, Visual mode sets the global selection.
+let g:neovide_cursor_animate_command_line = v:false  " Fast jump to cmdline.
 
 if exists("g:sv_font") && len(g:sv_font)
     let &guifont=g:sv_font
