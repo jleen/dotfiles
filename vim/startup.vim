@@ -31,6 +31,9 @@ exec "source " . escape(s:current_file, ' ') . "/rc.vim"
 exec "source " . escape(s:current_file, ' ') . "/theme.vim"
 
 " It's your turn!
+exec "set packpath=" . escape(s:current_file, ' ') . "/../local/vim,"
+                   \ . escape(&packpath, ' ') . ","
+
 if filereadable(escape(s:current_file, ' ') . "/../local/vimrc")
   exec "source " . escape(s:current_file, ' ') . "/../local/vimrc"
 endif
