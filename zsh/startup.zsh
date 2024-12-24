@@ -1,7 +1,7 @@
-# zshenv sets up environment variables that we want even if this is a
-# noninteractive shell, e.g. variables that we'd like to have available in
-# processes launched by wrapper scripts.
-
+# FRONT DOOR for this entire dotfile empire.
+# Bootstrap both the global and the local shell initialization.
+# Global shell initialization will also configure the editor and tools.
+#
 [[ -n $1 ]] && HOST=$1
 [[ -n $2 ]] && SHELLCOLOR=$2
 
