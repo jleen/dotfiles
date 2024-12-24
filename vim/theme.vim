@@ -31,5 +31,8 @@ else
     elseif has("gui_gtk")
         set guifont=Monospace\ 12
         let g:big_font="Monospace 16"
+    elseif has("nvim") && has("gui_running")
+        set guifont=Cascadia_Mono_PL:h12
+        let g:big_font="Cascadia_Mono_PL:h16"
     endif
 endif
