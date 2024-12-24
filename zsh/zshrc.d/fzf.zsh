@@ -1,3 +1,5 @@
+[[ -z $SV_FZF_BIN ]] && [[ -x /usr/bin/fzf ]] && SV_FZF_BIN=/usr/bin/fzf
+
 # Maybe the whole package is installed.
 if [[ -z "$SV_FZF_DIR" && -d /usr/share/doc/fzf/examples ]]; then
     SV_FZF_DIR=/usr/share/doc/fzf/examples

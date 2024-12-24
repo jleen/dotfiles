@@ -1,3 +1,4 @@
+[[ -z $SV_STARSHIP_BIN ]] && [[ -x ~/.cargo/bin/starship ]] && SV_STARSHIP_BIN=~/.cargo/bin/starship
 export STARSHIP_CONFIG="$SVCONFIGDIR/starship/starship.toml"
 if [[ -x "$SV_STARSHIP_BIN" ]]; then
     eval "$($SV_STARSHIP_BIN init zsh)"

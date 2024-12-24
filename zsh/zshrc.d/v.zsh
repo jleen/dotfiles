@@ -19,8 +19,12 @@ if [[ `uname -r` = *Microsoft* || -n $WSL_INTEROP ]]; then
   sv_v_linux=wsl
 fi
 
+# Find NeoVim if we can.
+[[ -z $SV_NVIM_BIN ]] && whence -p nvim > /dev/null && SV_NVIM_BIN=`whence -p nvim`
 # The all-important EDITOR.
-if [[ $sv_v_platform = X11 ]]; then
+if [[ -n $SV_NVIM_BIN ]]; then
+  export EDITOR='nvim'
+elif [[ $sv_v_platform = X11 ]]; then
   export EDITOR='gvim -f'
 else
   export EDITOR='vi'

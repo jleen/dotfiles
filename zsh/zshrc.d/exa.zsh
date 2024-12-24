@@ -1,4 +1,4 @@
-for exa_bin in "$SV_EXA_BIN" ./cargo/bin/exa /usr/local/bin/exa; do
+for exa_bin in "$SV_EXA_BIN" ./cargo/bin/exa /usr/local/bin/exa /usr/bin/eza; do
     if [[ -x $exa_bin ]]; then
         unalias ls
         function ls () {
