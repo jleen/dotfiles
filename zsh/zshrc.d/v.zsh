@@ -1,8 +1,11 @@
 # Saturn Valley Pandimensional Uniform Editor Launcher
 
-# Figure out the sort of environment we're running on, so later tweaks can
-# behave appropriately.
-if [[ $OSTYPE = cygwin ]]; then
+# Figure out the sort of environment we're running on,
+# so later tweaks can behave appropriately.
+local sv_v_platform
+if [[ `uname -r` = *Microsoft* || -n $WSL_INTEROP ]]; then
+  sv_v_platform=wsl
+elif [[ $OSTYPE = cygwin ]]; then
   sv_v_platform=cygwin
 # TODO(jleen): Make the OS X check less bogus.
 elif [[ $TERM_PROGRAM = Apple_Terminal || $TERM_PROGRAM = iTerm.app ]]; then  
@@ -15,12 +18,9 @@ else
   sv_v_platform=vt
 fi
 
-if [[ `uname -r` = *Microsoft* || -n $WSL_INTEROP ]]; then
-  sv_v_linux=wsl
-fi
-
 # Find NeoVim if we can.
 [[ -z $SV_NVIM_BIN ]] && whence -p nvim > /dev/null && SV_NVIM_BIN=`whence -p nvim`
+echo $SV_NVIM_BIN
 # The all-important EDITOR.
 if [[ -n $SV_NVIM_BIN ]]; then
   export EDITOR='nvim'
@@ -51,7 +51,7 @@ if [[ $SV_NEOVIDE_BIN ]]; then
     fi
   }
   alias vv='nvim -R -'
-elif [[ $sv_v_linux = wsl ]]; then
+elif [[ $sv_v_platform = wsl ]]; then
   v () {
     if [[ $#* -gt 3 ]]; then
       if [[ $1 == -f ]]; then
