@@ -32,6 +32,11 @@ function () {
   fi
   export VISUAL=$EDITOR
 
+  # It’s a long shot on most platforms, but harmless to check.
+  if [ -x '/mnt/c/Program Files/Neovide/neovide.exe' ]; then
+    SV_NEOVIDE_BIN='/mnt/c/Program Files/Neovide/neovide.exe'
+  fi
+
   if [[ $SV_NEOVIDE_BIN ]]; then
     v () {
       if [[ $#* -gt 3 ]]; then
