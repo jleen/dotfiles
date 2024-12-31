@@ -21,7 +21,7 @@ function () {
 
   # Find NeoVim if we can.
   [[ -z $SV_NVIM_BIN ]] && whence -p nvim > /dev/null && SV_NVIM_BIN=`whence -p nvim`
-  echo $SV_NVIM_BIN
+
   # The all-important EDITOR.
   if [[ -n $SV_NVIM_BIN ]]; then
     export EDITOR='nvim'
