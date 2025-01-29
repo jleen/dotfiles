@@ -20,7 +20,7 @@ function () {
   fi
 
   # Find NeoVim if we can.
-  [[ -z $SV_NVIM_BIN ]] && whence -p nvim > /dev/null && SV_NVIM_BIN=`whence -p nvim`
+  [[ -z $SV_NVIM_BIN ]] && whence -p nvim > /dev/null && export SV_NVIM_BIN=`whence -p nvim`
 
   # The all-important EDITOR.
   if [[ -n $SV_NVIM_BIN ]]; then
@@ -34,7 +34,7 @@ function () {
 
   # It’s a long shot on most platforms, but harmless to check.
   if [ -x '/mnt/c/Program Files/Neovide/neovide.exe' ]; then
-    SV_NEOVIDE_BIN='/mnt/c/Program Files/Neovide/neovide.exe'
+    export SV_NEOVIDE_BIN='/mnt/c/Program Files/Neovide/neovide.exe'
   fi
 
   if [[ $SV_NEOVIDE_BIN ]]; then
