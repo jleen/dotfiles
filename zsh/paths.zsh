@@ -8,7 +8,6 @@ fpath[1,0]=$SVCONFIGDIR/zsh/functions
 # Where to find a few config files.  We override the default location via
 # environment variables so the user doesn't have to create stubs in $HOME.
 export BAT_CONFIG_PATH="$SVCONFIGDIR/bat/batconfig"
-export GIT_CONFIG_GLOBAL="$SVCONFIGDIR/git/gitconfig"
 export INPUTRC="$SVCONFIGDIR/readline/inputrc"
 export PYTHONSTARTUP="$SVCONFIGDIR/python/startup.py"
 export SCREENRC="$SVCONFIGDIR/screen/screenrc"
