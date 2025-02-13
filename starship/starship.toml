@@ -115,6 +115,9 @@ crust = "#11111b"
 [dart]
 format = '[$symbol($version )]($style)'
 
+[dotnet]
+format = '[(🎯 $tfm )($version )]($style)'
+
 [elm]
 format = '[$symbol($version )]($style) '
 
