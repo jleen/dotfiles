@@ -1,11 +1,9 @@
-Saturn Valley Dotfiles of Doom
-==============================
+# Saturn Valley Dotfiles of Destiny
 
 Contains jleen's lovingly hand-wrangled battle-scarred Unix config that has
 been evolving for over two decades of fun-filled whimsy.
 
-Installation
-------------
+## Installation
 
 Source zsh/startup.zsh from your zshenv.  Pass it a prompt title and prompt
 color as arguments.
