@@ -1,5 +1,14 @@
-[[ -z $SV_STARSHIP_BIN ]] && [[ -x ~/.cargo/bin/starship ]] && SV_STARSHIP_BIN=~/.cargo/bin/starship
-[[ -z $SV_STARSHIP_BIN ]] && [[ -x /snap/starship/current/bin/starship ]] && SV_STARSHIP_BIN=/snap/starship/current/bin/starship
+try_set_bin() {
+    local varname="$1"
+    shift
+
+    for candidate in "$@"; do
+        eval "[[ -z $`echo $varname` ]] && [[ -x \"`echo $candidate`\" ]] && `echo $varname`=\"`echo $candidate`\""
+    done
+}
+
+try_set_bin SV_STARSHIP_BIN ~/.local/bin/starship ~/.cargo/bin/starship /snap/starship/current/bin/starship
+
 export STARSHIP_CONFIG="$SVCONFIGDIR/starship/starship.toml"
 if [[ -x "$SV_STARSHIP_BIN" ]]; then
     eval "$($SV_STARSHIP_BIN init zsh)"
