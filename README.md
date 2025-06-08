@@ -19,3 +19,15 @@ but too many tools automatically edit your gitconfig. You want something like:
 [include]
     path = "~/sv/git/gitconfig"
 ```
+
+## Optional Dependencies
+
+The following will be autoconfigured if present.
+
+* neovim (ideally the latest AppImage from GitHub)
+* starship (again from GitHub)
+* `apt install zsh eza git-delta fzf ripgrep`
+
+## Theming
+
+You might want to configure Vim fonts in `local/pre.vim`.
