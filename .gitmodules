@@ -18,13 +18,13 @@
 	url = https://github.com/sainnhe/gruvbox-material
 [submodule "vim/bundle/edge"]
 	path = vim/pack/theme/opt/edge
-	url = git@github.com:sainnhe/edge
+	url = https://github.com/sainnhe/edge
 [submodule "vim/bundle/sonokai"]
 	path = vim/pack/theme/opt/sonokai
-	url = git@github.com:sainnhe/sonokai
+	url = https://github.com/sainnhe/sonokai
 [submodule "vim/bundle/forest-night"]
 	path = vim/pack/theme/opt/forest-night
-	url = git@github.com:sainnhe/forest-night
+	url = https://github.com/sainnhe/forest-night
 [submodule "vim/bundle/tokyonight-vim"]
 	path = vim/pack/theme/opt/tokyonight
 	url = https://github.com/ghifarit53/tokyonight-vim
