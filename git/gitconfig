@@ -11,6 +11,9 @@
     pager = delta
     quotepath = off
 
+[push]
+    autoSetupRemote = true
+
 [delta]
     features = catppuccin-frappe
     navigate = true
