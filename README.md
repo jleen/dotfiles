@@ -26,8 +26,13 @@ The following will be autoconfigured if present.
 
 * neovim (ideally the latest AppImage from GitHub)
 * starship (again from GitHub)
-* `apt install zsh eza git-delta fzf ripgrep`
+* `apt install zsh eza git-delta fzf ripgrep bat`
+* `bat cache --build --source /home/jleen/sv/bat`
 
 ## Theming
 
-You might want to configure Vim fonts in `local/pre.vim`.
+You might want to configure Vim fonts in `local/pre.vim`, e.g.
+```
+let g:sv_font="Garply_Sans:h12"
+let g:big_font="Garply_Sans:h18"
+```
