@@ -1,2 +1,0 @@
-#!/bin/sh
-$SVCONFIGDIR/share/vimdiff/vc-vimdiff-core "PAGER=cat GIT_EXTERNAL_DIFF=\"$SVCONFIGDIR/share/vimdiff/collect-git-vimdiff\" git diff $*"

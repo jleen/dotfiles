@@ -1,2 +1,0 @@
-#!/bin/sh
-$SVCONFIGDIR/share/vimdiff/vc-vimdiff-core "svn diff \"$@\" --diff-cmd $SVCONFIGDIR/share/vimdiff/collect-svn-vimdiff"
