@@ -26,7 +26,7 @@ The following will be autoconfigured if present.
 
 * neovim (ideally the latest AppImage from GitHub)
 * starship (again from GitHub)
-* `apt install zsh eza git-delta fzf ripgrep bat`
+* `apt install zsh eza git-delta fzf ripgrep bat zoxide`
 * `bat cache --build --source /home/jleen/sv/bat`
 
 ## Theming
