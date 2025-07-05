@@ -1,6 +1,9 @@
 # Saturn Valley Pandimensional Uniform Editor Launcher
 
 function () {
+  # Silently spawn an unowned process.
+  spawn () { ($* > /dev/null 2>&1 &) }
+
   # Figure out the sort of environment we're running on,
   # so later tweaks can behave appropriately.
   local sv_v_platform
