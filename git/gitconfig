@@ -18,6 +18,12 @@
     features = catppuccin-frappe
     navigate = true
 
+[diff]
+    tool = nvimdiff
+
+[difftool]
+    prompt = false
+
 [interactive]
     diffFilter = delta --color-only
 
