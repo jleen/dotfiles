@@ -42,7 +42,7 @@ if filereadable(escape(s:current_file, ' ') . "/../local/vimrc")
   exec "source " . escape(s:current_file, ' ') . "/../local/vimrc"
 endif
 
-if has('nvim') && filereadable(escape(s:current_file, ' ') . "/../local/vimrc")
+if has('nvim') && filereadable(escape(s:current_file, ' ') . "/../local/vim.lua")
   exec "source " . escape(s:current_file, ' ') . "/../local/vim.lua"
 endif
 
