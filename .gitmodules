@@ -73,6 +73,6 @@
 [submodule "vim/pack/tool/start/vindent"]
 	path = vim/pack/tool/start/vindent
 	url = https://github.com/jessekelighine/vindent.vim
-[submodule "vim/pack/tool/start/diffview.nvim"]
-	path = vim/pack/tool/start/diffview.nvim
+[submodule "vim/pack/tool/start/diffview"]
+	path = vim/pack/tool/start/diffview
 	url = https://github.com/sindrets/diffview.nvim
