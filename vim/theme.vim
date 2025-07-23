@@ -23,19 +23,17 @@ if !has("nvim")
 endif
 let g:neovide_cursor_animate_command_line = v:false  " Fast jump to cmdline.
 
-if exists("g:sv_font") && len(g:sv_font)
-    let &guifont=g:sv_font
-else
+if !(exists("g:sv_font") && len(g:sv_font))
     if has("gui_win32")
-        set guifont=Cascadia_Code_PL:h10:cANSI,Lucida_Console:h10:cANSI
+        let g:sv_font="Cascadia_Code_PL:h10:cANSI,Lucida_Console:h10:cANSI"
     elseif has ("gui_macvim")
-        set guifont=Monoid:h14,Menlo_Regular:h13
+        let g:sv_font="Monoid:h14,Menlo_Regular:h13"
         let g:big_font="Monoid:h18,Menlo_Regular:h17"
     elseif has("gui_gtk")
-        set guifont=Monospace\ 12
+        let g:sv_font=Monospace\ 12
         let g:big_font="Monospace 16"
     elseif has("nvim") && has("gui_running")
-        set guifont=Cascadia_Mono_PL:h12
+        let g:sv_font="Cascadia_Mono_PL_Blart:h12"
         let g:big_font="Cascadia_Mono_PL:h16"
     endif
 endif

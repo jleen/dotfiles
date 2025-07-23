@@ -42,6 +42,10 @@ if has('nvim') && filereadable(escape(s:current_file, ' ') . "/../local/vim.lua"
   exec "source " . escape(s:current_file, ' ') . "/../local/vim.lua"
 endif
 
+" Set the font as late as possible, to allow local overrides
+" without triggering an error if the default isn’t on this system.
+let &guifont=g:sv_font
+
 " Hack the WSL.
 let s:wslpath=matchlist(getcwd(), '\\\\wsl$\\\([a-zA-Z]*\)\\')
 if len(s:wslpath) > 1
