@@ -27,10 +27,6 @@ if has("win32") || has("win64")
     endif
 endif
 
-if filereadable(escape(s:current_file, ' ') . "/../local/pre.vim")
-  exec "source " . escape(s:current_file, ' ') . "/../local/pre.vim"
-endif
-
 exec "source " . escape(s:current_file, ' ') . "/rc.vim"
 exec "source " . escape(s:current_file, ' ') . "/theme.vim"
 
