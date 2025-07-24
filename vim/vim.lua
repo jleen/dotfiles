@@ -28,7 +28,6 @@ pcall(function()
     lspconfig.dartls.setup {}
     lspconfig.hls.setup {}
     lspconfig.ts_ls.setup {}
-    lspconfig.haxe_language_server.setup {}
     lspconfig.purescriptls.setup {}
 
     lspconfig.pyright.setup {
@@ -37,6 +36,11 @@ pcall(function()
             config.settings.python.pythonPath =
                 vim.trim(vim.fn.system('uv run --project "' .. root_dir .. '" which python'))
         end
+    }
+
+    lspconfig.haxe_language_server.setup {
+        -- If it’s anywhere then it’s here.
+        cmd = {'node', vim.env.HOME .. '/src/haxe-language-server/bin/server.js'}
     }
 
     require('lspconfig.ui.windows').default_options = {
