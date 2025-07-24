@@ -49,6 +49,10 @@ endif
 " without triggering an error if the default isn’t on this system.
 let &guifont=g:sv_font
 
+" Seems to be necessary to pick up ftdetect in packs.
+" See https://github.com/vim/vim/issues/1679
+runtime! START ftdetect/*.vim
+
 " Hack the WSL.
 let s:wslpath=matchlist(getcwd(), '\\\\wsl$\\\([a-zA-Z]*\)\\')
 if len(s:wslpath) > 1
