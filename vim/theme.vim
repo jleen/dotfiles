@@ -33,7 +33,7 @@ if !(exists("g:sv_font") && len(g:sv_font))
         let g:sv_font=Monospace\ 12
         let g:big_font="Monospace 16"
     elseif has("nvim") && has("gui_running")
-        let g:sv_font="Cascadia_Mono_PL_Blart:h12"
+        let g:sv_font="Cascadia_Mono_PL:h12"
         let g:big_font="Cascadia_Mono_PL:h16"
     endif
 endif
