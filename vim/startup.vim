@@ -54,5 +54,3 @@ let s:wslpath=matchlist(getcwd(), '\\\\wsl$\\\([a-zA-Z]*\)\\')
 if len(s:wslpath) > 1
     let $HOME='\\wsl$\' . s:wslpath[1] . '\home\' . $USERNAME
 endif
-
-
