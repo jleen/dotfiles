@@ -29,6 +29,9 @@ endif
 
 exec "source " . escape(s:current_file, ' ') . "/rc.vim"
 exec "source " . escape(s:current_file, ' ') . "/theme.vim"
+if has('nvim')
+  exec "source " . escape(s:current_file, ' ') . "/vim.lua"
+endif
 
 " It's your turn!
 exec "set packpath=" . escape(s:current_file, ' ') . "/../local/vim,"
