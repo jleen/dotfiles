@@ -1,9 +1,6 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/pack/theme/opt/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/lightline"]
-	path = vim/pack/tool/start/lightline
-	url = https://github.com/itchyny/lightline.vim
 [submodule "vim/bundle/landscape"]
 	path = vim/pack/theme/opt/landscape
 	url = https://github.com/itchyny/landscape.vim
@@ -79,3 +76,9 @@
 [submodule "vim/pack/tool/start/fugitive"]
 	path = vim/pack/tool/start/fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/pack/tool/start/lualine"]
+	path = vim/pack/tool/start/lualine
+	url = https://github.com/nvim-lualine/lualine.nvim
+[submodule "vim/pack/tool/start/devicons"]
+	path = vim/pack/tool/start/devicons
+	url = https://github.com/nvim-tree/nvim-web-devicons

@@ -6,7 +6,6 @@ if has("gui_running") || &t_Co >= 256
     set background=dark
     colorscheme paisaje
     set laststatus=2  " Every window has a status line.
-    let g:lightline = { 'colorscheme': 'landscape' }
 
     " Highlight cursor line in focused window only.
     set cursorline

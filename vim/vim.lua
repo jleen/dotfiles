@@ -3,7 +3,8 @@
 vim.cmd.packadd('catppuccin')
 require('catppuccin').setup({ show_end_of_buffer = true })
 vim.cmd.colorscheme 'catppuccin-mocha'
-vim.g.lightline = { colorscheme = 'catppuccin' }
+
+require('lualine').setup()
 
 
 --== T R E E S I T T E R ==-
