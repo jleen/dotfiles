@@ -4,10 +4,19 @@ vim.cmd.packadd('catppuccin')
 require('catppuccin').setup({ show_end_of_buffer = true })
 vim.cmd.colorscheme 'catppuccin-mocha'
 
-require('lualine').setup()
+-- By default, Lualine’s diff status uses colors from the current Vim theme (instead of the Lualine theme).
+-- This creates awkwardness when (e.g.) the Vim theme is dark and the Lualine theme is light.
+-- So we manually extract some relevant colors from our intended Lualine theme and feed them in.
+vim.cmd.highlight('LuaLineDiffAdd', 'guifg=' .. require('catppuccin.palettes').get_palette('latte').green)
+vim.cmd.highlight('LuaLineDiffChange', 'guifg=' .. require('catppuccin.palettes').get_palette('latte').yellow)
+vim.cmd.highlight('LuaLineDiffDelete', 'guifg=' .. require('catppuccin.palettes').get_palette('latte').red)
+
+require('lualine').setup {
+    options = { theme = 'catppuccin-latte' }
+}
 
 
---== T R E E S I T T E R ==-
+--== T R E E S I T T E R ==--
 
 pcall(function()
     vim.cmd.packadd('treesitter')
