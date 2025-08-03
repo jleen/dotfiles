@@ -4,9 +4,6 @@
 [submodule "zsh/bundle/zsh-syntax-highlighting"]
 	path = zsh/bundle/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "vim/pack/tool/start/goyo"]
-	path = vim/pack/tool/start/goyo
-	url = https://github.com/junegunn/goyo.vim
 [submodule "bat/themes/rainglow"]
 	path = bat/themes/rainglow
 	url = https://github.com/rainglow/sublime
