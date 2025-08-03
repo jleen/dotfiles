@@ -1,51 +1,15 @@
-[submodule "vim/bundle/solarized"]
-	path = vim/pack/theme/opt/solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/landscape"]
-	path = vim/pack/theme/opt/landscape
-	url = https://github.com/itchyny/landscape.vim
 [submodule "zsh/bundle/zsh-autosuggestions"]
 	path = zsh/bundle/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "zsh/bundle/zsh-syntax-highlighting"]
 	path = zsh/bundle/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "vim/bundle/gruvbox-material"]
-	path = vim/pack/theme/opt/gruvbox-material
-	url = https://github.com/sainnhe/gruvbox-material
-[submodule "vim/bundle/edge"]
-	path = vim/pack/theme/opt/edge
-	url = https://github.com/sainnhe/edge
-[submodule "vim/bundle/sonokai"]
-	path = vim/pack/theme/opt/sonokai
-	url = https://github.com/sainnhe/sonokai
-[submodule "vim/bundle/forest-night"]
-	path = vim/pack/theme/opt/forest-night
-	url = https://github.com/sainnhe/forest-night
-[submodule "vim/bundle/tokyonight-vim"]
-	path = vim/pack/theme/opt/tokyonight
-	url = https://github.com/ghifarit53/tokyonight-vim
-[submodule "vim/bundle/rainglow"]
-	path = vim/pack/theme/opt/rainglow
-	url = https://github.com/rainglow/vim
-[submodule "vim/pack/theme/start/iceberg"]
-	path = vim/pack/theme/opt/iceberg
-	url = https://github.com/cocopon/iceberg.vim
-[submodule "vim/pack/theme/start/one"]
-	path = vim/pack/theme/opt/one
-	url = https://github.com/rakr/vim-one
 [submodule "vim/pack/tool/start/goyo"]
 	path = vim/pack/tool/start/goyo
 	url = https://github.com/junegunn/goyo.vim
-[submodule "vim/pack/theme/opt/seoul"]
-	path = vim/pack/theme/opt/seoul
-	url = https://github.com/junegunn/seoul256.vim
 [submodule "bat/themes/rainglow"]
 	path = bat/themes/rainglow
 	url = https://github.com/rainglow/sublime
-[submodule "vim/pack/theme/start/blackbird"]
-	path = vim/pack/theme/opt/blackbird
-	url = https://github.com/blackbirdtheme/vim/
 [submodule "vim/pack/treesitter/opt/treesitter"]
 	path = vim/pack/treesitter/opt/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
