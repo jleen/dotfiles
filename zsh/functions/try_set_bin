@@ -1,0 +1,8 @@
+try_set_bin() {
+    local varname="$1"
+    shift
+
+    for candidate in "$@"; do
+        eval "[[ -z $`echo $varname` ]] && [[ -x \"`echo $candidate`\" ]] && `echo $varname`=\"`echo $candidate`\""
+    done
+}

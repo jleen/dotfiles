@@ -4,6 +4,7 @@ typeset -U path fpath cdpath
 path[1,0]=$SVCONFIGDIR/bin
 [[ -d $SVCONFIGDIR/local/bin ]] && path[1,0]=$SVCONFIGDIR/local/bin
 fpath[1,0]=$SVCONFIGDIR/zsh/functions
+autoload -U $fpath[1]/*(.:t)
 
 # Where to find a few config files.  We override the default location via
 # environment variables so the user doesn't have to create stubs in $HOME.
