@@ -47,7 +47,9 @@ endif
 
 " Set the font as late as possible, to allow local overrides
 " without triggering an error if the default isn’t on this system.
-let &guifont=g:sv_font
+if has ('gui_running')
+  let &guifont=g:sv_font
+endif
 
 " Seems to be necessary to pick up ftdetect in packs.
 " See https://github.com/vim/vim/issues/1679
