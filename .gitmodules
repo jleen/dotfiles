@@ -43,3 +43,6 @@
 [submodule "vim/pack/tool/start/devicons"]
 	path = vim/pack/tool/start/devicons
 	url = https://github.com/nvim-tree/nvim-web-devicons
+[submodule "vim/pack/lang/start/xonsh"]
+	path = vim/pack/lang/start/xonsh
+	url = https://github.com/meatballs/vim-xonsh
