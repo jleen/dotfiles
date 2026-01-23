@@ -8,7 +8,7 @@ $env.config.buffer_editor = 'nvim'
 
 if (which starship | is-not-empty) {
   $env.STARSHIP_SHELL = "nu"
-  $env.STARSHIP_CONFIG = $nu.home-path + "/sv/starship/starship.toml"
+  $env.STARSHIP_CONFIG = $nu.home-dir + "/sv/starship/starship.toml"
 
   def create_left_prompt [] {
       starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
