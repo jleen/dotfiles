@@ -38,6 +38,8 @@ function () {
   # It’s a long shot on most platforms, but harmless to check.
   if [ -x '/mnt/c/Program Files/Neovide/neovide.exe' ]; then
     export SV_NEOVIDE_BIN='/mnt/c/Program Files/Neovide/neovide.exe'
+  elif [ -x "/mnt/c/Users/`whoami`/scoop/shims/neovide.exe" ]; then
+    export SV_NEOVIDE_BIN="/mnt/c/Users/`whoami`/scoop/shims/neovide.exe"
   fi
 
   if [[ $SV_NEOVIDE_BIN ]]; then
@@ -55,7 +57,7 @@ function () {
       else
         for fn in $@; do
           # We use -- to work around https://github.com/neovide/neovide/issues/2689
-          spawn "$SV_NEOVIDE_BIN" --wsl -- "\"$fn\""
+          spawn "$SV_NEOVIDE_BIN" --wsl -- "$fn"
         done
       fi
     }
