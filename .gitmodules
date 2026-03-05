@@ -46,3 +46,6 @@
 [submodule "vim/pack/lang/start/xonsh"]
 	path = vim/pack/lang/start/xonsh
 	url = https://github.com/meatballs/vim-xonsh
+[submodule "vim/pack/theme/opt/nightfox"]
+	path = vim/pack/theme/opt/nightfox
+	url = https://github.com/EdenEast/nightfox.nvim
