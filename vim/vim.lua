@@ -34,24 +34,8 @@ end)
 
 pcall(function()
     vim.cmd.packadd('lspconfig')
-    local lspconfig = require('lspconfig')
-    lspconfig.dartls.setup {}
-    lspconfig.hls.setup {}
-    lspconfig.ts_ls.setup {}
-    lspconfig.purescriptls.setup {}
-
-    lspconfig.pyright.setup {
-        settings = { python = { analysis = { typeCheckingMode = 'off' }}},
-        on_new_config = function(config, root_dir)
-            config.settings.python.pythonPath =
-                vim.trim(vim.fn.system('uv python find --project "' .. root_dir))
-        end
-    }
-
-    lspconfig.haxe_language_server.setup {
-        -- If it’s anywhere then it’s here.
-        cmd = {'node', vim.env.HOME .. '/src/haxe-language-server/bin/server.js'}
-    }
+    vim.lsp.enable('ts_ls')
+    vim.lsp.enable('ty')
 
     require('lspconfig.ui.windows').default_options = {
         border = 'single'
