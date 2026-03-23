@@ -1,4 +1,4 @@
-try_set_bin SV_STARSHIP_BIN ~/.local/bin/starship ~/.cargo/bin/starship /snap/starship/current/bin/starship /usr/bin/starship
+try_set_bin SV_STARSHIP_BIN ~/.local/bin/starship ~/.cargo/bin/starship /snap/starship/current/bin/starship /usr/bin/starship /opt/homebrew/bin/starship
 
 export STARSHIP_CONFIG="$SVCONFIGDIR/starship/starship.toml"
 if [[ -x "$SV_STARSHIP_BIN" ]]; then

@@ -1,4 +1,4 @@
-[[ -z $SV_FZF_BIN ]] && [[ -x /usr/bin/fzf ]] && SV_FZF_BIN=/usr/bin/fzf
+try_set_bin SV_FZF_BIN /usr/bin/fzf /opt/homebrew/bin/fzf
 
 # Maybe the whole package is installed.
 if [[ -z "$SV_FZF_DIR" && -d /usr/share/doc/fzf/examples ]]; then
