@@ -17,7 +17,7 @@ else
 
   if [[ -o INTERACTIVE ]]; then
       [[ -f $SVCONFIGDIR/local/zshrc-pre ]] && source $SVCONFIGDIR/local/zshrc-pre
-      for rc in $SVCONFIGDIR/zsh/zshrc.d/*.zsh; do
+      for rc in $SVCONFIGDIR/zsh/rc/*.zsh; do
         source $rc
       done
       [[ -f $SVCONFIGDIR/local/zshrc ]] && source $SVCONFIGDIR/local/zshrc
