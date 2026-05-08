@@ -6,8 +6,6 @@
     name = John Leen
 
 [core]
-    # TODO: Don't hardcode ~/sv.
-    excludesfile = "~/sv/git/gitignore"
     pager = delta
     quotepath = off
 
