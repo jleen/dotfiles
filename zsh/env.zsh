@@ -6,6 +6,9 @@ path[1,0]=$SVCONFIGDIR/bin
 fpath[1,0]=$SVCONFIGDIR/zsh/functions
 autoload -U $fpath[1]/*(.:t)
 
+# Remove Windowsish stuff from the path to avoid path contamination under WSL.
+path=("${(@)path:#/mnt/c/*}")
+
 # Where to find a few config files.  We override the default location via
 # environment variables so the user doesn't have to create stubs in $HOME.
 export BAT_CONFIG_PATH="$SVCONFIGDIR/bat/batconfig"
