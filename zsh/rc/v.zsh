@@ -105,7 +105,9 @@ function () {
     alias vv='gvim.bat -R -'
     alias vvv='givm.bat'
   elif [[ $sv_v_platform = osx ]]; then
-    if [[ -n $SV_VIMR_BIN ]]; then
+    if [[ -n /opt/homebrew/bin/neovide ]]; then
+      alias v=/opt/homebrew/bin/neovide
+    elif [[ -n $SV_VIMR_BIN ]]; then
       v () {
         if [[ $#* -gt 3 ]]; then
           if [[ $1 == -f ]]; then
