@@ -57,7 +57,7 @@ function () {
       else
         for fn in $@; do
           # We use -- to work around https://github.com/neovide/neovide/issues/2689
-          spawn "$SV_NEOVIDE_BIN" --wsl -- "$fn"
+          spawn "$SV_NEOVIDE_BIN" --wsl "$fn"
         done
       fi
     }
