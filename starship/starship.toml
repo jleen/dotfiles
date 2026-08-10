@@ -190,6 +190,10 @@ tag_symbol = '  '
 [git_status]
 disabled = false
 
+[gleam]
+symbol = " "
+format = '[$symbol($version )]($style)'
+
 [golang]
 symbol = " "
 
@@ -310,7 +314,7 @@ symbol = " "
 symbol = "󰏗 "
 
 [python]
-python_binary = [["uv", "run", "--no-python-downloads", "python"]]
+python_binary = [["uv", "run", "--no-python-downloads", "--no-project", "python"]]
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 #symbol = " "
 
