@@ -11,19 +11,32 @@ export SVCONFIGDIR="${0:h:h}"
 if [[ $UID = 0 || $EUID = 0 ]]; then
   setopt PRIVILEGED
 else
-  source $SVCONFIGDIR/zsh/env.zsh
+  # We'll handle globals ourselves, so we can interleave customizations.
+  # We sequence the inits as described in `man zsh`.
+  set -o noglobalrcs
 
+  # zshenv
+  source $SVCONFIGDIR/zsh/env.zsh
   [[ -f $SVCONFIGDIR/local/zshenv ]] && source $SVCONFIGDIR/local/zshenv
 
-  if [[ -o INTERACTIVE ]]; then
-      [[ -f $SVCONFIGDIR/local/zshrc-pre ]] && source $SVCONFIGDIR/local/zshrc-pre
-      for rc in $SVCONFIGDIR/zsh/rc/*.zsh; do
-        source $rc
-      done
-      [[ -f $SVCONFIGDIR/local/zshrc ]] && source $SVCONFIGDIR/local/zshrc
+  # zprofile
+  if [[ -o LOGIN ]]; then
+      [[ -f /etc/zprofile ]] && source /etc/zprofile
   fi
 
+  # zshrc
+  if [[ -o INTERACTIVE ]]; then
+    [[ -f $SVCONFIGDIR/local/zshrc-pre ]] && source $SVCONFIGDIR/local/zshrc-pre
+    [[ -f /etc/zshrc ]] && source /etc/zshrc
+    for rc in $SVCONFIGDIR/zsh/rc/*.zsh; do
+      source $rc
+    done
+    [[ -f $SVCONFIGDIR/local/zshrc ]] && source $SVCONFIGDIR/local/zshrc
+  fi
+
+  # zlogin
   if [[ -o LOGIN ]]; then
-      [[ -f $SVCONFIGDIR/local/zlogin ]] && source $SVCONFIGDIR/local/zlogin
+    [[ -f /etc/zlogin ]] && source /etc/zlogin
+    [[ -f $SVCONFIGDIR/local/zlogin ]] && source $SVCONFIGDIR/local/zlogin
   fi
 fi
