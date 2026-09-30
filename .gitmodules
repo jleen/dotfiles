@@ -25,8 +25,8 @@
 [submodule "eza/eza-community-themes"]
 	path = eza/eza-community-themes
 	url = https://github.com/eza-community/eza-themes
-[submodule "vim/pack/theme/opt/catppuccin"]
-	path = vim/pack/theme/opt/catppuccin
+[submodule "vim/pack/theme/opt/ncatppuccin"]
+	path = vim/pack/theme/opt/ncatppuccin
 	url = https://github.com/catppuccin/nvim
 [submodule "vim/pack/tool/start/vindent"]
 	path = vim/pack/tool/start/vindent
