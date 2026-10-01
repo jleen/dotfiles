@@ -46,3 +46,6 @@
 [submodule "vim/pack/theme/opt/nightfox"]
 	path = vim/pack/theme/opt/nightfox
 	url = https://github.com/EdenEast/nightfox.nvim
+[submodule "vim/pack/theme/opt/catppuccin"]
+	path = vim/pack/theme/opt/catppuccin
+	url = https://github.com/catppuccin/vim

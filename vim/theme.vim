@@ -18,6 +18,10 @@ set winaltkeys=no  " On Windows, don't use Alt for menus.
 if !has("nvim")
     set guioptions-=T  " On Windows, don't show the toolbar.
     set guioptions+=a  " On X, Visual mode sets the global selection.
+    syntax on
+    set termguicolors
+    colorscheme catppuccin_frappe
+    "highlight CursorLine
 endif
 let g:neovide_cursor_animate_command_line = v:false  " Fast jump to cmdline.
 
