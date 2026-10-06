@@ -5,7 +5,7 @@ function () {
   spawn () { ($* > /dev/null 2>&1 &) }
 
   # The all-important EDITOR.
-  if [[ -n $DISPLAY ]]; then
+  if [[ -n $DISPLAY ]] && which gvim > /dev/null; then
     export EDITOR='gvim -f'
   else
     export EDITOR='vi'
@@ -16,8 +16,7 @@ function () {
   ##   W I N D O W S   ( W S L )
   #    (pop up "real Windows" Gvim if available)
   ##
-  if [[ `uname -r` = *Microsoft* || -n $WSL_INTEROP ]]; then
-    # TODO: We should see if Gvim is even available.
+  if [[ (`uname -r` = *Microsoft* || -n $WSL_INTEROP) && -x $SV_GVIM_EXE ]]; then
     v () {
       if [[ $#* -gt 3 ]]; then
         if [[ $1 == -f ]]; then
@@ -28,16 +27,16 @@ function () {
         fi
       fi
       if [[ -z $* ]]; then
-        spawn "${SV_GVIM_EXE:-gvim.exe}"
+        spawn "$SV_GVIM_EXE"
       else
         for fn in $@; do
           fn=`wslpath -wa $fn`
-          spawn "${SV_GVIM_EXE:-gvim.exe}" "$fn"
+          spawn "$SV_GVIM_EXE" "$fn"
         done
       fi
     }
-    alias vv='spawn "${SV_GVIM_EXE:-gvim.exe}" -R -'
-    alias vvv='spawn "${SV_GVIM_EXE:-gvim.exe}"'
+    alias vv='spawn "$SV_GVIM_EXE" -R -'
+    alias vvv='spawn "$SV_GVIM_EXE"'
 
   ##
   ##  M A C I N T O S H
@@ -85,7 +84,7 @@ function () {
           return 1
         fi
       fi
-      if [[ -n $DISPLAY ]]; then
+      if [[ -n $DISPLAY ]] && which gvim > /dev/null; then
         if [[ -z $* ]]; then
           gvim
         else
@@ -109,14 +108,14 @@ function () {
     # Check for X at invocation time, to support screen reattach.
     # (Our screen harness already updates DISPLAY at reattach.)
     vv () {
-      if [[ -n $DISPLAY ]]; then
+      if [[ -n $DISPLAY ]] && which gvim > /dev/null; then
         gvim -R -
       else
         vi -R -
       fi
     }
     vvv () {
-      if [[ -n $DISPLAY ]]; then
+      if [[ -n $DISPLAY ]] && which gvim > /dev/null; then
         gvim
       else
         vi
