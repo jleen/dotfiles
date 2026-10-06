@@ -49,3 +49,6 @@
 [submodule "vim/pack/theme/opt/catppuccin"]
 	path = vim/pack/theme/opt/catppuccin
 	url = https://github.com/catppuccin/vim
+[submodule "vim/pack/tool/start/ale"]
+	path = vim/pack/tool/start/ale
+	url = https://github.com/dense-analysis/ale
