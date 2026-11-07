@@ -1,5 +1,5 @@
 [include]
-    path = "~/sv/delta/themes/catppuccin/catppuccin.gitconfig"
+    path = "~/sv/delta/catppuccin.gitconfig"
 
 [user]
     email = jleen@saturnvalley.org
@@ -14,6 +14,7 @@
     navigate = true
 
 [diff]
+    submodule = log
     tool = nvimdiff
 
 [difftool]
@@ -30,6 +31,12 @@
 
 [pull]
     rebase = true
+
+[status]
+    submoduleSummary = true
+
+[submodule]
+    recurse = true
 
 [push]
     autoSetupRemote = true

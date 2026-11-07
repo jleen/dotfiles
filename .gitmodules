@@ -1,24 +1,3 @@
-[submodule "zsh/bundle/zsh-autosuggestions"]
-	path = zsh/bundle/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "zsh/bundle/zsh-syntax-highlighting"]
-	path = zsh/bundle/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "bat/themes/rainglow"]
-	path = bat/themes/rainglow
-	url = https://github.com/rainglow/sublime
-[submodule "bat/themes/catppuccin"]
-	path = bat/themes/catppuccin
-	url = https://github.com/catppuccin/bat
-[submodule "delta/themes/catppuccin"]
-	path = delta/themes/catppuccin
-	url = https://github.com/catppuccin/delta
-[submodule "zsh/bundle/catppuccin-syntax-highlighting"]
-	path = zsh/bundle/catppuccin-syntax-highlighting
-	url = https://github.com/catppuccin/zsh-syntax-highlighting
-[submodule "eza/eza-community-themes"]
-	path = eza/eza-community-themes
-	url = https://github.com/eza-community/eza-themes
 [submodule "vim/pack/tool/start/vindent"]
 	path = vim/pack/tool/start/vindent
 	url = https://github.com/jessekelighine/vindent.vim
@@ -34,7 +13,7 @@
 [submodule "vim/pack/theme/opt/catppuccin"]
 	path = vim/pack/theme/opt/catppuccin
 	url = https://github.com/catppuccin/vim
-[submodule "vim/pack/tool/start/ale"]
+[submodule "vim/pack/tool/opt/ale"]
 	path = vim/pack/tool/opt/ale
 	url = https://github.com/dense-analysis/ale
 [submodule "vim/pack/theme/opt/ncatppuccin"]

@@ -5,6 +5,9 @@ been evolving for over two decades of fun-filled whimsy.
 
 ## Installation
 
+You’ll probably want to `git clone --recursive-submodules` to get the Vim plugins.
+(Or just `git submodule update --init` after cloning.)
+
 Source `zsh/startup.zsh` from your zshenv.  Pass it a prompt title and prompt
 color as arguments.
 
@@ -26,11 +29,11 @@ The following will be autoconfigured if present.
 
 * neovim (ideally the latest AppImage from GitHub)
 * starship (again from GitHub)
-* `apt install bat eza fzf git-delta ripgrep zoxide zsh`
+* `apt install bat eza fzf git-delta ripgrep zoxide zsh zsh-autosuggestions zsh-syntax-highlighting`
 
 Or, on Mac OS, just
 
-* `brew install nvim neovide-app bat eza fd fzf delta ripgrep zoxide`
+* `brew install nvim neovide-app bat eza fd fzf delta ripgrep zoxide zsh-autosuggestions zsh-syntax-highlighting`
 
 In either case, you’ll want to
 
@@ -56,3 +59,12 @@ The preferred Vim is NeoVim via Neovide, and the config bootstrap is
 You can get these dependencies from e.g.
 
 * `scoop install neovim neovide nushell`
+
+## Vendored Catppuccin
+
+Catppuccin is the flavor of the day! This repo contains vendored code from the following repos:
+
+* https://github.com/catppuccin/bat @ `6810349`
+* https://github.com/catppuccin/delta @ `313b3ac`
+* https://github.com/eza-community/eza-themes @ `5714985`
+* https://github.com/catppuccin/zsh-syntax-highlighting @ `7926c3d`
