@@ -1,6 +1,6 @@
 --== T H E M E ==--
 
-vim.cmd.packadd('catppuccin')
+vim.cmd.packadd('ncatppuccin')
 require('catppuccin').setup({ show_end_of_buffer = true })
 vim.cmd.colorscheme 'catppuccin-mocha'
 
