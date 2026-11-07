@@ -27,6 +27,13 @@ The following will be autoconfigured if present.
 * neovim (ideally the latest AppImage from GitHub)
 * starship (again from GitHub)
 * `apt install bat eza fzf git-delta ripgrep zoxide zsh`
+
+Or, on Mac OS, just
+
+* `brew install nvim neovide-app bat eza fd fzf delta ripgrep zoxide`
+
+In either case, you’ll want to
+
 * `bat cache --build --source /home/jleen/sv/bat`
 
 ## Theming
@@ -45,3 +52,7 @@ A lot of this stuff sort of works on Windows.
 
 The preferred Vim is NeoVim via Neovide, and the config bootstrap is
 `%LocalAppData%\nvim\init.vim`.
+
+You can get these dependencies from e.g.
+
+* `scoop install neovim neovide nushell`
