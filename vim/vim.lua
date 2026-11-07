@@ -78,7 +78,7 @@ end)
 
 --== O C A M L   T O O L S ==--
 
-if vim.uv.fs_stat('~/.opam') then
+if vim.uv and vim.uv.fs_stat('~/.opam') then  -- HACKHACK for old nvim
     vim.opt.rtp:append({
         "~/.opam/default/share/merlin/vim",
         "~/.opam/default/share/ocp-indent/vim"
